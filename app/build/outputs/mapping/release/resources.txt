@@ -1,0 +1,133 @@
+Resource Reference Graph:
+color:notification_action_color_filter:2130968576 => [color:secondary_text_default_material_light:2130968579]
+dimen:notification_media_narrow_margin:2131034124 => [dimen:notification_content_margin_start:2131034120]
+drawable:notification_action_background:2131099662 => [color:ripple_material_light:2130968578, dimen:compat_button_inset_vertical_material:2131034113, dimen:compat_button_inset_horizontal_material:2131034112, dimen:compat_control_corner_material:2131034116, dimen:compat_button_padding_vertical_material:2131034115, dimen:compat_button_padding_horizontal_material:2131034114]
+drawable:notification_bg:2131099663 => [drawable:notification_bg_normal_pressed:2131099668, drawable:notification_bg_normal:2131099667]
+drawable:notification_bg_low:2131099664 => [drawable:notification_bg_low_pressed:2131099666, drawable:notification_bg_low_normal:2131099665]
+drawable:notification_icon_background:2131099669 => [color:notification_icon_bg_color:2130968577]
+drawable:notification_tile_bg:2131099672 => [drawable:notify_panel_notification_icon_bg:2131099673]
+layout:notification_action:2131296260 => [style:Widget_Compat_NotificationActionContainer:2131558407, dimen:notification_action_icon_size:2131034117, style:Widget_Compat_NotificationActionText:2131558408]
+layout:notification_action_tombstone:2131296261 => [style:Widget_Compat_NotificationActionContainer:2131558407, dimen:notification_action_icon_size:2131034117, style:Widget_Compat_NotificationActionText:2131558408]
+layout:notification_template_custom_big:2131296262 => [dimen:notification_large_icon_height:2131034121, dimen:notification_large_icon_width:2131034122, layout:notification_template_icon_group:2131296263, dimen:notification_right_side_padding_top:2131034126, layout:notification_template_part_time:2131296265, layout:notification_template_part_chronometer:2131296264, style:TextAppearance_Compat_Notification_Info:2131558403]
+layout:notification_template_icon_group:2131296263 => [dimen:notification_large_icon_height:2131034121, dimen:notification_large_icon_width:2131034122, dimen:notification_big_circle_margin:2131034119, dimen:notification_right_icon_size:2131034125]
+layout:notification_template_part_chronometer:2131296264 => [style:TextAppearance_Compat_Notification_Time:2131558405]
+layout:notification_template_part_time:2131296265 => [style:TextAppearance_Compat_Notification_Time:2131558405]
+style:TextAppearance_Compat_Notification_Info:2131558403 => [style:TextAppearance_Compat_Notification:2131558402, style:TextAppearance_Compat:-1, style:TextAppearance:-1]
+style:TextAppearance_Compat_Notification_Line2:2131558404 => [style:TextAppearance_Compat_Notification_Info:2131558403]
+style:TextAppearance_Compat_Notification_Time:2131558405 => [style:TextAppearance_Compat_Notification:2131558402, style:TextAppearance_Compat:-1, style:TextAppearance:-1]
+style:Widget_Compat_NotificationActionContainer:2131558407 => [drawable:notification_action_background:2131099662]
+style:Widget_Compat_NotificationActionText:2131558408 => [color:secondary_text_default_material_light:2130968579, dimen:notification_action_text_size:2131034118]
+layout:activity_buy_pizza:2131296256 => [string:begging1:2131492872, string:begging2:2131492873, string:begging3:2131492874, string:begging4:2131492876, string:buyButtonText:2131492877]
+layout:activity_main:2131296257 => [string:pleaseWait:2131492904, string:qsl_table_header:2131492905, drawable:hl:2131099654, string:callsignTitle:2131492879, string:workedTitle:2131492932, string:qsoDateTitle:2131492907, string:bandTitle:2131492871, string:modeTitle:2131492901, drawable:hr:2131099655, string:countryTitle:2131492881]
+layout:activity_search:2131296258 => [string:theirCallTitle:2131492928, string:theirCallHint:2131492927, dimen:searchBoxVerticalSpacing:2131034132, string:searchDateRangeHint:2131492913, string:searchDateRange:2131492912, string:qsoStartTitle:2131492909, string:qsoEndTitle:2131492908, string:modeTitle:2131492901, string:bandTitle:2131492871, string:dxccTitle:2131492888, string:searchButton:2131492911]
+layout:activity_show_qsl_details:2131296259 => [string:detailsTitle:2131492887]
+menu:activity_main:2131361792 => [drawable:ic_action_search:2131099658, string:action_search:2131492867, drawable:ic_action_refresh:2131099657, string:action_refresh:2131492866, drawable:ic_action_settings:2131099659, string:menu_settings:2131492898, drawable:ic_action_pizza:2131099656, string:action_buy_pizza:2131492865]
+style:AppTheme:2131558401 => [style:AppBaseTheme:2131558400]
+xml:preferences:2131689472 => [string:settings_heading:2131492916, string:settings_username_hint:2131492924, string:settings_username:2131492923, string:settings_password_hint:2131492920, string:settings_password:2131492919, string:title_activity_settings:2131492929, string:settings_owncall_hint:2131492918, string:settings_owncall:2131492917, string:update_interval_default:2131492930, array:update_interval_options:2130771969, array:update_interval_values:2130771970, string:settings_update_interval_notes:2131492922, string:settings_update_interval:2131492921, string:database_maximum_entries_default:2131492885, array:database_maximum_entries_values:2130771968, string:max_database_entries_notes:2131492897, string:max_database_entries:2131492896]
+
+The root reachable resources are:
+drawable:bel:2131099648,
+   drawable:ber:2131099649,
+   drawable:bol:2131099650,
+   drawable:bor:2131099651,
+   drawable:el:2131099652,
+   drawable:er:2131099653,
+   drawable:ic_launcher:2131099660,
+   drawable:ic_notification:2131099661,
+   drawable:ol:2131099674,
+   drawable:or:2131099675,
+   id:action_buy:2131165184,
+   id:bandHeader:2131165194,
+   id:bandSpinner:2131165195,
+   id:callsignHeader:2131165199,
+   id:countryHeader:2131165201,
+   id:detailsTableLayout:2131165202,
+   id:dxccSpinner:2131165203,
+   id:endDateButton:2131165205,
+   id:modeHeader:2131165213,
+   id:modeSpinner:2131165214,
+   id:mycallHeader:2131165216,
+   id:pizzaPriceText:2131165221,
+   id:qslTableLayout:2131165222,
+   id:qsoDateHeader:2131165223,
+   id:screen_wait:2131165229,
+   id:searchDateRangeCbx:2131165230,
+   id:startDateButton:2131165232,
+   id:tableHeader:2131165233,
+   id:tableRow1:2131165234,
+   id:tableRow2:2131165235,
+   id:theirCallEditText:2131165243,
+   layout:activity_buy_pizza:2131296256,
+   layout:activity_main:2131296257,
+   layout:activity_search:2131296258,
+   layout:activity_show_qsl_details:2131296259,
+   menu:activity_main:2131361792,
+   plurals:new_qsls:2131427328,
+   string:accessingLoTW:2131492864,
+   string:action_buy_pizza:2131492865,
+   string:action_search:2131492867,
+   string:all:2131492868,
+   string:app_name:2131492869,
+   string:bandColumnHeader:2131492870,
+   string:bandTitle:2131492871,
+   string:begging3template:2131492875,
+   string:callsignColumnHeader:2131492878,
+   string:callsignTitle:2131492879,
+   string:countryColumnHeader:2131492880,
+   string:countyTitle:2131492882,
+   string:cqZoneTitle:2131492883,
+   string:creditGrantedTitle:2131492884,
+   string:dateTimeTitle:2131492886,
+   string:detailsTitle:2131492887,
+   string:dxccTitle:2131492888,
+   string:frequencyTitle:2131492889,
+   string:gridTitle:2131492890,
+   string:including:2131492891,
+   string:invalid_missing_credentials:2131492892,
+   string:iotaTitle:2131492893,
+   string:ituZoneTitle:2131492894,
+   string:loginFailed:2131492895,
+   string:missingSearchCriteria:2131492899,
+   string:modeColumnHeader:2131492900,
+   string:modeTitle:2131492901,
+   string:network_unavailable:2131492902,
+   string:no_new_qsls:2131492903,
+   string:pleaseWait:2131492904,
+   string:qsoDateColumnHeader:2131492906,
+   string:rxFrequencyTitle:2131492910,
+   string:searchResults:2131492914,
+   string:set_credentials:2131492915,
+   string:stateTitle:2131492925,
+   string:title_activity_settings:2131492929,
+   string:workedColumnHeader:2131492931,
+   string:workedTitle:2131492932,
+   string:you_need_to_set_credentials:2131492933,
+   style:AppBaseTheme:2131558400,
+   style:AppTheme:2131558401,
+   xml:preferences:2131689472
+Skipped unused resource res/drawable-v21/notification_action_background.xml: -1 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/drawable/notification_bg.xml: -1 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/drawable/notification_bg_low.xml: -1 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/drawable/notification_icon_background.xml: -1 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/drawable/notification_tile_bg.xml: -1 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/drawable-mdpi-v4/notification_bg_low_normal.9.png: 215 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-mdpi-v4/notification_bg_low_pressed.9.png: 223 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-mdpi-v4/notification_bg_normal.9.png: 215 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-mdpi-v4/notification_bg_normal_pressed.9.png: 223 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-mdpi-v4/notify_panel_notification_icon_bg.png: 98 bytes (replaced with small dummy file of size 67 bytes)
+Skipped unused resource res/drawable-hdpi-v4/notification_bg_low_normal.9.png: 212 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-hdpi-v4/notification_bg_low_pressed.9.png: 225 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-hdpi-v4/notification_bg_normal.9.png: 212 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png: 225 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png: 107 bytes (replaced with small dummy file of size 67 bytes)
+Skipped unused resource res/drawable-xhdpi-v4/notification_bg_low_normal.9.png: 221 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-xhdpi-v4/notification_bg_low_pressed.9.png: 252 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-xhdpi-v4/notification_bg_normal.9.png: 221 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-xhdpi-v4/notification_bg_normal_pressed.9.png: 247 bytes (replaced with small dummy file of size 77 bytes)
+Skipped unused resource res/drawable-xhdpi-v4/notify_panel_notification_icon_bg.png: 138 bytes (replaced with small dummy file of size 67 bytes)
+Skipped unused resource res/layout-v21/notification_action.xml: -1 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/layout-v21/notification_action_tombstone.xml: -1 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/layout-v21/notification_template_custom_big.xml: -1 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/layout-v21/notification_template_icon_group.xml: -1 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/layout/notification_template_part_chronometer.xml: -1 bytes (replaced with small dummy file of size 104 bytes)
+Skipped unused resource res/layout/notification_template_part_time.xml: -1 bytes (replaced with small dummy file of size 104 bytes)

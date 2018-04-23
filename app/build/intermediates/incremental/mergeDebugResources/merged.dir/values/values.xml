@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="database_maximum_entries_values">
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+    </string-array>
+    <string-array name="update_interval_options">
+        <item>Never</item>
+        <item>4 hours</item>
+        <item>6 hours</item>
+        <item>12 hours</item>
+        <item>24 hours</item>
+    </string-array>
+    <string-array name="update_interval_values">
+        <item>0</item>
+        <item>4</item>
+        <item>6</item>
+        <item>12</item>
+        <item>24</item>
+    </string-array>
+    <color name="notification_action_color_filter">#ffffffff</color>
+    <color name="notification_icon_bg_color">#ff9e9e9e</color>
+    <color name="ripple_material_light">#1f000000</color>
+    <color name="secondary_text_default_material_light">#8a000000</color>
+    <declare-styleable name="FontFamily"><attr format="string" name="fontProviderAuthority"/><attr format="string" name="fontProviderPackage"/><attr format="string" name="fontProviderQuery"/><attr format="reference" name="fontProviderCerts"/><attr name="fontProviderFetchStrategy">
+            
+            <enum name="blocking" value="0"/>
+            
+            <enum name="async" value="1"/>
+        </attr><attr format="integer" name="fontProviderFetchTimeout">
+          
+            <enum name="forever" value="-1"/>
+        </attr></declare-styleable>
+    <declare-styleable name="FontFamilyFont"><attr name="fontStyle">
+            <enum name="normal" value="0"/>
+            <enum name="italic" value="1"/>
+        </attr><attr format="reference" name="font"/><attr format="integer" name="fontWeight"/><attr name="android:fontStyle"/><attr name="android:font"/><attr name="android:fontWeight"/></declare-styleable>
+    <dimen name="compat_button_inset_horizontal_material">4dp</dimen>
+    <dimen name="compat_button_inset_vertical_material">6dp</dimen>
+    <dimen name="compat_button_padding_horizontal_material">8dp</dimen>
+    <dimen name="compat_button_padding_vertical_material">4dp</dimen>
+    <dimen name="compat_control_corner_material">2dp</dimen>
+    <dimen name="notification_action_icon_size">32dp</dimen>
+    <dimen name="notification_action_text_size">13sp</dimen>
+    <dimen name="notification_big_circle_margin">12dp</dimen>
+    <dimen name="notification_content_margin_start">8dp</dimen>
+    <dimen name="notification_large_icon_height">64dp</dimen>
+    <dimen name="notification_large_icon_width">64dp</dimen>
+    <dimen name="notification_main_column_padding_top">10dp</dimen>
+    <dimen name="notification_media_narrow_margin">@dimen/notification_content_margin_start</dimen>
+    <dimen name="notification_right_icon_size">16dp</dimen>
+    <dimen name="notification_right_side_padding_top">2dp</dimen>
+    <dimen name="notification_small_icon_background_padding">3dp</dimen>
+    <dimen name="notification_small_icon_size_as_large">24dp</dimen>
+    <dimen name="notification_subtext_size">13sp</dimen>
+    <dimen name="notification_top_pad">10dp</dimen>
+    <dimen name="notification_top_pad_large_text">5dp</dimen>
+    <dimen name="searchBoxVerticalSpacing">8dp</dimen>
+    <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
+    <drawable name="notification_template_icon_low_bg">#0cffffff</drawable>
+    <item name="line1" type="id"/>
+    <item name="line3" type="id"/>
+    <item name="tag_transition_group" type="id"/>
+    <item name="text" type="id"/>
+    <item name="text2" type="id"/>
+    <item name="title" type="id"/>
+    <integer name="status_bar_notification_info_maxnum">999</integer>
+    <plurals name="new_qsls">
+        <item quantity="one">%d New QSL</item>
+        <item quantity="other">%d New QSLs</item>
+    </plurals>
+    <string name="accessingLoTW">Accessing LoTW…</string>
+    <string name="action_buy_pizza">Buy N1KDO Pizza</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="action_search">Search</string>
+    <string name="all">All</string>
+    <string name="app_name">LoTW Look</string>
+    <string name="bandColumnHeader">Band%s</string>
+    <string name="bandTitle">Band</string>
+    <string name="begging1">If you find this application useful, you can show your appreciation by buying N1KDO a slice of pizza.</string>
+    <string name="begging2">This is an \"in-app\" purchase and is not refundable.</string>
+    <string name="begging3">The price goes here.</string>
+    <string name="begging3template">The price of %1$s is %2$s.</string>
+    <string name="begging4">Once you buy a slice, the \"Buy N1KDO Pizza\" menu option will disappear, and never come back.</string>
+    <string name="buyButtonText">Buy N1KDO a Slice of Pizza</string>
+    <string name="callsignColumnHeader">Callsign%s</string>
+    <string name="callsignTitle">Callsign</string>
+    <string name="countryColumnHeader">Country%s</string>
+    <string name="countryTitle">Country</string>
+    <string name="countyTitle">County</string>
+    <string name="cqZoneTitle">CQ Zone</string>
+    <string name="creditGrantedTitle">Credit Granted</string>
+    <string name="database_maximum_entries_default">100</string>
+    <string name="dateTimeTitle">Date/Time</string>
+    <string name="detailsTitle">QSO Details</string>
+    <string name="dxccTitle">DXCC</string>
+    <string name="frequencyTitle">Frequency</string>
+    <string name="gridTitle">Grid</string>
+    <string name="including">including</string>
+    <string name="invalid_missing_credentials">Invalid or Missing Credentials</string>
+    <string name="iotaTitle">Iota</string>
+    <string name="ituZoneTitle">ITU Zone</string>
+    <string name="loginFailed">LoTW login failed, check your account name and password.</string>
+    <string name="max_database_entries">Maximum QSLs to keep on device.</string>
+    <string name="max_database_entries_notes">This allows you to set how many of your recent QSLs are kept on your device.</string>
+    <string name="menu_settings">Settings</string>
+    <string name="missingSearchCriteria">You must search for at least one item.</string>
+    <string name="modeColumnHeader">Mode%s</string>
+    <string name="modeTitle">Mode</string>
+    <string name="network_unavailable">Network Unavailable</string>
+    <string name="no_new_qsls">No New QSLs</string>
+    <string name="pleaseWait">Please Wait…</string>
+    <string name="qsl_table_header">LoTW QSLs</string>
+    <string name="qsoDateColumnHeader">QSO Date%s</string>
+    <string name="qsoDateTitle">QSO Date</string>
+    <string name="qsoEndTitle">QSO End Date</string>
+    <string name="qsoStartTitle">QSO Start Date</string>
+    <string name="rxFrequencyTitle">Rx Frequency</string>
+    <string name="searchButton">Search</string>
+    <string name="searchDateRange">Search Date Range</string>
+    <string name="searchDateRangeHint">Check this box to search a range of dates.</string>
+    <string name="searchResults">Search Results</string>
+    <string name="set_credentials">Set Credentials</string>
+    <string name="settings_heading">LoTW Web Site Credentials</string>
+    <string name="settings_owncall">Your Callsign</string>
+    <string name="settings_owncall_hint">If your LoTW account has more than one call sign associated with it, and you only want to 
+        see the QSLs for one call sign, enter that call sign here.  If you only have one call sign associated with your LoTW 
+        account, you can leave this blank.  Most users will want to leave this blank.</string>
+    <string name="settings_password">Password</string>
+    <string name="settings_password_hint">Your LoTW Website Password</string>
+    <string name="settings_update_interval">Update Interval</string>
+    <string name="settings_update_interval_notes">How often to check for new QSLs.</string>
+    <string name="settings_username">Username</string>
+    <string name="settings_username_hint">Your LoTW Website Username</string>
+    <string name="stateTitle">State</string>
+    <string name="status_bar_notification_info_overflow">999+</string>
+    <string name="theirCallHint">Their callsign, or blank</string>
+    <string name="theirCallTitle">Their Call</string>
+    <string name="title_activity_settings">Settings</string>
+    <string name="update_interval_default">4</string>
+    <string name="workedColumnHeader">Worked%s</string>
+    <string name="workedTitle">Worked</string>
+    <string name="you_need_to_set_credentials">You need to set up your LoTW Login Credentials.</string>
+    <style name="AppBaseTheme" parent="android:Theme.Material.Light.DarkActionBar">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <style name="TextAppearance.Compat.Notification" parent="@android:style/TextAppearance.StatusBar.EventContent"/>
+    <style name="TextAppearance.Compat.Notification.Info">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Compat.Notification.Line2" parent="TextAppearance.Compat.Notification.Info"/>
+    <style name="TextAppearance.Compat.Notification.Time">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">?android:attr/textColorSecondary</item>
+    </style>
+    <style name="TextAppearance.Compat.Notification.Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title"/>
+    <style name="Widget.Compat.NotificationActionContainer" parent=""/>
+    <style name="Widget.Compat.NotificationActionText" parent=""/>
+</resources>

@@ -1,0 +1,294 @@
+[
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-nodpi_hl.9.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-nodpi\\hl.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\layout_notification_template_part_time.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi_ic_action_settings.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_action_settings.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_ic_action_refresh.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-mdpi\\ic_action_refresh.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-nodpi_bor.9.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-nodpi\\bor.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-nodpi_ber.9.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-nodpi\\ber.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-mdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-nodpi_hr.9.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-nodpi\\hr.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi_ic_action_search.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_action_search.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\layout-v21_notification_action_tombstone.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\layout-v21\\notification_action_tombstone.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-mdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-mdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi_ic_notification.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxhdpi\\ic_notification.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi_ic_notification.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_notification.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-ldpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-ldpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_ic_action_settings.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-hdpi\\ic_action_settings.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_ic_notification.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-hdpi\\ic_notification.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-nodpi_bol.9.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-nodpi\\bol.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_ic_action_search.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-mdpi\\ic_action_search.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi_ic_action_settings.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_settings.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-xhdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_ic_action_pizza.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-mdpi\\ic_action_pizza.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi_ic_action_refresh.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_action_refresh.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-v21_notification_action_background.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_ic_action_pizza.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-hdpi\\ic_action_pizza.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi_ic_action_settings.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_settings.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxxhdpi_ic_action_pizza.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_action_pizza.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_search.xml.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\layout\\activity_search.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-nodpi_ol.9.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-nodpi\\ol.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi_ic_action_pizza.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_pizza.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-nodpi_el.9.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-nodpi\\el.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-nodpi_or.9.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-nodpi\\or.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-hdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi_ic_action_search.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_search.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-mdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-hdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\menu_activity_main.xml.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\menu\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_ic_action_settings.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-mdpi\\ic_action_settings.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi_ic_action_pizza.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_pizza.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable_notification_bg_low.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable\\notification_bg_low.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_show_qsl_details.xml.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\layout\\activity_show_qsl_details.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\layout_notification_template_part_chronometer.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-hdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_ic_notification.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-mdpi\\ic_notification.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-xhdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-xhdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-mdpi-v4\\notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notification_bg_low_normal.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-hdpi-v4\\notification_bg_low_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xxhdpi_ic_action_refresh.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xxhdpi\\ic_action_refresh.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi_ic_action_search.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_search.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\layout-v21_notification_template_icon_group.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\layout-v21\\notification_template_icon_group.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable_notification_icon_background.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable\\notification_icon_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_ic_action_search.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-hdpi\\ic_action_search.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\xml_preferences.xml.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\xml\\preferences.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notification_bg_normal_pressed.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-xhdpi-v4\\notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\layout-v21_notification_template_custom_big.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\layout-v21\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi-v4_notification_bg_low_pressed.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-hdpi-v4\\notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable_notification_bg.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable\\notification_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable_notification_tile_bg.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable\\notification_tile_bg.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\layout-v21_notification_action.xml.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\layout-v21\\notification_action.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi_ic_action_refresh.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xhdpi\\ic_action_refresh.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-nodpi_er.9.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-nodpi\\er.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-hdpi_ic_action_refresh.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-hdpi\\ic_action_refresh.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi-v4_notification_bg_normal.9.png.flat",
+        "source": "C:\\Users\\Jeff\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-27.1.0.aar\\5e4fec418562ba78a6882e1799d90dea\\res\\drawable-xhdpi-v4\\notification_bg_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-xhdpi_ic_notification.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-xhdpi\\ic_notification.png"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\layout_activity_buy_pizza.xml.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\layout\\activity_buy_pizza.xml"
+    },
+    {
+        "merged": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\build\\intermediates\\res\\merged\\release\\drawable-nodpi_bel.9.png.flat",
+        "source": "C:\\Users\\Jeff\\StudioProjects\\LoTWLook\\app\\src\\main\\res\\drawable-nodpi\\bel.9.png"
+    }
+]

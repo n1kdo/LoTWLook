@@ -1,0 +1,1039 @@
+android.arch.core.internal.FastSafeIterableMap
+android.arch.core.internal.SafeIterableMap
+android.arch.core.internal.SafeIterableMap$1
+android.arch.core.internal.SafeIterableMap$AscendingIterator
+android.arch.core.internal.SafeIterableMap$DescendingIterator
+android.arch.core.internal.SafeIterableMap$Entry
+android.arch.core.internal.SafeIterableMap$IteratorWithAdditions
+android.arch.core.internal.SafeIterableMap$ListIterator
+android.arch.core.internal.SafeIterableMap$SupportRemove
+android.arch.lifecycle.BuildConfig
+android.arch.lifecycle.ClassesInfoCache
+android.arch.lifecycle.ClassesInfoCache$CallbackInfo
+android.arch.lifecycle.ClassesInfoCache$MethodReference
+android.arch.lifecycle.CompositeGeneratedAdaptersObserver:
+    private final android.arch.lifecycle.GeneratedAdapter[] mGeneratedAdapters
+    30:32:CompositeGeneratedAdaptersObserver(android.arch.lifecycle.GeneratedAdapter[])
+    36:43:public void onStateChanged(android.arch.lifecycle.LifecycleOwner,android.arch.lifecycle.Lifecycle$Event)
+android.arch.lifecycle.FullLifecycleObserver:
+    public abstract void onCreate(android.arch.lifecycle.LifecycleOwner)
+    public abstract void onStart(android.arch.lifecycle.LifecycleOwner)
+    public abstract void onResume(android.arch.lifecycle.LifecycleOwner)
+    public abstract void onPause(android.arch.lifecycle.LifecycleOwner)
+    public abstract void onStop(android.arch.lifecycle.LifecycleOwner)
+    public abstract void onDestroy(android.arch.lifecycle.LifecycleOwner)
+android.arch.lifecycle.FullLifecycleObserverAdapter:
+    private final android.arch.lifecycle.FullLifecycleObserver mObserver
+    23:25:FullLifecycleObserverAdapter(android.arch.lifecycle.FullLifecycleObserver)
+    29:51:public void onStateChanged(android.arch.lifecycle.LifecycleOwner,android.arch.lifecycle.Lifecycle$Event)
+android.arch.lifecycle.FullLifecycleObserverAdapter$1
+android.arch.lifecycle.GeneratedAdapter
+android.arch.lifecycle.GenericLifecycleObserver:
+    public abstract void onStateChanged(android.arch.lifecycle.LifecycleOwner,android.arch.lifecycle.Lifecycle$Event)
+android.arch.lifecycle.Lifecycle
+android.arch.lifecycle.Lifecycle$Event
+android.arch.lifecycle.Lifecycle$State
+android.arch.lifecycle.LifecycleObserver
+android.arch.lifecycle.LifecycleOwner
+android.arch.lifecycle.LifecycleRegistry
+android.arch.lifecycle.LifecycleRegistry$1
+android.arch.lifecycle.LifecycleRegistry$ObserverWithState
+android.arch.lifecycle.LifecycleRegistryOwner
+android.arch.lifecycle.Lifecycling
+android.arch.lifecycle.MethodCallsLogger
+android.arch.lifecycle.OnLifecycleEvent
+android.arch.lifecycle.R
+android.arch.lifecycle.ReflectiveGenericLifecycleObserver:
+    private final java.lang.Object mWrapped
+    private final android.arch.lifecycle.ClassesInfoCache$CallbackInfo mInfo
+    29:32:ReflectiveGenericLifecycleObserver(java.lang.Object)
+    36:37:public void onStateChanged(android.arch.lifecycle.LifecycleOwner,android.arch.lifecycle.Lifecycle$Event)
+android.arch.lifecycle.ReportFragment
+android.arch.lifecycle.ReportFragment$ActivityInitializationListener
+android.arch.lifecycle.SingleGeneratedAdapterObserver:
+    private final android.arch.lifecycle.GeneratedAdapter mGeneratedAdapter
+    29:31:SingleGeneratedAdapterObserver(android.arch.lifecycle.GeneratedAdapter)
+    35:37:public void onStateChanged(android.arch.lifecycle.LifecycleOwner,android.arch.lifecycle.Lifecycle$Event)
+android.support.annotation.AnimRes
+android.support.annotation.AnimatorRes
+android.support.annotation.AnyRes
+android.support.annotation.AnyThread
+android.support.annotation.ArrayRes
+android.support.annotation.AttrRes
+android.support.annotation.BinderThread
+android.support.annotation.BoolRes
+android.support.annotation.CallSuper
+android.support.annotation.CheckResult
+android.support.annotation.ColorInt
+android.support.annotation.ColorLong
+android.support.annotation.ColorRes
+android.support.annotation.DimenRes
+android.support.annotation.Dimension
+android.support.annotation.DrawableRes
+android.support.annotation.FloatRange
+android.support.annotation.FontRes
+android.support.annotation.FractionRes
+android.support.annotation.GuardedBy
+android.support.annotation.HalfFloat
+android.support.annotation.IdRes
+android.support.annotation.IntDef
+android.support.annotation.IntRange
+android.support.annotation.IntegerRes
+android.support.annotation.InterpolatorRes
+android.support.annotation.LayoutRes
+android.support.annotation.LongDef
+android.support.annotation.MainThread
+android.support.annotation.MenuRes
+android.support.annotation.NavigationRes
+android.support.annotation.NonNull
+android.support.annotation.Nullable
+android.support.annotation.PluralsRes
+android.support.annotation.Px
+android.support.annotation.RawRes
+android.support.annotation.RequiresApi
+android.support.annotation.RequiresPermission
+android.support.annotation.RequiresPermission$Read
+android.support.annotation.RequiresPermission$Write
+android.support.annotation.RestrictTo
+android.support.annotation.RestrictTo$Scope
+android.support.annotation.Size
+android.support.annotation.StringDef
+android.support.annotation.StringRes
+android.support.annotation.StyleRes
+android.support.annotation.StyleableRes
+android.support.annotation.TransitionRes
+android.support.annotation.UiThread
+android.support.annotation.VisibleForTesting
+android.support.annotation.WorkerThread
+android.support.annotation.XmlRes
+android.support.compat.R
+android.support.compat.R$attr
+android.support.compat.R$bool
+android.support.compat.R$color
+android.support.compat.R$dimen
+android.support.compat.R$drawable
+android.support.compat.R$id
+android.support.compat.R$integer
+android.support.compat.R$layout
+android.support.compat.R$string
+android.support.compat.R$style
+android.support.compat.R$styleable
+android.support.coreutils.R
+android.support.coreutils.R$attr
+android.support.coreutils.R$bool
+android.support.coreutils.R$color
+android.support.coreutils.R$dimen
+android.support.coreutils.R$drawable
+android.support.coreutils.R$id
+android.support.coreutils.R$integer
+android.support.coreutils.R$layout
+android.support.coreutils.R$string
+android.support.coreutils.R$style
+android.support.coreutils.R$styleable
+android.support.v13.view.DragAndDropPermissionsCompat
+android.support.v13.view.DragStartHelper
+android.support.v13.view.DragStartHelper$1
+android.support.v13.view.DragStartHelper$2
+android.support.v13.view.DragStartHelper$OnDragStartListener
+android.support.v13.view.inputmethod.EditorInfoCompat
+android.support.v13.view.inputmethod.InputConnectionCompat
+android.support.v13.view.inputmethod.InputConnectionCompat$1
+android.support.v13.view.inputmethod.InputConnectionCompat$2
+android.support.v13.view.inputmethod.InputConnectionCompat$OnCommitContentListener
+android.support.v13.view.inputmethod.InputContentInfoCompat
+android.support.v13.view.inputmethod.InputContentInfoCompat$InputContentInfoCompatApi25Impl
+android.support.v13.view.inputmethod.InputContentInfoCompat$InputContentInfoCompatBaseImpl
+android.support.v13.view.inputmethod.InputContentInfoCompat$InputContentInfoCompatImpl
+android.support.v4.accessibilityservice.AccessibilityServiceInfoCompat
+android.support.v4.app.ActivityCompat
+android.support.v4.app.ActivityCompat$1
+android.support.v4.app.ActivityCompat$OnRequestPermissionsResultCallback
+android.support.v4.app.ActivityCompat$PermissionCompatDelegate
+android.support.v4.app.ActivityCompat$RequestPermissionsRequestCodeValidator
+android.support.v4.app.ActivityCompat$SharedElementCallback21Impl
+android.support.v4.app.ActivityCompat$SharedElementCallback23Impl
+android.support.v4.app.ActivityCompat$SharedElementCallback23Impl$1
+android.support.v4.app.ActivityManagerCompat
+android.support.v4.app.ActivityOptionsCompat
+android.support.v4.app.ActivityOptionsCompat$ActivityOptionsCompatApi16Impl
+android.support.v4.app.ActivityOptionsCompat$ActivityOptionsCompatApi23Impl
+android.support.v4.app.ActivityOptionsCompat$ActivityOptionsCompatApi24Impl
+android.support.v4.app.AlarmManagerCompat
+android.support.v4.app.AppLaunchChecker
+android.support.v4.app.AppOpsManagerCompat
+android.support.v4.app.BundleCompat
+android.support.v4.app.BundleCompat$BundleCompatBaseImpl
+android.support.v4.app.FrameMetricsAggregator
+android.support.v4.app.FrameMetricsAggregator$1
+android.support.v4.app.FrameMetricsAggregator$FrameMetricsApi24Impl
+android.support.v4.app.FrameMetricsAggregator$FrameMetricsApi24Impl$1
+android.support.v4.app.FrameMetricsAggregator$FrameMetricsBaseImpl
+android.support.v4.app.FrameMetricsAggregator$MetricType
+android.support.v4.app.INotificationSideChannel
+android.support.v4.app.INotificationSideChannel$Stub
+android.support.v4.app.INotificationSideChannel$Stub$Proxy
+android.support.v4.app.JobIntentService
+android.support.v4.app.JobIntentService$CommandProcessor
+android.support.v4.app.JobIntentService$CompatJobEngine
+android.support.v4.app.JobIntentService$CompatWorkEnqueuer
+android.support.v4.app.JobIntentService$CompatWorkItem
+android.support.v4.app.JobIntentService$GenericWorkItem
+android.support.v4.app.JobIntentService$JobServiceEngineImpl
+android.support.v4.app.JobIntentService$JobServiceEngineImpl$WrapperWorkItem
+android.support.v4.app.JobIntentService$JobWorkEnqueuer
+android.support.v4.app.JobIntentService$WorkEnqueuer
+android.support.v4.app.NavUtils:
+    private static final java.lang.String TAG
+    public static final java.lang.String PARENT_ACTIVITY
+    59:63:public static boolean shouldUpRecreateTask(android.app.Activity,android.content.Intent)
+    80:91:public static void navigateUpFromSameTask(android.app.Activity)
+    107:114:public static void navigateUpTo(android.app.Activity,android.content.Intent)
+    128:149:public static android.content.Intent getParentActivityIntent(android.app.Activity)
+    167:177:public static android.content.Intent getParentActivityIntent(android.content.Context,java.lang.Class)
+    219:222:public static java.lang.String getParentActivityName(android.app.Activity)
+    261:262:private NavUtils()
+android.support.v4.app.NotificationBuilderWithBuilderAccessor:
+    public abstract android.app.Notification$Builder getBuilder()
+android.support.v4.app.NotificationCompat:
+    public static final int DEFAULT_ALL
+    public static final int DEFAULT_SOUND
+    public static final int DEFAULT_VIBRATE
+    public static final int DEFAULT_LIGHTS
+    public static final int STREAM_DEFAULT
+    public static final int FLAG_SHOW_LIGHTS
+    public static final int FLAG_ONGOING_EVENT
+    public static final int FLAG_INSISTENT
+    public static final int FLAG_ONLY_ALERT_ONCE
+    public static final int FLAG_AUTO_CANCEL
+    public static final int FLAG_NO_CLEAR
+    public static final int FLAG_FOREGROUND_SERVICE
+    public static final int FLAG_HIGH_PRIORITY
+    public static final int FLAG_LOCAL_ONLY
+    public static final int FLAG_GROUP_SUMMARY
+    public static final int PRIORITY_DEFAULT
+    public static final int PRIORITY_LOW
+    public static final int PRIORITY_MIN
+    public static final int PRIORITY_HIGH
+    public static final int PRIORITY_MAX
+    public static final java.lang.String EXTRA_TITLE
+    public static final java.lang.String EXTRA_TITLE_BIG
+    public static final java.lang.String EXTRA_TEXT
+    public static final java.lang.String EXTRA_SUB_TEXT
+    public static final java.lang.String EXTRA_REMOTE_INPUT_HISTORY
+    public static final java.lang.String EXTRA_INFO_TEXT
+    public static final java.lang.String EXTRA_SUMMARY_TEXT
+    public static final java.lang.String EXTRA_BIG_TEXT
+    public static final java.lang.String EXTRA_SMALL_ICON
+    public static final java.lang.String EXTRA_LARGE_ICON
+    public static final java.lang.String EXTRA_LARGE_ICON_BIG
+    public static final java.lang.String EXTRA_PROGRESS
+    public static final java.lang.String EXTRA_PROGRESS_MAX
+    public static final java.lang.String EXTRA_PROGRESS_INDETERMINATE
+    public static final java.lang.String EXTRA_SHOW_CHRONOMETER
+    public static final java.lang.String EXTRA_SHOW_WHEN
+    public static final java.lang.String EXTRA_PICTURE
+    public static final java.lang.String EXTRA_TEXT_LINES
+    public static final java.lang.String EXTRA_TEMPLATE
+    public static final java.lang.String EXTRA_PEOPLE
+    public static final java.lang.String EXTRA_BACKGROUND_IMAGE_URI
+    public static final java.lang.String EXTRA_MEDIA_SESSION
+    public static final java.lang.String EXTRA_COMPACT_ACTIONS
+    public static final java.lang.String EXTRA_SELF_DISPLAY_NAME
+    public static final java.lang.String EXTRA_CONVERSATION_TITLE
+    public static final java.lang.String EXTRA_MESSAGES
+    public static final java.lang.String EXTRA_AUDIO_CONTENTS_URI
+    public static final int COLOR_DEFAULT
+    public static final int VISIBILITY_PUBLIC
+    public static final int VISIBILITY_PRIVATE
+    public static final int VISIBILITY_SECRET
+    public static final java.lang.String CATEGORY_CALL
+    public static final java.lang.String CATEGORY_MESSAGE
+    public static final java.lang.String CATEGORY_EMAIL
+    public static final java.lang.String CATEGORY_EVENT
+    public static final java.lang.String CATEGORY_PROMO
+    public static final java.lang.String CATEGORY_ALARM
+    public static final java.lang.String CATEGORY_PROGRESS
+    public static final java.lang.String CATEGORY_SOCIAL
+    public static final java.lang.String CATEGORY_ERROR
+    public static final java.lang.String CATEGORY_TRANSPORT
+    public static final java.lang.String CATEGORY_SYSTEM
+    public static final java.lang.String CATEGORY_SERVICE
+    public static final java.lang.String CATEGORY_REMINDER
+    public static final java.lang.String CATEGORY_RECOMMENDATION
+    public static final java.lang.String CATEGORY_STATUS
+    public static final int BADGE_ICON_NONE
+    public static final int BADGE_ICON_SMALL
+    public static final int BADGE_ICON_LARGE
+    public static final int GROUP_ALERT_ALL
+    public static final int GROUP_ALERT_SUMMARY
+    public static final int GROUP_ALERT_CHILDREN
+    72:4137:public NotificationCompat()
+    4538:4547:static android.app.Notification[] getNotificationArrayFromBundle(android.os.Bundle,java.lang.String)
+    4570:4575:public static int getActionCount(android.app.Notification)
+    4586:4601:public static android.support.v4.app.NotificationCompat$Action getAction(android.app.Notification,int)
+    4608:4630:static android.support.v4.app.NotificationCompat$Action getActionCompatFromAction(android.app.Notification$Action)
+    4639:4642:public static java.lang.String getCategory(android.app.Notification)
+    4653:4661:public static boolean getLocalOnly(android.app.Notification)
+    4670:4678:public static java.lang.String getGroup(android.app.Notification)
+    4689:4697:public static boolean isGroupSummary(android.app.Notification)
+    4714:4722:public static java.lang.String getSortKey(android.app.Notification)
+    4730:4733:public static java.lang.String getChannelId(android.app.Notification)
+    4742:4745:public static long getTimeoutAfter(android.app.Notification)
+    4755:4758:public static int getBadgeIconType(android.app.Notification)
+    4767:4770:public static java.lang.String getShortcutId(android.app.Notification)
+    4781:4784:public static int getGroupAlertBehavior(android.app.Notification)
+android.support.v4.app.NotificationCompat$Action:
+    2779:2780:public NotificationCompat$Action(int,java.lang.CharSequence,android.app.PendingIntent)
+    2784:2792:NotificationCompat$Action(int,java.lang.CharSequence,android.app.PendingIntent,android.os.Bundle,android.support.v4.app.RemoteInput[],android.support.v4.app.RemoteInput[],boolean)
+android.support.v4.app.NotificationCompat$Action$Builder
+android.support.v4.app.NotificationCompat$Action$Extender
+android.support.v4.app.NotificationCompat$Action$WearableExtender
+android.support.v4.app.NotificationCompat$BadgeIconType
+android.support.v4.app.NotificationCompat$BigPictureStyle
+android.support.v4.app.NotificationCompat$BigTextStyle
+android.support.v4.app.NotificationCompat$Builder:
+    private static final int MAX_CHARSEQUENCE_LENGTH
+    728:729:public NotificationCompat$Builder(android.content.Context)
+    736:737:public android.support.v4.app.NotificationCompat$Builder setWhen(long)
+    745:746:public android.support.v4.app.NotificationCompat$Builder setShowWhen(boolean)
+    761:762:public android.support.v4.app.NotificationCompat$Builder setUsesChronometer(boolean)
+    788:790:public android.support.v4.app.NotificationCompat$Builder setSmallIcon(int,int)
+    819:820:public android.support.v4.app.NotificationCompat$Builder setSubText(java.lang.CharSequence)
+    838:839:public android.support.v4.app.NotificationCompat$Builder setRemoteInputHistory(java.lang.CharSequence[])
+    848:849:public android.support.v4.app.NotificationCompat$Builder setNumber(int)
+    856:857:public android.support.v4.app.NotificationCompat$Builder setContentInfo(java.lang.CharSequence)
+    865:868:public android.support.v4.app.NotificationCompat$Builder setProgress(int,int,boolean)
+    875:876:public android.support.v4.app.NotificationCompat$Builder setContent(android.widget.RemoteViews)
+    900:901:public android.support.v4.app.NotificationCompat$Builder setDeleteIntent(android.app.PendingIntent)
+    923:925:public android.support.v4.app.NotificationCompat$Builder setFullScreenIntent(android.app.PendingIntent,boolean)
+    934:935:public android.support.v4.app.NotificationCompat$Builder setTicker(java.lang.CharSequence)
+    945:947:public android.support.v4.app.NotificationCompat$Builder setTicker(java.lang.CharSequence,android.widget.RemoteViews)
+    954:955:public android.support.v4.app.NotificationCompat$Builder setLargeIcon(android.graphics.Bitmap)
+    967:975:public android.support.v4.app.NotificationCompat$Builder setSound(android.net.Uri)
+    990:998:public android.support.v4.app.NotificationCompat$Builder setSound(android.net.Uri,int)
+    1013:1014:public android.support.v4.app.NotificationCompat$Builder setVibrate(long[])
+    1023:1029:public android.support.v4.app.NotificationCompat$Builder setLights(int,int,int)
+    1044:1045:public android.support.v4.app.NotificationCompat$Builder setOngoing(boolean)
+    1067:1069:public android.support.v4.app.NotificationCompat$Builder setColorized(boolean)
+    1099:1100:public android.support.v4.app.NotificationCompat$Builder setLocalOnly(boolean)
+    1111:1112:public android.support.v4.app.NotificationCompat$Builder setCategory(java.lang.String)
+    1126:1130:public android.support.v4.app.NotificationCompat$Builder setDefaults(int)
+    1186:1187:public android.support.v4.app.NotificationCompat$Builder addPerson(java.lang.String)
+    1202:1203:public android.support.v4.app.NotificationCompat$Builder setGroup(java.lang.String)
+    1214:1215:public android.support.v4.app.NotificationCompat$Builder setGroupSummary(boolean)
+    1231:1232:public android.support.v4.app.NotificationCompat$Builder setSortKey(java.lang.String)
+    1243:1250:public android.support.v4.app.NotificationCompat$Builder addExtras(android.os.Bundle)
+    1266:1267:public android.support.v4.app.NotificationCompat$Builder setExtras(android.os.Bundle)
+    1281:1284:public android.os.Bundle getExtras()
+    1304:1305:public android.support.v4.app.NotificationCompat$Builder addAction(int,java.lang.CharSequence,android.app.PendingIntent)
+    1323:1324:public android.support.v4.app.NotificationCompat$Builder addAction(android.support.v4.app.NotificationCompat$Action)
+    1336:1342:public android.support.v4.app.NotificationCompat$Builder setStyle(android.support.v4.app.NotificationCompat$Style)
+    1353:1354:public android.support.v4.app.NotificationCompat$Builder setColor(int)
+    1378:1379:public android.support.v4.app.NotificationCompat$Builder setPublicVersion(android.app.Notification)
+    1389:1390:public android.support.v4.app.NotificationCompat$Builder setCustomContentView(android.widget.RemoteViews)
+    1402:1403:public android.support.v4.app.NotificationCompat$Builder setCustomBigContentView(android.widget.RemoteViews)
+    1415:1416:public android.support.v4.app.NotificationCompat$Builder setCustomHeadsUpContentView(android.widget.RemoteViews)
+    1425:1426:public android.support.v4.app.NotificationCompat$Builder setChannelId(java.lang.String)
+    1434:1435:public android.support.v4.app.NotificationCompat$Builder setTimeoutAfter(long)
+    1450:1451:public android.support.v4.app.NotificationCompat$Builder setShortcutId(java.lang.String)
+    1464:1465:public android.support.v4.app.NotificationCompat$Builder setBadgeIconType(int)
+    1479:1480:public android.support.v4.app.NotificationCompat$Builder setGroupAlertBehavior(int)
+    1488:1489:public android.support.v4.app.NotificationCompat$Builder extend(android.support.v4.app.NotificationCompat$Extender)
+    1497:1497:public android.app.Notification getNotification()
+    1521:1521:public android.widget.RemoteViews getContentView()
+    1529:1529:public android.widget.RemoteViews getBigContentView()
+    1537:1537:public android.widget.RemoteViews getHeadsUpContentView()
+    1547:1547:public long getWhenIfShowing()
+    1557:1557:public int getPriority()
+    1567:1567:public int getColor()
+android.support.v4.app.NotificationCompat$CarExtender
+android.support.v4.app.NotificationCompat$CarExtender$UnreadConversation
+android.support.v4.app.NotificationCompat$CarExtender$UnreadConversation$Builder
+android.support.v4.app.NotificationCompat$DecoratedCustomViewStyle
+android.support.v4.app.NotificationCompat$Extender
+android.support.v4.app.NotificationCompat$GroupAlertBehavior
+android.support.v4.app.NotificationCompat$InboxStyle
+android.support.v4.app.NotificationCompat$MessagingStyle
+android.support.v4.app.NotificationCompat$MessagingStyle$Message
+android.support.v4.app.NotificationCompat$NotificationVisibility
+android.support.v4.app.NotificationCompat$StreamType
+android.support.v4.app.NotificationCompat$Style:
+    protected android.support.v4.app.NotificationCompat$Builder mBuilder
+    java.lang.CharSequence mBigContentTitle
+    java.lang.CharSequence mSummaryText
+    boolean mSummaryTextSet
+    1578:1586:public NotificationCompat$Style()
+    1589:1595:public void setBuilder(android.support.v4.app.NotificationCompat$Builder)
+    1598:1602:public android.app.Notification build()
+    1651:1651:protected void restoreFromCompatExtras(android.os.Bundle)
+    1659:1798:public android.widget.RemoteViews applyStandardTemplate(boolean,int,boolean)
+    1806:1806:public android.graphics.Bitmap createColoredBitmap(int,int)
+    1810:1821:private android.graphics.Bitmap createColoredBitmap(int,int,int)
+    1826:1835:private android.graphics.Bitmap createIconWithBackground(int,int,int,int)
+    1846:1855:public void buildIntoRemoteViews(android.widget.RemoteViews,android.widget.RemoteViews)
+    1858:1861:private void hideNormalContent(android.widget.RemoteViews)
+    1864:1873:private int calculateTopPadding()
+    1877:1877:private static float constrain(float,float,float)
+android.support.v4.app.NotificationCompat$WearableExtender
+android.support.v4.app.NotificationCompatBuilder:
+    188:188:public android.app.Notification$Builder getBuilder()
+android.support.v4.app.NotificationCompatExtras
+android.support.v4.app.NotificationCompatJellybean:
+    public static final java.lang.String TAG
+    static final java.lang.String EXTRA_DATA_ONLY_REMOTE_INPUTS
+    static final java.lang.String EXTRA_ALLOW_GENERATED_REPLIES
+    private static final java.lang.String KEY_ICON
+    private static final java.lang.String KEY_TITLE
+    private static final java.lang.String KEY_ACTION_INTENT
+    private static final java.lang.String KEY_EXTRAS
+    private static final java.lang.String KEY_REMOTE_INPUTS
+    private static final java.lang.String KEY_DATA_ONLY_REMOTE_INPUTS
+    private static final java.lang.String KEY_RESULT_KEY
+    private static final java.lang.String KEY_LABEL
+    private static final java.lang.String KEY_CHOICES
+    private static final java.lang.String KEY_ALLOW_FREE_FORM_INPUT
+    private static final java.lang.String KEY_ALLOWED_DATA_TYPES
+    private static java.lang.Class sActionClass
+    private static java.lang.reflect.Field sActionsField
+    private static java.lang.reflect.Field sActionIconField
+    private static java.lang.reflect.Field sActionTitleField
+    private static java.lang.reflect.Field sActionIntentField
+    private static boolean sActionsAccessFailed
+    35:35:NotificationCompatJellybean()
+    120:131:public static android.support.v4.app.NotificationCompat$Action readAction(int,java.lang.CharSequence,android.app.PendingIntent,android.os.Bundle)
+    153:156:public static int getActionCount(android.app.Notification)
+    160:184:public static android.support.v4.app.NotificationCompat$Action getAction(android.app.Notification,int)
+    188:199:private static java.lang.Object[] getActionObjectsLocked(android.app.Notification)
+    204:223:private static boolean ensureActionReflectionReadyLocked()
+    227:238:static android.support.v4.app.NotificationCompat$Action getActionFromBundle(android.os.Bundle)
+    243:257:static android.os.Bundle getBundleForAction(android.support.v4.app.NotificationCompat$Action)
+    262:273:private static android.support.v4.app.RemoteInput fromBundle(android.os.Bundle)
+    297:304:private static android.support.v4.app.RemoteInput[] fromBundleArray(android.os.Bundle[])
+    324:331:private static android.os.Bundle[] getBundleArrayFromBundle(android.os.Bundle,java.lang.String)
+android.support.v4.app.NotificationCompatSideChannelService
+android.support.v4.app.NotificationCompatSideChannelService$NotificationSideChannelStub
+android.support.v4.app.NotificationManagerCompat
+android.support.v4.app.NotificationManagerCompat$CancelTask
+android.support.v4.app.NotificationManagerCompat$NotifyTask
+android.support.v4.app.NotificationManagerCompat$ServiceConnectedEvent
+android.support.v4.app.NotificationManagerCompat$SideChannelManager
+android.support.v4.app.NotificationManagerCompat$SideChannelManager$ListenerRecord
+android.support.v4.app.NotificationManagerCompat$Task
+android.support.v4.app.RemoteInput:
+    private static final java.lang.String TAG
+    public static final java.lang.String RESULTS_CLIP_LABEL
+    public static final java.lang.String EXTRA_RESULTS_DATA
+    private static final java.lang.String EXTRA_DATA_TYPE_RESULTS_DATA
+    57:64:RemoteInput(java.lang.String,java.lang.CharSequence,java.lang.CharSequence[],boolean,android.os.Bundle,java.util.Set)
+    98:101:public boolean isDataOnly()
+    255:281:public static java.util.Map getDataResultsFromIntent(android.content.Intent,java.lang.String)
+    294:304:public static android.os.Bundle getResultsFromIntent(android.content.Intent)
+    321:368:public static void addResultsToIntent(android.support.v4.app.RemoteInput[],android.content.Intent,android.os.Bundle)
+    380:405:public static void addDataResultToIntent(android.support.v4.app.RemoteInput,android.content.Intent,java.util.Map)
+    408:408:private static java.lang.String getExtraResultsKeyForData(java.lang.String)
+    435:446:private static android.content.Intent getClipDataIntentFromIntent(android.content.Intent)
+android.support.v4.app.RemoteInput$Builder
+android.support.v4.app.ServiceCompat
+android.support.v4.app.ServiceCompat$StopForegroundFlags
+android.support.v4.app.ShareCompat
+android.support.v4.app.ShareCompat$IntentBuilder
+android.support.v4.app.ShareCompat$IntentReader
+android.support.v4.app.SharedElementCallback
+android.support.v4.app.SharedElementCallback$OnSharedElementsReadyListener
+android.support.v4.app.SupportActivity
+android.support.v4.app.SupportActivity$ExtraData
+android.support.v4.app.TaskStackBuilder:
+    private static final java.lang.String TAG
+    139:139:public static android.support.v4.app.TaskStackBuilder from(android.content.Context)
+    169:177:public android.support.v4.app.TaskStackBuilder addNextIntentWithParentStack(android.content.Intent)
+    189:207:public android.support.v4.app.TaskStackBuilder addParentStack(android.app.Activity)
+    249:249:public int getIntentCount()
+    264:264:public android.content.Intent getIntent(int)
+    277:277:public android.content.Intent editIntentAt(int)
+    298:299:public void startActivities()
+    313:326:public void startActivities(android.os.Bundle)
+    382:390:public android.content.Intent[] getIntents()
+android.support.v4.app.TaskStackBuilder$SupportParentable
+android.support.v4.content.AsyncTaskLoader
+android.support.v4.content.AsyncTaskLoader$LoadTask
+android.support.v4.content.ContentResolverCompat
+android.support.v4.content.ContextCompat
+android.support.v4.content.CursorLoader
+android.support.v4.content.FileProvider
+android.support.v4.content.FileProvider$PathStrategy
+android.support.v4.content.FileProvider$SimplePathStrategy
+android.support.v4.content.IntentCompat
+android.support.v4.content.Loader
+android.support.v4.content.Loader$ForceLoadContentObserver
+android.support.v4.content.Loader$OnLoadCanceledListener
+android.support.v4.content.Loader$OnLoadCompleteListener
+android.support.v4.content.LocalBroadcastManager
+android.support.v4.content.LocalBroadcastManager$1
+android.support.v4.content.LocalBroadcastManager$BroadcastRecord
+android.support.v4.content.LocalBroadcastManager$ReceiverRecord
+android.support.v4.content.MimeTypeFilter
+android.support.v4.content.ModernAsyncTask
+android.support.v4.content.ModernAsyncTask$1
+android.support.v4.content.ModernAsyncTask$2
+android.support.v4.content.ModernAsyncTask$3
+android.support.v4.content.ModernAsyncTask$4
+android.support.v4.content.ModernAsyncTask$AsyncTaskResult
+android.support.v4.content.ModernAsyncTask$InternalHandler
+android.support.v4.content.ModernAsyncTask$Status
+android.support.v4.content.ModernAsyncTask$WorkerRunnable
+android.support.v4.content.PermissionChecker
+android.support.v4.content.PermissionChecker$PermissionResult
+android.support.v4.content.SharedPreferencesCompat
+android.support.v4.content.SharedPreferencesCompat$EditorCompat
+android.support.v4.content.SharedPreferencesCompat$EditorCompat$Helper
+android.support.v4.content.WakefulBroadcastReceiver
+android.support.v4.content.pm.ActivityInfoCompat
+android.support.v4.content.pm.ShortcutInfoCompat
+android.support.v4.content.pm.ShortcutInfoCompat$1
+android.support.v4.content.pm.ShortcutInfoCompat$Builder
+android.support.v4.content.pm.ShortcutManagerCompat
+android.support.v4.content.pm.ShortcutManagerCompat$1
+android.support.v4.content.res.ConfigurationHelper
+android.support.v4.content.res.FontResourcesParserCompat
+android.support.v4.content.res.FontResourcesParserCompat$FamilyResourceEntry
+android.support.v4.content.res.FontResourcesParserCompat$FetchStrategy
+android.support.v4.content.res.FontResourcesParserCompat$FontFamilyFilesResourceEntry
+android.support.v4.content.res.FontResourcesParserCompat$FontFileResourceEntry
+android.support.v4.content.res.FontResourcesParserCompat$ProviderResourceEntry
+android.support.v4.content.res.ResourcesCompat
+android.support.v4.content.res.ResourcesCompat$FontCallback
+android.support.v4.content.res.ResourcesCompat$FontCallback$1
+android.support.v4.content.res.ResourcesCompat$FontCallback$2
+android.support.v4.content.res.TypedArrayUtils
+android.support.v4.database.DatabaseUtilsCompat
+android.support.v4.graphics.BitmapCompat
+android.support.v4.graphics.BitmapCompat$BitmapCompatApi18Impl
+android.support.v4.graphics.BitmapCompat$BitmapCompatApi19Impl
+android.support.v4.graphics.BitmapCompat$BitmapCompatBaseImpl
+android.support.v4.graphics.ColorUtils
+android.support.v4.graphics.PaintCompat
+android.support.v4.graphics.PathParser
+android.support.v4.graphics.PathParser$ExtractFloatResult
+android.support.v4.graphics.PathParser$PathDataNode
+android.support.v4.graphics.TypefaceCompat
+android.support.v4.graphics.TypefaceCompat$TypefaceCompatImpl
+android.support.v4.graphics.TypefaceCompatApi21Impl
+android.support.v4.graphics.TypefaceCompatApi24Impl
+android.support.v4.graphics.TypefaceCompatApi26Impl
+android.support.v4.graphics.TypefaceCompatBaseImpl
+android.support.v4.graphics.TypefaceCompatBaseImpl$1
+android.support.v4.graphics.TypefaceCompatBaseImpl$2
+android.support.v4.graphics.TypefaceCompatBaseImpl$StyleExtractor
+android.support.v4.graphics.TypefaceCompatUtil
+android.support.v4.graphics.drawable.DrawableCompat
+android.support.v4.graphics.drawable.IconCompat
+android.support.v4.graphics.drawable.RoundedBitmapDrawable
+android.support.v4.graphics.drawable.RoundedBitmapDrawable21
+android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory
+android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory$DefaultRoundedBitmapDrawable
+android.support.v4.graphics.drawable.TintAwareDrawable
+android.support.v4.graphics.drawable.WrappedDrawable
+android.support.v4.graphics.drawable.WrappedDrawableApi14
+android.support.v4.graphics.drawable.WrappedDrawableApi14$DrawableWrapperState
+android.support.v4.graphics.drawable.WrappedDrawableApi14$DrawableWrapperStateBase
+android.support.v4.graphics.drawable.WrappedDrawableApi19
+android.support.v4.graphics.drawable.WrappedDrawableApi19$DrawableWrapperStateKitKat
+android.support.v4.graphics.drawable.WrappedDrawableApi21
+android.support.v4.graphics.drawable.WrappedDrawableApi21$DrawableWrapperStateLollipop
+android.support.v4.hardware.display.DisplayManagerCompat
+android.support.v4.hardware.display.DisplayManagerCompat$DisplayManagerCompatApi14Impl
+android.support.v4.hardware.display.DisplayManagerCompat$DisplayManagerCompatApi17Impl
+android.support.v4.hardware.fingerprint.FingerprintManagerCompat
+android.support.v4.hardware.fingerprint.FingerprintManagerCompat$1
+android.support.v4.hardware.fingerprint.FingerprintManagerCompat$AuthenticationCallback
+android.support.v4.hardware.fingerprint.FingerprintManagerCompat$AuthenticationResult
+android.support.v4.hardware.fingerprint.FingerprintManagerCompat$CryptoObject
+android.support.v4.internal.package-info
+android.support.v4.internal.view.SupportMenu
+android.support.v4.internal.view.SupportMenuItem
+android.support.v4.internal.view.SupportSubMenu
+android.support.v4.math.MathUtils
+android.support.v4.net.ConnectivityManagerCompat
+android.support.v4.net.ConnectivityManagerCompat$RestrictBackgroundStatus
+android.support.v4.net.DatagramSocketWrapper
+android.support.v4.net.DatagramSocketWrapper$DatagramSocketImplWrapper
+android.support.v4.net.TrafficStatsCompat
+android.support.v4.os.BuildCompat
+android.support.v4.os.CancellationSignal
+android.support.v4.os.CancellationSignal$OnCancelListener
+android.support.v4.os.ConfigurationCompat
+android.support.v4.os.EnvironmentCompat
+android.support.v4.os.IResultReceiver
+android.support.v4.os.IResultReceiver$Stub
+android.support.v4.os.IResultReceiver$Stub$Proxy
+android.support.v4.os.LocaleHelper
+android.support.v4.os.LocaleListCompat
+android.support.v4.os.LocaleListCompat$LocaleListCompatApi24Impl
+android.support.v4.os.LocaleListCompat$LocaleListCompatBaseImpl
+android.support.v4.os.LocaleListHelper
+android.support.v4.os.LocaleListInterface
+android.support.v4.os.OperationCanceledException
+android.support.v4.os.ParcelableCompat
+android.support.v4.os.ParcelableCompat$ParcelableCompatCreatorHoneycombMR2
+android.support.v4.os.ParcelableCompatCreatorCallbacks
+android.support.v4.os.ResultReceiver
+android.support.v4.os.ResultReceiver$1
+android.support.v4.os.ResultReceiver$MyResultReceiver
+android.support.v4.os.ResultReceiver$MyRunnable
+android.support.v4.os.TraceCompat
+android.support.v4.os.UserManagerCompat
+android.support.v4.print.PrintHelper
+android.support.v4.print.PrintHelper$1
+android.support.v4.print.PrintHelper$ColorMode
+android.support.v4.print.PrintHelper$OnPrintFinishCallback
+android.support.v4.print.PrintHelper$Orientation
+android.support.v4.print.PrintHelper$PrintHelperApi19
+android.support.v4.print.PrintHelper$PrintHelperApi19$1
+android.support.v4.print.PrintHelper$PrintHelperApi19$2
+android.support.v4.print.PrintHelper$PrintHelperApi19$3
+android.support.v4.print.PrintHelper$PrintHelperApi19$3$1
+android.support.v4.print.PrintHelper$PrintHelperApi19$3$1$1
+android.support.v4.print.PrintHelper$PrintHelperApi20
+android.support.v4.print.PrintHelper$PrintHelperApi23
+android.support.v4.print.PrintHelper$PrintHelperApi24
+android.support.v4.print.PrintHelper$PrintHelperStub
+android.support.v4.print.PrintHelper$PrintHelperVersionImpl
+android.support.v4.print.PrintHelper$ScaleMode
+android.support.v4.provider.DocumentFile
+android.support.v4.provider.DocumentsContractApi19
+android.support.v4.provider.FontRequest
+android.support.v4.provider.FontsContractCompat
+android.support.v4.provider.FontsContractCompat$1
+android.support.v4.provider.FontsContractCompat$2
+android.support.v4.provider.FontsContractCompat$3
+android.support.v4.provider.FontsContractCompat$4
+android.support.v4.provider.FontsContractCompat$4$1
+android.support.v4.provider.FontsContractCompat$4$2
+android.support.v4.provider.FontsContractCompat$4$3
+android.support.v4.provider.FontsContractCompat$4$4
+android.support.v4.provider.FontsContractCompat$4$5
+android.support.v4.provider.FontsContractCompat$4$6
+android.support.v4.provider.FontsContractCompat$4$7
+android.support.v4.provider.FontsContractCompat$4$8
+android.support.v4.provider.FontsContractCompat$4$9
+android.support.v4.provider.FontsContractCompat$5
+android.support.v4.provider.FontsContractCompat$Columns
+android.support.v4.provider.FontsContractCompat$FontFamilyResult
+android.support.v4.provider.FontsContractCompat$FontFamilyResult$FontResultStatus
+android.support.v4.provider.FontsContractCompat$FontInfo
+android.support.v4.provider.FontsContractCompat$FontRequestCallback
+android.support.v4.provider.FontsContractCompat$FontRequestCallback$FontRequestFailReason
+android.support.v4.provider.FontsContractCompat$TypefaceResult
+android.support.v4.provider.RawDocumentFile
+android.support.v4.provider.SelfDestructiveThread
+android.support.v4.provider.SelfDestructiveThread$1
+android.support.v4.provider.SelfDestructiveThread$2
+android.support.v4.provider.SelfDestructiveThread$2$1
+android.support.v4.provider.SelfDestructiveThread$3
+android.support.v4.provider.SelfDestructiveThread$ReplyCallback
+android.support.v4.provider.SingleDocumentFile
+android.support.v4.provider.TreeDocumentFile
+android.support.v4.text.BidiFormatter
+android.support.v4.text.BidiFormatter$1
+android.support.v4.text.BidiFormatter$Builder
+android.support.v4.text.BidiFormatter$DirectionalityEstimator
+android.support.v4.text.ICUCompat
+android.support.v4.text.TextDirectionHeuristicCompat
+android.support.v4.text.TextDirectionHeuristicsCompat
+android.support.v4.text.TextDirectionHeuristicsCompat$AnyStrong
+android.support.v4.text.TextDirectionHeuristicsCompat$FirstStrong
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionAlgorithm
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicImpl
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicInternal
+android.support.v4.text.TextDirectionHeuristicsCompat$TextDirectionHeuristicLocale
+android.support.v4.text.TextUtilsCompat
+android.support.v4.text.util.LinkifyCompat
+android.support.v4.text.util.LinkifyCompat$1
+android.support.v4.text.util.LinkifyCompat$LinkSpec
+android.support.v4.text.util.LinkifyCompat$LinkifyMask
+android.support.v4.util.ArrayMap
+android.support.v4.util.ArrayMap$1
+android.support.v4.util.ArraySet
+android.support.v4.util.ArraySet$1
+android.support.v4.util.AtomicFile
+android.support.v4.util.CircularArray
+android.support.v4.util.CircularIntArray
+android.support.v4.util.ContainerHelpers
+android.support.v4.util.DebugUtils
+android.support.v4.util.LogWriter
+android.support.v4.util.LongSparseArray
+android.support.v4.util.LruCache
+android.support.v4.util.MapCollections
+android.support.v4.util.MapCollections$ArrayIterator
+android.support.v4.util.MapCollections$EntrySet
+android.support.v4.util.MapCollections$KeySet
+android.support.v4.util.MapCollections$MapIterator
+android.support.v4.util.MapCollections$ValuesCollection
+android.support.v4.util.ObjectsCompat
+android.support.v4.util.Pair
+android.support.v4.util.PatternsCompat
+android.support.v4.util.Pools
+android.support.v4.util.Pools$Pool
+android.support.v4.util.Pools$SimplePool
+android.support.v4.util.Pools$SynchronizedPool
+android.support.v4.util.Preconditions
+android.support.v4.util.SimpleArrayMap
+android.support.v4.util.SparseArrayCompat
+android.support.v4.util.TimeUtils
+android.support.v4.view.AccessibilityDelegateCompat
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateApi16Impl
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateApi16Impl$1
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateBaseImpl
+android.support.v4.view.AccessibilityDelegateCompat$AccessibilityDelegateBaseImpl$1
+android.support.v4.view.ActionProvider
+android.support.v4.view.ActionProvider$SubUiVisibilityListener
+android.support.v4.view.ActionProvider$VisibilityListener
+android.support.v4.view.GestureDetectorCompat
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImpl
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImplBase
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImplBase$GestureHandler
+android.support.v4.view.GestureDetectorCompat$GestureDetectorCompatImplJellybeanMr2
+android.support.v4.view.GravityCompat
+android.support.v4.view.InputDeviceCompat
+android.support.v4.view.LayoutInflaterCompat
+android.support.v4.view.LayoutInflaterCompat$Factory2Wrapper
+android.support.v4.view.LayoutInflaterCompat$LayoutInflaterCompatApi21Impl
+android.support.v4.view.LayoutInflaterCompat$LayoutInflaterCompatBaseImpl
+android.support.v4.view.LayoutInflaterFactory
+android.support.v4.view.MarginLayoutParamsCompat
+android.support.v4.view.MenuCompat
+android.support.v4.view.MenuItemCompat
+android.support.v4.view.MenuItemCompat$1
+android.support.v4.view.MenuItemCompat$MenuItemCompatApi26Impl
+android.support.v4.view.MenuItemCompat$MenuItemCompatBaseImpl
+android.support.v4.view.MenuItemCompat$MenuVersionImpl
+android.support.v4.view.MenuItemCompat$OnActionExpandListener
+android.support.v4.view.MotionEventCompat
+android.support.v4.view.NestedScrollingChild
+android.support.v4.view.NestedScrollingChild2
+android.support.v4.view.NestedScrollingParent
+android.support.v4.view.NestedScrollingParent2
+android.support.v4.view.OnApplyWindowInsetsListener
+android.support.v4.view.PointerIconCompat
+android.support.v4.view.ScaleGestureDetectorCompat
+android.support.v4.view.ScrollingView
+android.support.v4.view.TintableBackgroundView
+android.support.v4.view.VelocityTrackerCompat
+android.support.v4.view.ViewCompat
+android.support.v4.view.ViewCompat$AccessibilityLiveRegion
+android.support.v4.view.ViewCompat$AutofillImportance
+android.support.v4.view.ViewCompat$FocusDirection
+android.support.v4.view.ViewCompat$FocusRealDirection
+android.support.v4.view.ViewCompat$FocusRelativeDirection
+android.support.v4.view.ViewCompat$ImportantForAccessibility
+android.support.v4.view.ViewCompat$LayerType
+android.support.v4.view.ViewCompat$LayoutDirectionMode
+android.support.v4.view.ViewCompat$NestedScrollType
+android.support.v4.view.ViewCompat$OverScroll
+android.support.v4.view.ViewCompat$ResolvedLayoutDirectionMode
+android.support.v4.view.ViewCompat$ScrollAxis
+android.support.v4.view.ViewCompat$ScrollIndicators
+android.support.v4.view.ViewCompat$ViewCompatApi15Impl
+android.support.v4.view.ViewCompat$ViewCompatApi16Impl
+android.support.v4.view.ViewCompat$ViewCompatApi17Impl
+android.support.v4.view.ViewCompat$ViewCompatApi18Impl
+android.support.v4.view.ViewCompat$ViewCompatApi19Impl
+android.support.v4.view.ViewCompat$ViewCompatApi21Impl
+android.support.v4.view.ViewCompat$ViewCompatApi21Impl$1
+android.support.v4.view.ViewCompat$ViewCompatApi23Impl
+android.support.v4.view.ViewCompat$ViewCompatApi24Impl
+android.support.v4.view.ViewCompat$ViewCompatApi26Impl
+android.support.v4.view.ViewCompat$ViewCompatBaseImpl
+android.support.v4.view.ViewConfigurationCompat
+android.support.v4.view.ViewGroupCompat
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatApi18Impl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatApi21Impl
+android.support.v4.view.ViewGroupCompat$ViewGroupCompatBaseImpl
+android.support.v4.view.ViewParentCompat
+android.support.v4.view.ViewParentCompat$ViewParentCompatApi19Impl
+android.support.v4.view.ViewParentCompat$ViewParentCompatApi21Impl
+android.support.v4.view.ViewParentCompat$ViewParentCompatBaseImpl
+android.support.v4.view.ViewPropertyAnimatorCompat
+android.support.v4.view.ViewPropertyAnimatorCompat$1
+android.support.v4.view.ViewPropertyAnimatorCompat$2
+android.support.v4.view.ViewPropertyAnimatorCompat$ViewPropertyAnimatorListenerApi14
+android.support.v4.view.ViewPropertyAnimatorListener
+android.support.v4.view.ViewPropertyAnimatorListenerAdapter
+android.support.v4.view.ViewPropertyAnimatorUpdateListener
+android.support.v4.view.WindowCompat
+android.support.v4.view.WindowInsetsCompat
+android.support.v4.view.accessibility.AccessibilityEventCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityStateChangeListener
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityStateChangeListenerCompat
+android.support.v4.view.accessibility.AccessibilityManagerCompat$AccessibilityStateChangeListenerWrapper
+android.support.v4.view.accessibility.AccessibilityManagerCompat$TouchExplorationStateChangeListener
+android.support.v4.view.accessibility.AccessibilityManagerCompat$TouchExplorationStateChangeListenerWrapper
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$AccessibilityActionCompat
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$CollectionInfoCompat
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$CollectionItemInfoCompat
+android.support.v4.view.accessibility.AccessibilityNodeInfoCompat$RangeInfoCompat
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderApi16
+android.support.v4.view.accessibility.AccessibilityNodeProviderCompat$AccessibilityNodeProviderApi19
+android.support.v4.view.accessibility.AccessibilityRecordCompat
+android.support.v4.view.accessibility.AccessibilityWindowInfoCompat
+android.support.v4.view.animation.PathInterpolatorApi14
+android.support.v4.view.animation.PathInterpolatorCompat
+android.support.v4.widget.AutoSizeableTextView
+android.support.v4.widget.CompoundButtonCompat
+android.support.v4.widget.CompoundButtonCompat$CompoundButtonCompatApi21Impl
+android.support.v4.widget.CompoundButtonCompat$CompoundButtonCompatApi23Impl
+android.support.v4.widget.CompoundButtonCompat$CompoundButtonCompatBaseImpl
+android.support.v4.widget.EdgeEffectCompat
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectApi21Impl
+android.support.v4.widget.EdgeEffectCompat$EdgeEffectBaseImpl
+android.support.v4.widget.ImageViewCompat
+android.support.v4.widget.ImageViewCompat$BaseViewCompatImpl
+android.support.v4.widget.ImageViewCompat$ImageViewCompatImpl
+android.support.v4.widget.ImageViewCompat$LollipopViewCompatImpl
+android.support.v4.widget.ListPopupWindowCompat
+android.support.v4.widget.ListViewCompat
+android.support.v4.widget.PopupMenuCompat
+android.support.v4.widget.PopupWindowCompat
+android.support.v4.widget.PopupWindowCompat$PopupWindowCompatApi19Impl
+android.support.v4.widget.PopupWindowCompat$PopupWindowCompatApi21Impl
+android.support.v4.widget.PopupWindowCompat$PopupWindowCompatApi23Impl
+android.support.v4.widget.PopupWindowCompat$PopupWindowCompatBaseImpl
+android.support.v4.widget.ScrollerCompat
+android.support.v4.widget.TextViewCompat
+android.support.v4.widget.TextViewCompat$AutoSizeTextType
+android.support.v4.widget.TextViewCompat$TextViewCompatApi16Impl
+android.support.v4.widget.TextViewCompat$TextViewCompatApi17Impl
+android.support.v4.widget.TextViewCompat$TextViewCompatApi18Impl
+android.support.v4.widget.TextViewCompat$TextViewCompatApi23Impl
+android.support.v4.widget.TextViewCompat$TextViewCompatApi26Impl
+android.support.v4.widget.TextViewCompat$TextViewCompatApi26Impl$1
+android.support.v4.widget.TextViewCompat$TextViewCompatApi27Impl
+android.support.v4.widget.TextViewCompat$TextViewCompatBaseImpl
+android.support.v4.widget.TintableCompoundButton
+android.support.v4.widget.TintableImageSourceView
+com.android.vending.billing.IInAppBillingService$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_isBillingSupported
+    static final int TRANSACTION_getSkuDetails
+    static final int TRANSACTION_getBuyIntent
+    static final int TRANSACTION_getPurchases
+    static final int TRANSACTION_consumePurchase
+    38:40:public IInAppBillingService$Stub()
+    58:58:public android.os.IBinder asBinder()
+com.android.vending.billing.IInAppBillingService$Stub$Proxy:
+    186:186:public java.lang.String getInterfaceDescriptor()
+com.n1kdo.adif.AdifBand:
+    63:63:private java.lang.String getName()
+    68:68:public static com.n1kdo.adif.AdifBand getAdifBandByName(java.lang.String)
+com.n1kdo.adif.AdifBase:
+    103:113:static java.util.Date getDate14(java.lang.String)
+com.n1kdo.adif.AdifCountry:
+    469:469:public final boolean getDeleted()
+    486:486:public static java.util.List getAdifCountries()
+com.n1kdo.adif.AdifHeader:
+    58:58:public final java.lang.String getProgramid()
+    63:63:public final int getLotw_numrec()
+com.n1kdo.adif.AdifMode:
+    78:78:public final java.lang.String getName()
+com.n1kdo.adif.AdifRecord:
+    private static final java.lang.String CREDIT_GRANTED_DELIMITER
+    111:111:public final java.lang.String[] getCreditGranted()
+    144:144:public final java.lang.String[] getLotwCreditGranted()
+    342:343:public final void setCreditGranted(java.lang.String[])
+    415:416:public final void setQsoDate(java.util.Date)
+com.n1kdo.adif.AdifResult:
+    private static final java.lang.String ADIF_EOH
+    private static final java.lang.String ADIF_EOR
+    private static final java.lang.String USERNAME_PASSWORD_INCORRECT
+    private static final java.lang.String LOGIN_FORM
+com.n1kdo.adif.AdifResultException:
+    private static final long serialVersionUID
+    public static final int INVALID_CREDENTIALS_EXCEPTION
+    public static final int LOGIN_FAILED_EXCEPTION
+    public static final int IO_EXCEPTION
+    public static final int INVALID_ADIF_RESULT
+com.n1kdo.iab.Base64:
+    private static final byte EQUALS_SIGN
+    private static final byte NEW_LINE
+    private static final byte WHITE_SPACE_ENC
+    private static final byte EQUALS_SIGN_ENC
+    88:89:private Base64()
+com.n1kdo.iab.Base64DecoderException:
+    private static final long serialVersionUID
+    35:35:private void readObject(java.io.ObjectInputStream)
+    40:40:private static void readObjectNoData()
+    45:45:private void writeObject(java.io.ObjectOutputStream)
+com.n1kdo.iab.IabException:
+    private static final long serialVersionUID
+    48:48:private void readObject(java.io.ObjectInputStream)
+    53:53:private static void readObjectNoData()
+    58:58:private void writeObject(java.io.ObjectOutputStream)
+com.n1kdo.iab.IabHelper:
+    public static final int BILLING_RESPONSE_RESULT_OK
+    public static final int BILLING_RESPONSE_RESULT_USER_CANCELED
+    public static final int BILLING_RESPONSE_RESULT_BILLING_UNAVAILABLE
+    public static final int BILLING_RESPONSE_RESULT_ITEM_UNAVAILABLE
+    public static final int BILLING_RESPONSE_RESULT_DEVELOPER_ERROR
+    public static final int BILLING_RESPONSE_RESULT_ERROR
+    public static final int BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED
+    public static final int BILLING_RESPONSE_RESULT_ITEM_NOT_OWNED
+    public static final int IABHELPER_ERROR_BASE
+    public static final int IABHELPER_REMOTE_EXCEPTION
+    public static final int IABHELPER_BAD_RESPONSE
+    public static final int IABHELPER_VERIFICATION_FAILED
+    public static final int IABHELPER_SEND_INTENT_FAILED
+    public static final int IABHELPER_USER_CANCELLED
+    public static final int IABHELPER_UNKNOWN_PURCHASE_RESPONSE
+    public static final int IABHELPER_MISSING_TOKEN
+    public static final int IABHELPER_UNKNOWN_ERROR
+    public static final int IABHELPER_SUBSCRIPTIONS_NOT_AVAILABLE
+    public static final int IABHELPER_INVALID_CONSUMPTION
+    public static final java.lang.String RESPONSE_CODE
+    public static final java.lang.String RESPONSE_GET_SKU_DETAILS_LIST
+    public static final java.lang.String RESPONSE_BUY_INTENT
+    public static final java.lang.String RESPONSE_INAPP_PURCHASE_DATA
+    public static final java.lang.String RESPONSE_INAPP_SIGNATURE
+    public static final java.lang.String RESPONSE_INAPP_ITEM_LIST
+    public static final java.lang.String RESPONSE_INAPP_PURCHASE_DATA_LIST
+    public static final java.lang.String RESPONSE_INAPP_SIGNATURE_LIST
+    public static final java.lang.String INAPP_CONTINUATION_TOKEN
+    public static final java.lang.String ITEM_TYPE_INAPP
+    public static final java.lang.String ITEM_TYPE_SUBS
+    public static final java.lang.String GET_SKU_DETAILS_ITEM_LIST
+    public static final java.lang.String GET_SKU_DETAILS_ITEM_TYPE_LIST
+    199:202:public final void enableDebugLogging(boolean,java.lang.String)
+    328:329:public final boolean subscriptionsSupported()
+    333:334:public final void launchPurchaseFlow(android.app.Activity,java.lang.String,int,com.n1kdo.iab.IabHelper$OnIabPurchaseFinishedListener)
+    343:344:public final void launchSubscriptionPurchaseFlow(android.app.Activity,java.lang.String,int,com.n1kdo.iab.IabHelper$OnIabPurchaseFinishedListener)
+    348:349:public final void launchSubscriptionPurchaseFlow(android.app.Activity,java.lang.String,int,com.n1kdo.iab.IabHelper$OnIabPurchaseFinishedListener,java.lang.String)
+    647:648:public final void queryInventoryAsync(com.n1kdo.iab.IabHelper$QueryInventoryFinishedListener)
+    651:652:public final void queryInventoryAsync(boolean,com.n1kdo.iab.IabHelper$QueryInventoryFinishedListener)
+    664:694:final void consume(com.n1kdo.iab.Purchase)
+    705:710:public final void consumeAsync(com.n1kdo.iab.Purchase,com.n1kdo.iab.IabHelper$OnConsumeFinishedListener)
+    718:721:public final void consumeAsync(java.util.List,com.n1kdo.iab.IabHelper$OnConsumeMultiFinishedListener)
+    894:926:final void consumeAsyncInternal(java.util.List,com.n1kdo.iab.IabHelper$OnConsumeFinishedListener,com.n1kdo.iab.IabHelper$OnConsumeMultiFinishedListener)
+com.n1kdo.iab.IabHelper$3
+com.n1kdo.iab.IabHelper$3$1
+com.n1kdo.iab.IabHelper$3$2
+com.n1kdo.iab.IabHelper$OnConsumeFinishedListener
+com.n1kdo.iab.IabHelper$OnConsumeMultiFinishedListener
+com.n1kdo.iab.IabResult:
+    41:41:public final boolean isSuccess()
+com.n1kdo.iab.Inventory:
+    45:45:public boolean hasPurchase(java.lang.String)
+    50:50:public boolean hasDetails(java.lang.String)
+    62:63:public void erasePurchase(java.lang.String)
+    67:67:java.util.List getAllOwnedSkus()
+    81:81:java.util.List getAllPurchases()
+com.n1kdo.iab.Purchase:
+    51:51:public final java.lang.String getOrderId()
+    52:52:public final java.lang.String getPackageName()
+    54:54:public final long getPurchaseTime()
+    55:55:public final int getPurchaseState()
+    58:58:public final java.lang.String getOriginalJson()
+    59:59:public final java.lang.String getSignature()
+com.n1kdo.iab.Security:
+    private static final java.lang.String TAG
+    private static final java.lang.String KEY_FACTORY_ALGORITHM
+    private static final java.lang.String SIGNATURE_ALGORITHM
+    39:39:Security()
+com.n1kdo.iab.SkuDetails:
+    34:35:public SkuDetails(java.lang.String)
+    49:49:public final java.lang.String getType()
+    51:51:public final java.lang.String getTitle()
+com.n1kdo.lotw.QueryLoTW:
+    private static final java.lang.String LOTW_URL
+com.n1kdo.lotwlook.BuildConfig
+com.n1kdo.lotwlook.BuyPizzaActivity:
+    public static final java.lang.String PIZZA_PRICE_STRING
+    static final java.lang.String AFTER_OCHO
+com.n1kdo.lotwlook.LotwAdifIntentService:
+    static final java.lang.String L1
+    public static final java.lang.String PENDING_RESULT
+    public static final java.lang.String CALLSIGN
+    public static final java.lang.String DETAIL
+    public static final java.lang.String QSL_SINCE_DATE
+    public static final java.lang.String QSO_START_DATE
+    public static final java.lang.String QSO_END_DATE
+    public static final java.lang.String QSO_MODE
+    public static final java.lang.String QSO_BAND
+    public static final java.lang.String QSO_DXCC
+    public static final java.lang.String UPDATE_DATABASE
+    public static final java.lang.String ADIF_RECORDS_LIST
+    public static final java.lang.String NEW_QSL_COUNT
+    public static final java.lang.String ERROR_MESSAGE
+    public static final java.lang.String TRUNCATED_MESSAGE
+    public static final int RESULT_CODE
+    public static final int ERROR_CODE
+    public static final int NO_CONNECTIVITY_CODE
+    public static final int NO_CREDENTIALS_CODE
+    public static final int BAD_CREDENTIALS_CODE
+    public static final int LOGIN_FAILURE_CODE
+com.n1kdo.lotwlook.MainActivity:
+    private static final java.lang.String L0
+    private static final java.lang.String L2
+    private static final java.lang.String L4
+    private static final java.lang.String L6
+    private static final java.lang.String L8
+    public static final int LOTW_ADIF_REQUEST_CODE
+    public static final int BUY_REQUEST_CODE
+    public static final int LOTW_UPDATE_JOB_ID
+    static final int PURCHASE_COMPLETE_REQUEST_CODE
+    private static final java.lang.String SKU_PIZZA
+com.n1kdo.lotwlook.PreferencesActivity:
+    static final java.lang.String L7
+    public static final java.lang.String PREFERENCES_KEY
+    public static final java.lang.String UPDATE_INTERVAL_KEY_NAME
+    public static final java.lang.String MAX_DATABASE_ENTRIES_KEY
+    public static final java.lang.String LAST_SEEN_QSL_KEY
+    public static final java.lang.String LAST_QSL_DATE_KEY
+    public static final java.lang.String PIZZA_PURCHASE_KEY
+    public static final java.lang.String USERNAME_KEY
+    public static final java.lang.String OWNCALL_KEY
+    public static final java.lang.String PASSWORD_KEY
+com.n1kdo.lotwlook.R
+com.n1kdo.lotwlook.R$array
+com.n1kdo.lotwlook.R$attr
+com.n1kdo.lotwlook.R$bool
+com.n1kdo.lotwlook.R$color
+com.n1kdo.lotwlook.R$dimen
+com.n1kdo.lotwlook.R$drawable
+com.n1kdo.lotwlook.R$id
+com.n1kdo.lotwlook.R$integer
+com.n1kdo.lotwlook.R$layout
+com.n1kdo.lotwlook.R$menu
+com.n1kdo.lotwlook.R$plurals
+com.n1kdo.lotwlook.R$string
+com.n1kdo.lotwlook.R$style
+com.n1kdo.lotwlook.R$styleable
+com.n1kdo.lotwlook.R$xml
+com.n1kdo.lotwlook.SearchActivity:
+    static final java.lang.String L5
+    private static final int LOTW_ADIF_REQUEST_CODE
+    private static final long DAY_IN_MILLISECONDS
+    private static final long ALMOST_A_DAY_IN_MILLISECONDS
+com.n1kdo.lotwlook.ShowQslDetailsActivity:
+    static final java.lang.String L3
+    public static final java.lang.String ADIF_RECORD
+com.n1kdo.lotwlook.Util:
+    private static final java.lang.String NOTIFICATION_CHANNEL_ID
+    33:34:static boolean isItMe(java.lang.String)
+com.n1kdo.lotwlook.data.AdifRecordEntry
+com.n1kdo.lotwlook.data.LoTWLookDAO:
+    private static final java.lang.String SELECT_BY_ID
+    private static final java.lang.String SELECT_BEFORE_ID
+    private static final java.lang.String SELECT_DUP_QSL
+com.n1kdo.lotwlook.data.LoTWLookDbHelper:
+    private static final java.lang.String TAG
+    private static final int DATABASE_VERSION
+    private static final java.lang.String DATABASE_NAME
+    private static final java.lang.String TEXT_TYPE
+    private static final java.lang.String INTEGER_TYPE
+    private static final java.lang.String COMMA_SEP
+    private static final java.lang.String SQL_CREATE_ENTRIES_ADIF_RECORD_ENTRY
+    private static final java.lang.String SQL_DELETE_ENTRIES_ADIF_RECORD_ENTRY
+com.n1kdo.util.Utilities:
+    16:16:public Utilities()

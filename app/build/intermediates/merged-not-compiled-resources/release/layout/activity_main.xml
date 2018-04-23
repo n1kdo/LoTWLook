@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/screen_show"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="visible" >
+
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:scrollbars="horizontal" >
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent" >
+
+            <TextView
+                android:id="@+id/screen_wait"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:minHeight="120dp"
+                android:text="@string/pleaseWait"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+            <TableLayout
+                android:id="@+id/qslTableLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="fill"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:stretchColumns="*"
+                android:visibility="visible" >
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/tableHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_span="6"
+                        android:gravity="center"
+                        android:text="@string/qsl_table_header"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/mycallHeader"
+                        android:background="@drawable/hl"
+                        android:gravity="center|start"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:text="@string/callsignTitle"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/callsignHeader"
+                        android:background="@drawable/hl"
+                        android:gravity="center|start"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:text="@string/workedTitle"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/qsoDateHeader"
+                        android:background="@drawable/hl"
+                        android:gravity="start|center"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:text="@string/qsoDateTitle"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/bandHeader"
+                        android:background="@drawable/hl"
+                        android:gravity="center|start"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:text="@string/bandTitle"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/modeHeader"
+                        android:background="@drawable/hl"
+                        android:gravity="center|start"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:text="@string/modeTitle"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/countryHeader"
+                        android:background="@drawable/hr"
+                        android:gravity="center|start"
+                        android:paddingLeft="2dp"
+                        android:paddingRight="2dp"
+                        android:text="@string/countryTitle"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+        </FrameLayout>
+    </HorizontalScrollView>
+
+</ScrollView>
