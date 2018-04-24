@@ -6,3 +6,5 @@ build/intermediates/
 .gradle/4.4/taskHistory/taskHistory.lock
 .gradle/4.4/taskHistory/taskHistory.bin
 .idea/workspace.xml
+.gradle/4.4/fileHashes/fileHashes.lock
+.gradle/4.4/fileHashes/fileHashes.bin
