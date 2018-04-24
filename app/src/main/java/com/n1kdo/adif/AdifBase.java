@@ -32,6 +32,10 @@ abstract class AdifBase
         return s == null ? "" : s;
     }
 
+    static Date safe_date(Date d) {
+    	return d == null ? new Date(0) : d;
+	}
+
     static String [] parseAdifLine(String line)
 	{
 		int lbp, cp, rbp;

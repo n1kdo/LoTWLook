@@ -108,6 +108,9 @@ public class AdifRecord extends AdifBase implements Parcelable {
 
     @SuppressLint("unused")
     public final String[] getCreditGranted() {
+        if (credit_granted == null) {
+            credit_granted = new String[0];
+        }
         return credit_granted;
     }
 
@@ -136,11 +139,14 @@ public class AdifRecord extends AdifBase implements Parcelable {
     }
 
     public final String getLotwQslMode() {
-        return lotw_qslmode;
+        return safe(lotw_qslmode);
     }
 
     @SuppressLint("Unused")
     public final String[] getLotwCreditGranted() {
+        if (lotw_credit_granted == null) {
+            lotw_credit_granted = new String[0];
+        }
         return lotw_credit_granted;
     }
 
@@ -157,7 +163,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
     }
 
     public final String getLotwOwnCall() {
-        return lotw_owncall;
+        return safe(lotw_owncall);
     }
 
     public final String getMode() {
@@ -169,16 +175,16 @@ public class AdifRecord extends AdifBase implements Parcelable {
     }
 
     public final Date getQslRDate() {
-        return qslrdate;
+        return safe_date(qslrdate);
     }
 
     public final Date getQsoDate() {
-        return qso_date;
+        return safe_date(qso_date);
     }
 
     public final Date getQsoDateTime() {
         if (qso_date == null)
-            return null;
+            return safe_date(null);
         if (timeon == null || timeon.length() != 6) {
             return qso_date;
         }
@@ -190,9 +196,9 @@ public class AdifRecord extends AdifBase implements Parcelable {
     private static long getMillisecondsFromTimeOn(String s) {
         long l = 0;
         if (s != null && s.length() == 6) {
-            l = Integer.parseInt(s.substring(0,2)) * 3600000L;
-            l += Integer.parseInt(s.substring(2,4)) * 60000L;
-            l += Integer.parseInt(s.substring(4,6)) * 1000L;
+            l = Integer.parseInt(s.substring(0, 2)) * 3600000L;
+            l += Integer.parseInt(s.substring(2 ,4)) * 60000L;
+            l += Integer.parseInt(s.substring(4, 6)) * 1000L;
         }
         return l;
     }
@@ -201,7 +207,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
     }
 
     public final String getStationCallsign() {
-        return station_callsign;
+        return safe(station_callsign);
     }
 
     public final String getTimeOn() {
