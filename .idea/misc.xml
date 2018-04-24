@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="EntryPointsManager">
-    <list size="1">
-      <item index="0" class="java.lang.String" itemvalue="android.annotation.SuppressLint" />
-    </list>
-  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
     <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
     <option name="myNullables">
       <value>
-        <list size="4">
+        <list size="5">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
-          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
-          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
+          <item index="2" class="java.lang.String" itemvalue="javax.annotation.CheckForNull" />
+          <item index="3" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
+          <item index="4" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
         </list>
       </value>
     </option>
@@ -34,25 +30,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="SvnBranchConfigurationManager">
-    <option name="myConfigurationMap">
-      <map>
-        <entry key="$PROJECT_DIR$">
-          <value>
-            <SvnBranchConfiguration>
-              <option name="branchUrls">
-                <list>
-                  <option value="http://www.n1kdo.com/repos/jeff/LoTWLook/branches" />
-                  <option value="http://www.n1kdo.com/repos/jeff/LoTWLook/tags" />
-                </list>
-              </option>
-              <option name="trunkUrl" value="http://www.n1kdo.com/repos/jeff/LoTWLook/trunk" />
-            </SvnBranchConfiguration>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="mySupportsUserInfoFilter" value="true" />
   </component>
 </project>
