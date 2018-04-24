@@ -5,3 +5,4 @@ build/intermediates/
 .gradle/buildOutputCleanup/buildOutputCleanup.lock
 .gradle/4.4/taskHistory/taskHistory.lock
 .gradle/4.4/taskHistory/taskHistory.bin
+.idea/workspace.xml
