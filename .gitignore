@@ -8,3 +8,5 @@ build/intermediates/
 .idea/workspace.xml
 .gradle/4.4/fileHashes/fileHashes.lock
 .gradle/4.4/fileHashes/fileHashes.bin
+app/build/
+.gradle/buildOutputCleanup/
