@@ -12,10 +12,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.security.GeneralSecurityException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
 
 public class QueryLoTW {
     private static final String TAG = QueryLoTW.class.getSimpleName();
@@ -96,8 +100,11 @@ public class QueryLoTW {
 
         try {
             URL url = new URL(urlSB.toString());
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
+            sslContext.init(null, null, null);
 
+            HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+            urlConnection.setSSLSocketFactory(sslContext.getSocketFactory());
             int status = urlConnection.getResponseCode();
             if (status != HttpURLConnection.HTTP_OK) {
                 Log.d(TAG, "callLotw: HTTP status " + status);
@@ -105,6 +112,8 @@ public class QueryLoTW {
             }
             in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             adifResult = AdifResult.readAdif(in);
+        } catch (GeneralSecurityException e) {
+            throw new AdifResultException(AdifResultException.IO_EXCEPTION, e);
         } catch (IOException e) {
             throw new AdifResultException(AdifResultException.IO_EXCEPTION, e);
         } finally {
