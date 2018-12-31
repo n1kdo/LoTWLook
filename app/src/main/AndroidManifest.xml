@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.n1kdo.lotwlook"
-    android:versionCode="62"
-    android:versionName="20181023" >
+    android:versionCode="64"
+    android:versionName="20181230" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
