@@ -44,6 +44,8 @@ public class QueryLoTW {
         String since = null;
         if (sinceDate != null) {
             since = dateFormatForSince.format(sinceDate);
+        } else {
+            since = "1900-01-01";
         }
 
         StringBuilder urlSB = new StringBuilder();
