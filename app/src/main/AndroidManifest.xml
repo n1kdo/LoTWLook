@@ -2,11 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.n1kdo.lotwlook"
-    android:versionCode="65"
-    android:versionName="20200330" >
+    android:versionCode="69"
+    android:versionName="20230404" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="com.android.vending.BILLING" />
 
@@ -25,8 +26,8 @@
         <meta-data android:name="android.max_aspect" android:value="2.1" />
         <activity
             android:name="com.n1kdo.lotwlook.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppBaseTheme">
+            android:exported="true"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

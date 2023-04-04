@@ -106,6 +106,7 @@ public class QueryLoTW {
             sslContext.init(null, null, null);
 
             HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+            urlConnection.addRequestProperty("User-Agent", "N1KDOs LoTWLook");
             urlConnection.setSSLSocketFactory(sslContext.getSocketFactory());
             int status = urlConnection.getResponseCode();
             if (status != HttpURLConnection.HTTP_OK) {

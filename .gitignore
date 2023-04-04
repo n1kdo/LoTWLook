@@ -6,5 +6,13 @@ build/intermediates/
 .gradle/4.4/javaCompile/
 .gradle/4.4/taskHistory/
 .idea/workspace.xml
-app/build/
 .gradle/buildOutputCleanup/
+.idea/libraries/
+.gradle/
+app/build/generated/
+app/build/reports/
+app/build/outputs/logs/
+app/build/outputs/mapping/release/usage.txt
+app/build/outputs/mapping/release/seeds.txt
+app/build/outputs/mapping/release/resources.txt
+app/release/output.json

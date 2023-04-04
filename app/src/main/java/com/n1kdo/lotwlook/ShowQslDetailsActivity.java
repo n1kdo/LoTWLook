@@ -83,10 +83,10 @@ public class ShowQslDetailsActivity extends Activity {
             addNonEmptyRow(tableLayout, getString(R.string.rxFrequencyTitle), adifRecord.getFreqRx());
             addNonEmptyRow(tableLayout, getString(R.string.iotaTitle), adifRecord.getIota());
             addNonEmptyRow(tableLayout, getString(R.string.creditGrantedTitle), adifRecord.getCreditGrantedString());
-            //if (adifRecord.getQslRDate().getTime() != 0)
-            //{
-            //    addNonEmptyRow(tableLayout, getString(R.string.qslDateTitle), MainActivity.LONG_DATE_FORMAT.format(adifRecord.getQslRDate()));
-            //}
+            if (adifRecord.getQslRDate().getTime() != 0)
+            {
+                addNonEmptyRow(tableLayout, getString(R.string.qslDateTitle), Utilities.formatDate(adifRecord.getQslRDate()));
+            }
         }
     } // onCreate()
 
