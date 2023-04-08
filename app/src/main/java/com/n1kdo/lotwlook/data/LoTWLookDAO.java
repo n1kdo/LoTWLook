@@ -65,10 +65,12 @@ public class LoTWLookDAO {
     }
 
     public final void open() throws SQLException {
+        Log.d(TAG, "opening database");
         database = dbHelper.getWritableDatabase();
     }
 
     public final void close() {
+        Log.d(TAG, "closing database");
         dbHelper.close();
         database = null;
     }
@@ -234,9 +236,9 @@ public class LoTWLookDAO {
             if (match != null) { // yes, the QSL is already in the database, update the received date.
                 match.setQslRDate(adifRecord.getQslRDate());
                 saveAdifRecord(match);
-                Log.d(TAG, adifRecord.toString() + " is already in the database, updated QslRDate.");
+                Log.d(TAG, adifRecord + " is already in the database, updated QslRDate.");
             } else { // not already in the database, must be new.
-                Log.d(TAG, adifRecord.toString() + " added to the database.");
+                Log.d(TAG, adifRecord + " added to the database.");
                 saveAdifRecord(adifRecord);
                 newRecords.add(adifRecord);
             }

@@ -18,7 +18,6 @@ import com.n1kdo.util.Utilities;
 
 public class ShowQslDetailsActivity extends Activity {
     private static final String TAG = ShowQslDetailsActivity.class.getSimpleName();
-    static final String L3 = "e3gqejiisUw2CzbYTHw1Hu1zF9wgQUIkULJZI2cp";
 
     public static final String ADIF_RECORD = "adifRecord";
 
@@ -93,10 +92,9 @@ public class ShowQslDetailsActivity extends Activity {
     @Override
     public final boolean onOptionsItemSelected(MenuItem item) {
         if (item != null) {
-            switch (item.getItemId()) {
-                case android.R.id.home:
-                    onBackPressed();
-                    return true;
+            if (item.getItemId() == android.R.id.home) {
+                onBackPressed();
+                return true;
             }
             return (super.onOptionsItemSelected(item));
         } else {

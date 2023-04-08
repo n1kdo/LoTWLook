@@ -9,30 +9,25 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
-import android.os.Build;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.TaskStackBuilder;
+import android.os.Build;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.TextView;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.TaskStackBuilder;
 
 import com.n1kdo.adif.AdifRecord;
 import com.n1kdo.lotwlook.data.LoTWLookDAO;
 
 import java.util.Date;
 import java.util.List;
-import java.util.regex.Pattern;
 
 public class Util {
     private static final String TAG = Util.class.getSimpleName();
     private static final String NOTIFICATION_CHANNEL_ID = "LOTWLOOK_NTF_CHN_ID";
-
-    static boolean isItMe(String username) {
-        String[] parts = Util.class.getName().split(Pattern.quote("."));
-        return parts.length > 2 && parts[1].equals(username);
-    }
 
     static boolean isOnline(Context context) {
         ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

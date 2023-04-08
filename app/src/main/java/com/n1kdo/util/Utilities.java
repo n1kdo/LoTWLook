@@ -34,12 +34,12 @@ public class Utilities {
         return (s == null || s.isEmpty() || s.trim().isEmpty());
     }
 
-    public static String md5(final String s) {
+    public static String Zmd5(final String s) {
         try {
             // Create MD5 Hash
             MessageDigest digest = MessageDigest.getInstance("MD5");
             digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
+            byte[] messageDigest = digest.digest();
 
             // Create Hex String
             StringBuilder hexString = new StringBuilder();

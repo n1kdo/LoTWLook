@@ -72,4 +72,18 @@ public enum AdifBand {
         return nameToBandMap.keySet();
     }
 
+    public static float wavelength(String bandname) {
+        float wavelength = 0.0f;
+        if (bandname.toLowerCase().endsWith("cm")) {
+            String num = bandname.substring(0, bandname.length() - 2);
+            wavelength = Integer.parseInt(num) / 100.0f;
+        } else {
+            if (bandname.toLowerCase().endsWith("m")) {
+                String num = bandname.substring(0, bandname.length() - 1);
+                wavelength = Integer.parseInt(num);
+            }
+        }
+        return wavelength;
+    } // wavelength()
+
 } // enum

@@ -23,12 +23,4 @@
         android:orderInCategory="30"
         android:showAsAction="ifRoom"
         android:title="@string/menu_settings"/>
-    <!-- Buy N1KDO Pizza, should appear as action button -->
-    <item
-        android:id="@+id/action_buy"
-        android:icon="@drawable/ic_action_pizza"
-        android:orderInCategory="40"
-        android:showAsAction="ifRoom"
-        android:title="@string/action_buy_pizza"/>
-
-</menu>
+ </menu>

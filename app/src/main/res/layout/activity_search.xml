@@ -12,7 +12,6 @@
     tools:context=".SearchActivity" >
 
     <TextView
-        android:id="@+id/theirCallTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/theirCallTitle" />
@@ -23,7 +22,8 @@
         android:layout_height="wrap_content"
         android:hint="@string/theirCallHint"
         android:inputType="textCapCharacters"
-        android:paddingBottom="@dimen/searchBoxVerticalSpacing" >
+        android:paddingBottom="@dimen/searchBoxVerticalSpacing"
+        android:autofillHints="">
     </EditText>
 
     <CheckBox
@@ -49,13 +49,11 @@
             android:visibility="visible" >
 
             <TextView
-                android:id="@+id/qsoStartTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/qsoStartTitle" />
 
             <TextView
-                android:id="@+id/qsoEndTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/qsoEndTitle" />
@@ -87,25 +85,21 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/modeTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/modeTitle" />
 
             <TextView
-                android:id="@+id/bandTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/bandTitle" />
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/searchBoxVerticalSpacing" >
@@ -124,19 +118,16 @@
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/dxccTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/dxccTitle" />
         </TableRow>
 
         <TableRow
-            android:id="@+id/tableRow6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/searchBoxVerticalSpacing" >
@@ -150,7 +141,6 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/searchSubmitButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

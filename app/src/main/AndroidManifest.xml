@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.n1kdo.lotwlook"
-    android:versionCode="69"
-    android:versionName="20230404" >
+    android:versionCode="74"
+    android:versionName="20230405" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="com.android.vending.BILLING" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +20,8 @@
         android:supportsRtl="false"
         android:resizeableActivity="true"
         android:largeHeap="true"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        android:dataExtractionRules="@xml/data_extraction_rules">
         <meta-data android:name="android.max_aspect" android:value="2.1" />
         <activity
             android:name="com.n1kdo.lotwlook.MainActivity"
@@ -40,11 +39,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.n1kdo.lotwlook.MainActivity" />
-        </activity>
-        <activity
-            android:name="com.n1kdo.lotwlook.BuyPizzaActivity"
-            android:label="@string/action_buy_pizza"
-            android:parentActivityName="com.n1kdo.lotwlook.MainActivity" >
         </activity>
         <activity
             android:name="com.n1kdo.lotwlook.SearchActivity"

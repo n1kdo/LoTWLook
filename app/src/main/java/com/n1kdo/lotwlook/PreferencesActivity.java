@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
@@ -17,7 +16,6 @@ import java.util.List;
 
 public class PreferencesActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
     private static final String TAG = PreferencesActivity.class.getSimpleName();
-    static final String L7 = "vToOu5hSXOp1Cy0SXUNvOI6pk0mRuV7/N2WQQd0V";
 
     public static final String PREFERENCES_KEY = "n1kdo.lotwlook.preferences";
 
@@ -25,7 +23,6 @@ public class PreferencesActivity extends PreferenceActivity implements OnSharedP
     public static final String MAX_DATABASE_ENTRIES_KEY = "maxDatabaseEntries";
     public static final String LAST_SEEN_QSL_KEY = "lastSeenQslRecordId";
     public static final String LAST_QSL_DATE_KEY = "lastQslDate";
-    public static final String PIZZA_PURCHASE_KEY = "pizzaPurchaseKey";
     public static final String USERNAME_KEY = "username";
     public static final String OWNCALL_KEY = "owncall";
     public static final String PASSWORD_KEY = "password";
@@ -62,17 +59,7 @@ public class PreferencesActivity extends PreferenceActivity implements OnSharedP
                     ComponentName serviceComponent = new ComponentName(context, LotwAdifJobService.class);
                     JobInfo.Builder builder = new JobInfo.Builder(MainActivity.LOTW_UPDATE_JOB_ID, serviceComponent);
                     long updateMillis = updateIntervalHours * 3600000L;
-                    /*
-                    if (updateIntervalHours == 24) {
-                        Log.w(TAG, "Forcing debug updates 15 minutes!!!");
-                        updateMillis = 15 * 60 * 1000L; // 15 minutes FIXME JEFF
-                    }
-                    */
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { // Nougat (7) and newer
-                        builder.setPeriodic(updateMillis, 1800000L);  // set flex to 30 minutes
-                    } else {
-                        builder.setPeriodic(updateMillis);
-                    }
+                    builder.setPeriodic(updateMillis, 1800000L);  // set flex to 30 minutes
                     builder.setPersisted(true);
                     builder.setRequiresDeviceIdle(true);
                     builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);

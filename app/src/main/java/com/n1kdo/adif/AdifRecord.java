@@ -61,7 +61,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
     private String country;
     private String county;
     private int cqZone;
-    private String credit_granted[];
+    private String[] credit_granted;
     private int dxcc;
     private String freq;
     private String freq_rx;
@@ -69,7 +69,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
     private String iota;
     private int ituZone;
     private boolean lotw_2xqsl;
-    private String lotw_credit_granted[];
+    private String[] lotw_credit_granted;
     private String lotw_dxcc_entity_status;
     private String lotw_modegroup;
     private String lotw_owncall;
@@ -556,7 +556,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
 
     public static final Comparator<AdifRecord> NATURAL_COMPARE = new Comparator<AdifRecord>() {
         public int compare(AdifRecord first, AdifRecord second) {
-            return ((Long) first._id).compareTo(second._id);
+            return Long.compare(first._id, second._id);
         }
     };
 
@@ -568,7 +568,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
 
     public static final Comparator<AdifRecord> BAND_COMPARE = new Comparator<AdifRecord>() {
         public int compare(AdifRecord first, AdifRecord second) {
-            return first.band.compareTo(second.band);
+            return Float.compare(AdifBand.wavelength(first.band), AdifBand.wavelength(second.band));
         }
     };
 
@@ -592,7 +592,11 @@ public class AdifRecord extends AdifBase implements Parcelable {
 
     public static final Comparator<AdifRecord> QSO_DATE_COMPARE = new Comparator<AdifRecord>() {
         public int compare(AdifRecord first, AdifRecord second) {
-            return first.qso_date.compareTo(second.qso_date);
+            int comparison = first.qso_date.compareTo(second.qso_date);
+            if (comparison == 0 && first.timeon != null && second.timeon != null) {
+                comparison = first.timeon.compareTo(second.timeon);
+            }
+            return comparison;
         }
     };
 

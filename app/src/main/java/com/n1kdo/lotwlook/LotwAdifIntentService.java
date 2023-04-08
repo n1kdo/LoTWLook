@@ -19,8 +19,6 @@ import java.util.Date;
 
 public class LotwAdifIntentService extends IntentService {
     private static final String TAG = LotwAdifIntentService.class.getSimpleName();
-    static final String L1 = "AQEAt5xE6YAM0muVX3OOLyE0kwi6lW3mlNm1/LdA";
-
     public static final String PENDING_RESULT = "pendingResult"; // object
     public static final String CALLSIGN = "callsign"; // string
     public static final String DETAIL = "detail"; // boolean
@@ -53,6 +51,7 @@ public class LotwAdifIntentService extends IntentService {
     @Override
     protected final void onHandleIntent(Intent intent) {
         Log.d(TAG, "onHandleIntent()");
+        assert intent != null;
         PendingIntent reply = intent.getParcelableExtra(PENDING_RESULT);
 
         if (reply == null) {
@@ -116,7 +115,7 @@ public class LotwAdifIntentService extends IntentService {
                         Log.e(TAG, "adif parse error: lastQslDate is null");
                         throw new AdifResultException(AdifResultException.INVALID_ADIF_RESULT);
                     }
-                    Log.d(TAG, "Last qsl date is " + lastQslDate.toString());
+                    Log.d(TAG, "Last qsl date is " + lastQslDate);
 
                     if (updateDatabase) {
                         newQsls = Util.updateDatabase(this, lastQslDate, adifRecords, maxDatabaseEntries);

@@ -31,7 +31,6 @@ import java.util.Locale;
 
 public class SearchActivity extends Activity {
     private static final String TAG = SearchActivity.class.getSimpleName();
-    static final String L5 = "vBnyJTYwVh9bqgboB21QxvnoLatDiT6RRPkXOo84";
     private static final int LOTW_ADIF_REQUEST_CODE = 0;
     private static final long DAY_IN_MILLISECONDS = 86400000L;
     private static final long ALMOST_A_DAY_IN_MILLISECONDS = DAY_IN_MILLISECONDS - 1000;
@@ -80,10 +79,9 @@ public class SearchActivity extends Activity {
 
     @Override
     public final boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
         return (super.onOptionsItemSelected(item));
     }

@@ -9,7 +9,7 @@ public class AdifResultException extends Exception
     public static final int IO_EXCEPTION = 2;
     public static final int INVALID_ADIF_RESULT = 3;
 
-    private static final String messages[] = { "Username/Password Invalid", "Login Failed", "Network Read Error",
+    private static final String[] messages = { "Username/Password Invalid", "Login Failed", "Network Read Error",
             "Invalid ADIF Result" };
 
     private final int exceptionType;

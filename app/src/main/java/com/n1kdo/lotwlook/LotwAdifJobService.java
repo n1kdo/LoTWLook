@@ -101,7 +101,7 @@ public class LotwAdifJobService extends JobService {
                     Log.e(TAG, "adif parse error: lastQslDate is null");
                     throw new AdifResultException(AdifResultException.INVALID_ADIF_RESULT);
                 }
-                Log.d(TAG, "Last qsl date is " + newLastQslDate.toString());
+                Log.d(TAG, "Last qsl date is " + newLastQslDate);
 
                 Collections.reverse(adifRecords);
 

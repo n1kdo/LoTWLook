@@ -41,11 +41,11 @@ public class QueryLoTW {
                                       String band,
                                       int dxcc) throws AdifResultException {
         AdifResult adifResult;
-        String since = null;
+        String since;
         if (sinceDate != null) {
             since = dateFormatForSince.format(sinceDate);
         } else {
-            since = "1900-01-01";
+            since = "2020-01-01";
         }
 
         StringBuilder urlSB = new StringBuilder();
@@ -92,7 +92,7 @@ public class QueryLoTW {
             addParameter(urlSB, "qso_qsldetail", "yes");
         addParameter(urlSB, "qso_withown", "yes");
 
-        Log.d(TAG, "query is " + urlSB.toString());
+        Log.d(TAG, "query is " + urlSB);
 
         // add authentication info AFTER logging query, don't want this in the log!
         addParameter(urlSB, "login", username);
@@ -115,9 +115,7 @@ public class QueryLoTW {
             }
             in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
             adifResult = AdifResult.readAdif(in);
-        } catch (GeneralSecurityException e) {
-            throw new AdifResultException(AdifResultException.IO_EXCEPTION, e);
-        } catch (IOException e) {
+        } catch (GeneralSecurityException | IOException e) {
             throw new AdifResultException(AdifResultException.IO_EXCEPTION, e);
         } finally {
             if (in != null) {

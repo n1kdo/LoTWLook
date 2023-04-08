@@ -2,22 +2,14 @@
 <resources>
 
     <string name="accessingLoTW">Accessing LoTW&#8230;</string>
-    <string name="action_buy_pizza">Buy N1KDO Pizza</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_search">Search</string>
     <string name="all">All</string>
     <string name="app_name">LoTW Look</string>
     <string name="bandColumnHeader">Band%s</string>
     <string name="bandTitle">Band</string>
-    <string name="begging1">If you find this application useful, you can show your appreciation by buying N1KDO a slice of pizza.</string>
-    <string name="begging2">This is an \"in-app\" purchase and is not refundable.</string>
-    <string name="begging3">The price goes here.</string>
-    <string name="begging3template">The price of %1$s is %2$s.</string>
-    <string name="begging4">Once you buy a slice, the \"Buy N1KDO Pizza\" menu option will disappear, and never come back.</string>
-    <string name="buyButtonText">Buy N1KDO a Slice of Pizza</string>
     <string name="callsignColumnHeader">Callsign%s</string>
     <string name="callsignTitle">Callsign</string>
-    <!-- <string name="cannot_connect_to_lotw">Cannot connect to LoTW</string> -->
     <string name="countryColumnHeader">Country%s</string>
     <string name="countryTitle">Country</string>
     <string name="countyTitle">County</string>

@@ -12,14 +12,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -34,49 +33,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.n1kdo.adif.AdifRecord;
-import com.n1kdo.iab.IabHelper;
-import com.n1kdo.iab.IabResult;
-import com.n1kdo.iab.Inventory;
-import com.n1kdo.iab.Purchase;
-import com.n1kdo.iab.SkuDetails;
 import com.n1kdo.lotwlook.data.LoTWLookDAO;
 import com.n1kdo.util.Utilities;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
-    private static final String L0 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC";
-    private static final String L2 = "6QVbiRFLhhIgPTKwTya5SPbQoPLapwdKgMY/5IvL";
-    private static final String L4 = "y6x+FW5hsWzk+MYgU9KBC5DgBtdAyvl1jdHssGmA";
-    private static final String L6 = "fJ9x9+uDCCnhFd59PgVR1dLG11sqgzC4O0XQAXb1";
-    private static final String L8 = "3SrY7j2aoG8YrK60zu+7C4aCtE66toYclVEK0LDq";
     public static final int LOTW_ADIF_REQUEST_CODE = 0;
-    //public static final int REFRESH_REQUEST_CODE = 1;
-    public static final int BUY_REQUEST_CODE = 2;
 
     public static final int LOTW_UPDATE_JOB_ID = 0x73;
 
-    static final int PURCHASE_COMPLETE_REQUEST_CODE = 10001;
-
     private ProgressDialog progressDialog = null;
-    private Menu menu = null;
 
-    private String username;
     private long lastQslSeen; // is the record id from the saved preferences...
     private long highestQslIdShownOnScreen = 0L;
     private long lastQslDateTime = 0L;
-    private boolean hasDonated = false;
-    private boolean errorHidesBuyButton = false;
-
-    private IabHelper iabHelper;
-    private static final String SKU_PIZZA = "pizza_slice";
-
-    private String pizzaPriceString = null;
 
     private List<AdifRecord> adifRecordsList = null;
 
@@ -85,75 +59,37 @@ public class MainActivity extends Activity {
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate()");
-        // recreate license key; it is not even obfuscated, but it is not stored as a single string.
-        //noinspection StringBufferReplaceableByString -- I want this to work this way.,StringBufferReplaceableByString
-        StringBuilder lksb = new StringBuilder();
-        lksb.append(L0);
-        lksb.append(LotwAdifIntentService.L1);
-        lksb.append(L2);
-        lksb.append(ShowQslDetailsActivity.L3);
-        lksb.append(L4);
-        lksb.append(SearchActivity.L5);
-        lksb.append(L6);
-        lksb.append(PreferencesActivity.L7);
-        lksb.append(L8);
-        lksb.append(BuyPizzaActivity.AFTER_OCHO);
 
-        iabHelper = new IabHelper(this, lksb.toString());
+        ////  DEBUG...
+        if (false) {
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder(StrictMode.getVmPolicy())
+                    .detectAll()
+                    .penaltyLog()
+                    .build());
+        }
 
         super.onCreate(savedInstanceState);
 
+        Log.d(TAG, "reading shared preferences...");
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         getSharedPreferences(PreferencesActivity.PREFERENCES_KEY, MODE_PRIVATE);
 
-        username = sharedPreferences.getString(PreferencesActivity.USERNAME_KEY, "");
+        String username = sharedPreferences.getString(PreferencesActivity.USERNAME_KEY, "");
         String password = sharedPreferences.getString(PreferencesActivity.PASSWORD_KEY, "");
         lastQslSeen = sharedPreferences.getLong(PreferencesActivity.LAST_SEEN_QSL_KEY, 0L);
         lastQslDateTime = sharedPreferences.getLong(PreferencesActivity.LAST_QSL_DATE_KEY, 0L);
         int updateIntervalHours = Integer.valueOf(sharedPreferences.getString(PreferencesActivity.UPDATE_INTERVAL_KEY_NAME,
                 "0"));
-        String savedPizzaPurchaseKey = sharedPreferences.getString(PreferencesActivity.PIZZA_PURCHASE_KEY, "");
-
-        if (savedPizzaPurchaseKey.length() > 0 && savedPizzaPurchaseKey.equals(getPayloadKey(SKU_PIZZA))) {
-            hasDonated = true;
-        }
-
-        //if (Util.isItMe(username)) {
-        //    Log.d(TAG, "it is me.");
-        //    hasDonated = true;
-        //}
 
         if (username.length() == 0 || password.length() == 0) {
             alertCredentials();
         }
 
         setContentView(R.layout.activity_main);
+        Log.d(TAG, "reading QSL data from database...");
         new ReadDatabaseAsyncTask().execute();
 
-        if (!hasDonated && isConnected()) { // user has not bought the pizza slice, check the store...
-            iabHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-                @SuppressWarnings("Convert2Diamond")
-                public void onIabSetupFinished(IabResult result) {
-                    if (result.isFailure()) {
-                        Log.d(TAG, "Problem setting up In-app Billing: " + result);
-                        return;
-                    }
-
-                    // Have we been disposed of in the meantime? If so, quit.
-                    if (iabHelper == null) return;
-
-                    // IAB is fully set up. Now, let's get an inventory of stuff we own.
-                    Log.d(TAG, "Setup successful. Querying inventory.");
-                    List<String> additionalSkuList = new ArrayList<>();
-                    additionalSkuList.add(SKU_PIZZA);
-
-                    iabHelper.queryInventoryAsync(true, additionalSkuList, mGotInventoryListener);
-                }
-            });
-        } else {
-            updateUi();
-        }
-
+        Log.d(TAG, "validating update job is scheduled...");
         if (updateIntervalHours != 0) { // make sure update job is configured.
             JobScheduler jobScheduler = (JobScheduler) getApplicationContext().getSystemService(JOB_SCHEDULER_SERVICE);
             if (jobScheduler != null) {
@@ -170,11 +106,7 @@ public class MainActivity extends Activity {
                     ComponentName serviceComponent = new ComponentName(getApplicationContext(), LotwAdifJobService.class);
                     JobInfo.Builder builder = new JobInfo.Builder(LOTW_UPDATE_JOB_ID, serviceComponent);
                     long updateMillis = updateIntervalHours * 3600000L;
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) { // Nougat (7) and newer
-                        builder.setPeriodic(updateMillis, 1800000L);  // set flex to 30 minutes
-                    } else {
-                        builder.setPeriodic(updateMillis);
-                    }
+                    builder.setPeriodic(updateMillis, 1800000L);  // set flex to 30 minutes
                     builder.setPersisted(true);
                     builder.setRequiresDeviceIdle(true);
                     builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
@@ -189,165 +121,12 @@ public class MainActivity extends Activity {
     @Override
     public final void onDestroy() {
         super.onDestroy();
-        if (iabHelper != null) {
-            iabHelper.dispose();
-            iabHelper = null;
-        }
     }
 
     @Override
     public final boolean onCreateOptionsMenu(Menu menu) {
-        this.menu = menu;
         getMenuInflater().inflate(R.menu.activity_main, menu);
-        updateUi();
         return true;
-    }
-
-    // User clicked the Pizza icon.
-    public final void buyPizza() {
-        Log.d(TAG, "Pizza button clicked; launching purchase flow for slice.");
-        if (!hasDonated) {
-            setWaitScreen(true);
-
-            String payload = getPayloadKey(SKU_PIZZA);
-
-            iabHelper.enableDebugLogging(true);
-            iabHelper.launchPurchaseFlow(this, SKU_PIZZA, PURCHASE_COMPLETE_REQUEST_CODE, mPurchaseFinishedListener, payload);
-        } else {
-            updateUi(); // hack! something is wrong and the slice button is enabled despite prior purchase.
-        }
-    }
-
-    private String getPayloadKey(String sku) {
-        return Utilities.md5(this.getClass().getName() + ":" + username.toLowerCase(Locale.US) + ":" + sku);
-    }
-
-    // Listener that's called when we finish querying the items and subscriptions we own
-    final IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
-        public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
-            Log.d(TAG, "Query inventory finished.");
-
-            // Have we been disposed of in the meantime? If so, quit.
-            if (iabHelper == null) {
-                setWaitScreen(false);
-                return;
-            }
-
-            // Is it a failure?
-            if (result.isFailure()) {
-                if (result.getResponse() == IabHelper.BILLING_RESPONSE_RESULT_ERROR) {
-                    errorHidesBuyButton = true;
-                    updateUi();
-                } else {
-                    complain("Failed to query inventory: " + result);
-                }
-                setWaitScreen(false);
-                return;
-            }
-
-            Log.d(TAG, "Query inventory was successful.");
-            Log.d(TAG, "inventory: " + inventory.toString());
-
-            /*
-             * Check for items we own. Notice that for each purchase, we check
-             * the developer payload to see if it's correct! See
-             * verifyDeveloperPayload().
-             */
-
-            // have we bought pizza?
-            Purchase pizzaPurchase = inventory.getPurchase(SKU_PIZZA);
-            hasDonated = (pizzaPurchase != null && verifyDeveloperPayload(pizzaPurchase));
-
-            if (hasDonated) {
-                updatePizzaPurchaseKey(pizzaPurchase.getDeveloperPayload());
-                pizzaPriceString = "You have already bought the pizza slice! Thank you!";
-            } else {
-                SkuDetails pizzaDetails = inventory.getSkuDetails(SKU_PIZZA);
-                if (pizzaDetails == null) {
-                    Log.d(TAG, "pizzaDetails is null!");
-                    pizzaPriceString = "Cannot access app store.  Please try later.";
-                } else {
-                    Log.d(TAG, pizzaDetails.toString());
-                    pizzaPriceString = String.format(getString(R.string.begging3template), pizzaDetails.getDescription(), pizzaDetails.getPrice());
-                }
-            }
-
-            Log.d(TAG, "hasDonated = " + (hasDonated ? "yes" : "no"));
-            errorHidesBuyButton = false;
-            updateUi();
-            setWaitScreen(false);
-            Log.d(TAG, "Initial inventory query finished; enabling main UI.");
-        }
-
-        private void updatePizzaPurchaseKey(String key) {
-            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-            getSharedPreferences(PreferencesActivity.PREFERENCES_KEY, MODE_PRIVATE);
-            Editor editor = sharedPreferences.edit();
-            editor.putString(PreferencesActivity.PIZZA_PURCHASE_KEY, key);
-            editor.apply();
-        }
-
-    };
-
-    // Callback for when a purchase is finished
-    final IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-            Log.d(TAG, "Purchase finished: " + result + ", purchase: " + purchase);
-
-            // if we were disposed of in the meantime, quit.
-            if (iabHelper == null) return;
-
-            if (result.isFailure()) {
-                Log.d(TAG, "result.getResponse()=" + result.getResponse());
-                switch (result.getResponse()) {
-                    case IabHelper.BILLING_RESPONSE_RESULT_ITEM_ALREADY_OWNED:
-                        Log.d(TAG, "Purchased again -- thanking user.");
-                        Util.alert(MainActivity.this, "Thank you for your support, you don't need to do that again.");
-                        hasDonated = true;
-                        updateUi();
-                        break;
-                    case IabHelper.IABHELPER_USER_CANCELLED:
-                        break;
-                    default:
-                        complain("Error purchasing: " + result);
-                        break;
-                }
-                setWaitScreen(false);
-                return;
-            }
-            if (!verifyDeveloperPayload(purchase)) {
-                complain("Error purchasing. Authenticity verification failed.");
-                setWaitScreen(false);
-                return;
-            }
-
-            Log.d(TAG, "Purchase successful.");
-
-            if (purchase.getSku().equals(SKU_PIZZA)) {
-                // bought the pizza
-                Log.d(TAG, "Purchased the slice -- thanking user.");
-                Util.alert(MainActivity.this, "Thank you for your support!");
-                hasDonated = true;
-                updateUi();
-            }
-            setWaitScreen(false);
-        } // onIabPurchaseFinished()
-    };
-
-    final void updateUi() {
-        Log.d(TAG, "updateUi()" +
-                " hasDonated=" + (hasDonated ? "true" : "false") +
-                ", errorHidesBuyButton=" + (errorHidesBuyButton ? "true" : "false"));
-        if ((hasDonated || errorHidesBuyButton) && (menu != null)) {
-            MenuItem item = menu.findItem(R.id.action_buy);
-            item.setVisible(false);
-            //Log.d(TAG, "hiding pizza button");
-        }
-    }
-
-    private boolean verifyDeveloperPayload(Purchase p) {
-        String payload = p.getDeveloperPayload();
-        return payload.equals(getPayloadKey(p.getSku()));
     }
 
     @SuppressLint("StaticFieldLeak")
@@ -365,6 +144,7 @@ public class MainActivity extends Activity {
         }
 
         protected final void onPostExecute(List<AdifRecord> result) {
+            Log.d(TAG, "read QSL data from database");
             adifRecordsList = result;
             showTable(SortColumn.NATURAL, true);
         }
@@ -537,13 +317,6 @@ public class MainActivity extends Activity {
     @Override
     public final boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_buy:
-                if (checkIsOnline()) {
-                    Intent intent = new Intent(this, BuyPizzaActivity.class);
-                    intent.putExtra(BuyPizzaActivity.PIZZA_PRICE_STRING, pizzaPriceString);
-                    startActivityForResult(intent, BUY_REQUEST_CODE);
-                }
-                return true;
             case R.id.action_refresh:
                 updateFromLoTW();
                 return true;
@@ -609,67 +382,50 @@ public class MainActivity extends Activity {
         }
         Resources res = getResources();
 
-        switch (requestCode) {
-            case LOTW_ADIF_REQUEST_CODE:
-                switch (resultCode) {
-                    case LotwAdifIntentService.ERROR_CODE:
-                        Log.w(TAG, "onActivityResult result is ERROR_CODE");
-                        //Toast.makeText(this, R.string.cannot_connect_to_lotw, Toast.LENGTH_LONG).show();
-                        String errorMessage = data.getStringExtra(LotwAdifIntentService.ERROR_MESSAGE);
-                        Util.alert(this, errorMessage);
-                        break;
-                    case LotwAdifIntentService.NO_CONNECTIVITY_CODE:
-                        Log.w(TAG, "onActivityResult result is NO_CONNECTIVITY_CODE");
-                        Toast.makeText(this, R.string.network_unavailable, Toast.LENGTH_LONG).show();
-                        break;
-                    case LotwAdifIntentService.NO_CREDENTIALS_CODE:
-                        Log.w(TAG, "onActivityResult result is NO_CREDENTIALS_CODE");
-                        alertCredentials();
-                        break;
-                    case LotwAdifIntentService.BAD_CREDENTIALS_CODE:
-                        Log.w(TAG, "onActivityResult result is BAD_CREDENTIALS_CODE");
-                        alertCredentials();
-                        break;
-                    case LotwAdifIntentService.LOGIN_FAILURE_CODE:
-                        Log.w(TAG, "onActivityResult result is LOGIN_FAILURE_CODE");
-                        Util.alert(this, res.getString(R.string.loginFailed));
-                        break;
-                    case LotwAdifIntentService.RESULT_CODE:
-                        adifRecordsList = data.getParcelableArrayListExtra(LotwAdifIntentService.ADIF_RECORDS_LIST);
-                        boolean updateDatabase = data.getBooleanExtra(LotwAdifIntentService.UPDATE_DATABASE, false);
-                        int newQsls = data.getIntExtra(LotwAdifIntentService.NEW_QSL_COUNT, 0);
-                        Log.d(TAG, "onActivityResult got back " + adifRecordsList.size() + " qsls");
+        if (requestCode == LOTW_ADIF_REQUEST_CODE) {
+            switch (resultCode) {
+                case LotwAdifIntentService.ERROR_CODE:
+                    Log.w(TAG, "onActivityResult result is ERROR_CODE");
+                    //Toast.makeText(this, R.string.cannot_connect_to_lotw, Toast.LENGTH_LONG).show();
+                    String errorMessage = data.getStringExtra(LotwAdifIntentService.ERROR_MESSAGE);
+                    Util.alert(this, errorMessage);
+                    break;
+                case LotwAdifIntentService.NO_CONNECTIVITY_CODE:
+                    Log.w(TAG, "onActivityResult result is NO_CONNECTIVITY_CODE");
+                    Toast.makeText(this, R.string.network_unavailable, Toast.LENGTH_LONG).show();
+                    break;
+                case LotwAdifIntentService.NO_CREDENTIALS_CODE:
+                    Log.w(TAG, "onActivityResult result is NO_CREDENTIALS_CODE");
+                    alertCredentials();
+                    break;
+                case LotwAdifIntentService.BAD_CREDENTIALS_CODE:
+                    Log.w(TAG, "onActivityResult result is BAD_CREDENTIALS_CODE");
+                    alertCredentials();
+                    break;
+                case LotwAdifIntentService.LOGIN_FAILURE_CODE:
+                    Log.w(TAG, "onActivityResult result is LOGIN_FAILURE_CODE");
+                    Util.alert(this, res.getString(R.string.loginFailed));
+                    break;
+                case LotwAdifIntentService.RESULT_CODE:
+                    adifRecordsList = data.getParcelableArrayListExtra(LotwAdifIntentService.ADIF_RECORDS_LIST);
+                    boolean updateDatabase = data.getBooleanExtra(LotwAdifIntentService.UPDATE_DATABASE, false);
+                    int newQsls = data.getIntExtra(LotwAdifIntentService.NEW_QSL_COUNT, 0);
+                    Log.d(TAG, "onActivityResult got back " + adifRecordsList.size() + " qsls");
 
-                        if (updateDatabase) {
-                            new ReadDatabaseAsyncTask().execute();
-                        } else {
-                            showTable(SortColumn.NATURAL, true);
-                        }
-                        if (newQsls > 0) {
-                            String text = res.getQuantityString(R.plurals.new_qsls, newQsls, newQsls);
-                            Toast.makeText(this, text, Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(this, R.string.no_new_qsls, Toast.LENGTH_LONG).show();
-                        }
-                        break;
-                } // switch
-                break;
-            case BUY_REQUEST_CODE:
-                if (resultCode == RESULT_OK) {
-                    buyPizza();
-                }
-                return;
-            case PURCHASE_COMPLETE_REQUEST_CODE:
-                if (iabHelper == null) {
-                    return;
-                }
-                // Pass on the activity result to the helper for handling
-                if (iabHelper.handleActivityResult(requestCode, resultCode, data)) {
-                    return;
-                }
-                break;
-
-        } // switch requestCode
+                    if (updateDatabase) {
+                        new ReadDatabaseAsyncTask().execute();
+                    } else {
+                        showTable(SortColumn.NATURAL, true);
+                    }
+                    if (newQsls > 0) {
+                        String text = res.getQuantityString(R.plurals.new_qsls, newQsls, newQsls);
+                        Toast.makeText(this, text, Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(this, R.string.no_new_qsls, Toast.LENGTH_LONG).show();
+                    }
+                    break;
+            } // switch
+        } // if requestCode == LOTW_ADIF_REQUEST_CODE
         super.onActivityResult(requestCode, resultCode, data);
     } // onActivityResult()
 
@@ -691,16 +447,4 @@ public class MainActivity extends Activity {
         adb.setIcon(android.R.drawable.ic_dialog_alert);
         adb.show();
     } // alertCredentials()
-
-    // Enables or disables the "please wait" screen.
-    final void setWaitScreen(boolean set) {
-        findViewById(R.id.qslTableLayout).setVisibility(set ? View.GONE : View.VISIBLE);
-        findViewById(R.id.screen_wait).setVisibility(set ? View.VISIBLE : View.GONE);
-    }
-
-    final void complain(String message) {
-        Log.e(TAG, "complaint: " + message);
-        Util.alert(this, "Error: " + message);
-    }
-
 }
