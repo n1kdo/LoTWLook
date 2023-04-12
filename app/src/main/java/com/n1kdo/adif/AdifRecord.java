@@ -32,9 +32,9 @@ public class AdifRecord extends AdifBase implements Parcelable {
         APP_LOTW_NPSUNIT, // prevents warning
         APP_LOTW_OWNCALL,
         APP_LOTW_QSLMODE,
-        APP_LoTW_QSO_TIMESTAMP, // prevents warning
-        APP_LoTW_RXQSL, // prevents warning
-        APP_LoTW_RXQSO, // prevents warning
+        APP_LOTW_QSO_TIMESTAMP, // prevents warning
+        APP_LOTW_RXQSL, // prevents warning
+        APP_LOTW_RXQSO, // prevents warning
         BAND,
         CALL,
         CNTY,

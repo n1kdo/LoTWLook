@@ -71,46 +71,32 @@ public class Util {
 
     static void createNotification(Context context, CharSequence title, CharSequence message) {
         Log.d(TAG, "createNotification(\"" + title + "\", \"" + message + "\")");
+        // see https://developer.android.com/develop/ui/views/notifications/build-notification
 
-        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        if (notificationManager == null) {
-            return;
-        }
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_notification)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setOnlyAlertOnce(true)
+                .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setAutoCancel(true)
+                .setContentIntent(pendingIntent)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+
+        NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
+
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = notificationManager.getNotificationChannel(NOTIFICATION_CHANNEL_ID);
-            if (notificationChannel == null) {
-                String appName = context.getResources().getString(R.string.app_name);
-                notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, appName, NotificationManager.IMPORTANCE_LOW);
-                notificationChannel.setDescription("LoTWLook new QSL");
-                notificationChannel.enableLights(false);
-                notificationChannel.enableVibration(false);
-                notificationChannel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-                notificationManager.createNotificationChannel(notificationChannel);
-            }
+            String name = context.getResources().getString(R.string.app_name);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);
+            channel.setDescription("LoTWLook new QSL");
+            notificationManager.createNotificationChannel(channel);
         }
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID);
-        builder.setSmallIcon(R.drawable.ic_notification);
-        builder.setContentTitle(title).setContentText(message);
-        builder.setOnlyAlertOnce(true);
-        builder.setPriority(NotificationCompat.PRIORITY_LOW);
-        builder.setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
-
-        // Creates an explicit intent for an Activity in your app
-        Intent resultIntent = new Intent(context, MainActivity.class);
-
-        // The stack builder object will contain an artificial back stack for
-        // the started Activity.
-        // This ensures that navigating backward from the Activity leads out of
-        // your application to the Home screen.
-        TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
-        // Adds the back stack for the Intent (but not the Intent itself)
-        stackBuilder.addParentStack(MainActivity.class);
-        // Adds the Intent that starts the Activity to the top of the stack
-        stackBuilder.addNextIntent(resultIntent);
-        PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-        builder.setContentIntent(resultPendingIntent);
-
-        builder.setAutoCancel(true);
         int notificationId = 0; // ID for this app.  there is only one.
         notificationManager.notify(notificationId, builder.build());
     } // createNotification()

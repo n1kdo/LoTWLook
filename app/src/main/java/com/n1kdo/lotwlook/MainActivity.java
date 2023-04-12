@@ -1,6 +1,7 @@
 package com.n1kdo.lotwlook;
 
 import android.annotation.SuppressLint;
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -17,6 +18,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.preference.PreferenceManager;
@@ -31,6 +33,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
 
 import com.n1kdo.adif.AdifRecord;
 import com.n1kdo.lotwlook.data.LoTWLookDAO;
@@ -66,6 +70,12 @@ public class MainActivity extends Activity {
                     .detectAll()
                     .penaltyLog()
                     .build());
+        }
+
+        if (Build.VERSION.SDK_INT > 32) {
+            if (!shouldShowRequestPermissionRationale("112")) {
+                getNotificationPermission();
+            }
         }
 
         super.onCreate(savedInstanceState);
@@ -117,6 +127,18 @@ public class MainActivity extends Activity {
             }
         } // if updateIntervalHours > 0
     } // onCreate()
+
+    public void getNotificationPermission() {
+        try {
+            if (Build.VERSION.SDK_INT > 32) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        112);
+            }
+        } catch (Exception e) {
+            // empty catch block
+        }
+    }
 
     @Override
     public final void onDestroy() {
