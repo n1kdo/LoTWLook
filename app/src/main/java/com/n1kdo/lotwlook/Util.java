@@ -82,6 +82,7 @@ public class Util {
                 .setContentText(message)
                 .setOnlyAlertOnce(true)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setSilent(true)
                 .setAutoCancel(true)
                 .setContentIntent(pendingIntent)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC);
@@ -92,7 +93,7 @@ public class Util {
         // the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             String name = context.getResources().getString(R.string.app_name);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            int importance = NotificationManager.IMPORTANCE_LOW;
             NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);
             channel.setDescription("LoTWLook new QSL");
             notificationManager.createNotificationChannel(channel);
