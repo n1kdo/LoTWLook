@@ -20,7 +20,6 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -64,14 +63,6 @@ public class MainActivity extends Activity {
     protected final void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate()");
 
-        ////  DEBUG...
-        if (false) {
-            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder(StrictMode.getVmPolicy())
-                    .detectAll()
-                    .penaltyLog()
-                    .build());
-        }
-
         if (Build.VERSION.SDK_INT > 32) {
             if (!shouldShowRequestPermissionRationale("112")) {
                 getNotificationPermission();
@@ -91,7 +82,7 @@ public class MainActivity extends Activity {
         int updateIntervalHours = Integer.valueOf(sharedPreferences.getString(PreferencesActivity.UPDATE_INTERVAL_KEY_NAME,
                 "0"));
 
-        if (username.length() == 0 || password.length() == 0) {
+        if (username.isEmpty() || password.isEmpty()) {
             alertCredentials();
         }
 
@@ -338,21 +329,20 @@ public class MainActivity extends Activity {
 
     @Override
     public final boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_refresh:
-                updateFromLoTW();
-                return true;
-            case R.id.action_search:
-                if (checkIsOnline()) {
-                    startActivity(new Intent(this, SearchActivity.class));
-                }
-                return true;
-            case R.id.action_settings:
-                startActivity(new Intent(this, PreferencesActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        } // switch
+        int itemId = item.getItemId();// switch
+        if (itemId == R.id.action_refresh) {
+            updateFromLoTW();
+            return true;
+        } else if (itemId == R.id.action_search) {
+            if (checkIsOnline()) {
+                startActivity(new Intent(this, SearchActivity.class));
+            }
+            return true;
+        } else if (itemId == R.id.action_settings) {
+            startActivity(new Intent(this, PreferencesActivity.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     } // opOptionsItemSelected()
 
     private boolean isConnected() {
