@@ -12,7 +12,7 @@ import java.util.TreeMap;
 
 /**
  * enumeration of ADIF countries.  Maybe this should be a database table.  But... maybe not.
- * see http://www.adif.org/305/ADIF_305.htm
+ * see <a href="http://www.adif.org/305/ADIF_305.htm">...</a>
  *
  * @author n1kdo
  */
@@ -450,6 +450,7 @@ public enum AdifCountry {
         this.deleted = false;
     }
 
+    /** @noinspection SameParameterValue*/
     AdifCountry(int number, String name, boolean deleted) {
         this.number = number;
         this.name = name;
@@ -464,6 +465,7 @@ public enum AdifCountry {
         return name;
     }
 
+    /** @noinspection unused*/
     @SuppressLint("unused")
     public final boolean getDeleted() {
         return deleted;
@@ -481,6 +483,7 @@ public enum AdifCountry {
         return nameToCountryMap.keySet();
     }
 
+    /** @noinspection unused*/
     @SuppressLint("unused")
     public static List<AdifCountry> getAdifCountries() {
         return sortedAdifCountriesList;

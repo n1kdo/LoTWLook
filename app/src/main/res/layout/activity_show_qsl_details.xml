@@ -1,39 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".SearchActivity">
 
-    <HorizontalScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:fillViewport="true"
-        android:scrollbars="horizontal" >
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/show_qsl_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:theme="@style/appBarTheme"
+        android:visibility="visible"
+        app:navigationIcon="@drawable/ic_action_back"
+        app:title="QSO Details" />
 
-        <TableLayout
-            android:id="@+id/detailsTableLayout"
-            android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <HorizontalScrollView
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:stretchColumns="*" >
+            android:fillViewport="true"
+            android:scrollbars="horizontal">
 
-            <TableRow
-                android:layout_width="match_parent"
+            <TableLayout
+                android:id="@+id/detailsTableLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#fff0f0f0"
-                android:paddingBottom="10dp"
-                android:paddingTop="10dp" >
+                android:stretchColumns="*">
 
-                <TextView
+                <TableRow
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_span="2"
                     android:background="#fff0f0f0"
-                    android:gravity="center"
-                    android:text="@string/detailsTitle"
-                    android:textSize="20sp"
-                    android:textStyle="bold" >
-                </TextView>
-            </TableRow>
-        </TableLayout>
-    </HorizontalScrollView>
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    tools:ignore="UselessParent">
 
-</ScrollView>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_span="2"
+                        android:background="#fff0f0f0"
+                        android:gravity="center"
+                        android:text="@string/detailsTitle"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </TableRow>
+            </TableLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+</LinearLayout>

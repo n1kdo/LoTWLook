@@ -86,20 +86,13 @@ public class LoTWLookDAO {
                 adifRecord.getTimeOn()
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = database.query(AdifRecordEntry.TABLE_NAME, allColumns, SELECT_DUP_QSL, selectionArgs, null, null, null);
-            if (cursor != null && cursor.getCount() != 0) {
+        try (Cursor cursor = database.query(AdifRecordEntry.TABLE_NAME, allColumns, SELECT_DUP_QSL, selectionArgs, null, null, null)) {
+            if (cursor.getCount() != 0) {
                 cursor.moveToFirst();
                 while (!cursor.isAfterLast()) {
                     match = cursorToAdifRecord(cursor);
                     cursor.moveToNext();
                 }
-            }
-        } // try
-        finally {
-            if (cursor != null) {
-                cursor.close();
             }
         }
         return match;

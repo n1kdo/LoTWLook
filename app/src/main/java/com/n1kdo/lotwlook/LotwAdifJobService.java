@@ -29,7 +29,7 @@ public class LotwAdifJobService extends JobService {
     public final boolean onStartJob(JobParameters jobParameters) {
         Log.d(TAG, "onStartJob()");
         Context context = getApplicationContext();
-        if (Util.isOnline(context)) {
+        if (LotwLookUtils.isOnline(context)) {
             LoTWQueryThread queryThread = new LoTWQueryThread(this, jobParameters);
             Log.d(TAG, "starting queryThread");
             queryThread.start();
@@ -69,16 +69,16 @@ public class LotwAdifJobService extends JobService {
         String owncall = sharedPreferences.getString(PreferencesActivity.OWNCALL_KEY, "");
         String password = sharedPreferences.getString(PreferencesActivity.PASSWORD_KEY, "");
 
-        if (username.length() == 0 || password.length() == 0) {
+        if (username.isEmpty() || password.isEmpty()) {
             // no credentials.
             Log.i(TAG, "Missing credentials!");
-            Util.createNotification(this, "Update problem...", "LoTW credentials missing");
+            LotwLookUtils.createNotification(this, "Update problem...", "LoTW credentials missing");
             return;
         }
 
         long lastQslSeen = sharedPreferences.getLong(PreferencesActivity.LAST_SEEN_QSL_KEY, 0L);
         int maxDatabaseEntries = Integer
-                .valueOf(sharedPreferences.getString(PreferencesActivity.MAX_DATABASE_ENTRIES_KEY, "100"));
+                .parseInt(sharedPreferences.getString(PreferencesActivity.MAX_DATABASE_ENTRIES_KEY, "100"));
 
         long lastQslDateLong = sharedPreferences.getLong(PreferencesActivity.LAST_QSL_DATE_KEY, 0L);
 
@@ -95,7 +95,7 @@ public class LotwAdifJobService extends JobService {
             List<AdifRecord> adifRecords = adifResult.getRecords();
             Log.d(TAG, "lotw query returned " + adifRecords.size() + " qsl records...");
 
-            if (adifRecords.size() != 0) {
+            if (!adifRecords.isEmpty()) {
                 Date newLastQslDate = adifResult.getHeader().getLotw_lastqsl();
                 if (newLastQslDate == null) {
                     Log.e(TAG, "adif parse error: lastQslDate is null");
@@ -105,7 +105,7 @@ public class LotwAdifJobService extends JobService {
 
                 Collections.reverse(adifRecords);
 
-                int newQsls = Util.updateDatabase(this, newLastQslDate, adifRecords, maxDatabaseEntries);
+                int newQsls = LotwLookUtils.updateDatabase(this, newLastQslDate, adifRecords, maxDatabaseEntries);
 
                 if (newQsls > 0) {
                     AdifRecord lastQslRecord = adifRecords.get(adifRecords.size() - 1);
@@ -116,12 +116,12 @@ public class LotwAdifJobService extends JobService {
                     Resources res = getResources();
                     String title = res.getQuantityString(R.plurals.new_qsls, unseenQsls, unseenQsls);
                     String message = title + " " + getString(R.string.including) + " " + lastQslRecord.getCall();
-                    Util.createNotification(this, title, message);
+                    LotwLookUtils.createNotification(this, title, message);
                 }
             }
         } catch (AdifResultException e) {
             if (e.getExceptionType() != AdifResultException.IO_EXCEPTION) {
-                Util.createNotification(this, "Update problem...", e.getMessage());
+                LotwLookUtils.createNotification(this, "Update problem...", e.getMessage());
             }
             Log.e(TAG, "onHandleIntent got exception", e);
             //e.printStackTrace();

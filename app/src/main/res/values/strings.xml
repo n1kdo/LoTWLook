@@ -34,6 +34,7 @@
     <string name="network_unavailable">Network Unavailable</string>
     <string name="no_new_qsls">No New QSLs</string>
     <string name="pleaseWait">Please Wait&#8230;</string>
+    <string name="preferencesHeading">Settings</string>
     <string name="qslDateTitle">QSL Date</string>
     <string name="qsl_table_header">LoTW QSLs</string>
     <string name="qsoDateColumnHeader">QSO Date%s</string>

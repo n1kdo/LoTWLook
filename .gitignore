@@ -1,6 +1,10 @@
 app/build
 app/debug
 app/generated
-app/release
+app/release/baselineProfiles
+app/release/app-release.aab
+app/release/output-metadata.json
 .idea
 .gradle
+/build
+MainActivity_robo_script.json

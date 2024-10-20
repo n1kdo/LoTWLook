@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import com.n1kdo.util.Utilities;
 
 import java.util.Collections;
@@ -15,9 +17,10 @@ import java.util.Locale;
 /**
  * ADIF QSO record. Not all fields are implemented. This has the fields that are
  * implemented by LOTW. Maybe someday... see
- * http://www.adif.org/305/ADIF_305.htm
+ * <a href="http://www.adif.org/305/ADIF_305.htm">...</a>
  *
  * @author n1kdo
+ * @noinspection SpellCheckingInspection
  */
 public class AdifRecord extends AdifBase implements Parcelable {
     private static final String CREDIT_GRANTED_DELIMITER = ",";
@@ -109,6 +112,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
         return cqZone;
     }
 
+    /** @noinspection unused*/
     @SuppressLint("unused")
     public final String[] getCreditGranted() {
         if (credit_granted == null) {
@@ -145,6 +149,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
         return safe(lotw_qslmode);
     }
 
+    /** @noinspection unused*/
     @SuppressLint("Unused")
     public final String[] getLotwCreditGranted() {
         if (lotw_credit_granted == null) {
@@ -346,6 +351,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
         this.cqZone = cqZone;
     }
 
+    /** @noinspection unused*/
     @SuppressLint("Unused")
     public final void setCreditGranted(String[] credit_granted) {
         this.credit_granted = credit_granted;
@@ -419,6 +425,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
         this.qslrdate = new Date(qslrdate_int);
     }
 
+    /** @noinspection unused*/
     @SuppressLint("unused")
     public final void setQsoDate(Date qso_date) {
         this.qso_date = qso_date;
@@ -471,6 +478,8 @@ public class AdifRecord extends AdifBase implements Parcelable {
         return sb.toString();
     }
 
+
+    @NonNull
     public final String toString() {
         return station_callsign + " " + call + " " +
                 (getQsoDateTime() != null ? DATE_FORMATTER.format(getQsoDateTime()) : "") +
@@ -557,54 +566,28 @@ public class AdifRecord extends AdifBase implements Parcelable {
         }
     };
 
-    public static final Comparator<AdifRecord> NATURAL_COMPARE = new Comparator<AdifRecord>() {
-        public int compare(AdifRecord first, AdifRecord second) {
-            return Long.compare(first._id, second._id);
-        }
-    };
+    public static final Comparator<AdifRecord> NATURAL_COMPARE = Comparator.comparingLong(adifRecord -> adifRecord._id);
 
-    public static final Comparator<AdifRecord> MYCALL_COMPARE = new Comparator<AdifRecord>() {
-        public int compare(AdifRecord first, AdifRecord second) {
-            return first.lotw_owncall.compareTo(second.lotw_owncall);
-        }
-    };
+    public static final Comparator<AdifRecord> MYCALL_COMPARE = Comparator.comparing(adifRecord -> adifRecord.lotw_owncall);
 
-    public static final Comparator<AdifRecord> BAND_COMPARE = new Comparator<AdifRecord>() {
-        public int compare(AdifRecord first, AdifRecord second) {
-            return Float.compare(AdifBand.wavelength(first.band), AdifBand.wavelength(second.band));
-        }
-    };
+    public static final Comparator<AdifRecord> BAND_COMPARE = (first, second) -> Float.compare(AdifBand.wavelength(first.band), AdifBand.wavelength(second.band));
 
-    public static final Comparator<AdifRecord> CALLSIGN_COMPARE = new Comparator<AdifRecord>() {
-        public int compare(AdifRecord first, AdifRecord second) {
-            return first.call.compareTo(second.call);
-        }
-    };
+    public static final Comparator<AdifRecord> CALLSIGN_COMPARE = Comparator.comparing(adifRecord -> adifRecord.call);
 
-    public static final Comparator<AdifRecord> COUNTRY_COMPARE = new Comparator<AdifRecord>() {
-        public int compare(AdifRecord first, AdifRecord second) {
-            return first.country.compareTo(second.country);
-        }
-    };
+    public static final Comparator<AdifRecord> COUNTRY_COMPARE = Comparator.comparing(adifRecord -> adifRecord.country);
 
-    public static final Comparator<AdifRecord> MODE_COMPARE = new Comparator<AdifRecord>() {
-        public int compare(AdifRecord first, AdifRecord second) {
-            return first.mode.compareTo(second.mode);
-        }
-    };
+    public static final Comparator<AdifRecord> MODE_COMPARE = Comparator.comparing(adifRecord -> adifRecord.mode);
 
-    public static final Comparator<AdifRecord> QSO_DATE_COMPARE = new Comparator<AdifRecord>() {
-        public int compare(AdifRecord first, AdifRecord second) {
-            int comparison = first.qso_date.compareTo(second.qso_date);
-            if (comparison == 0 && first.timeon != null && second.timeon != null) {
-                comparison = first.timeon.compareTo(second.timeon);
-            }
-            return comparison;
+    public static final Comparator<AdifRecord> QSO_DATE_COMPARE = (first, second) -> {
+        int comparison = first.qso_date.compareTo(second.qso_date);
+        if (comparison == 0 && first.timeon != null && second.timeon != null) {
+            comparison = first.timeon.compareTo(second.timeon);
         }
+        return comparison;
     };
 
     public static void sort(List<AdifRecord> list, Comparator<AdifRecord> comparator, boolean descending) {
-        Collections.sort(list, comparator);
+        list.sort(comparator);
         if (descending) {
             Collections.reverse(list);
         }

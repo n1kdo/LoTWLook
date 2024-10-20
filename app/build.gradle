@@ -1,12 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 35
+    //compileSdkVersion 35
     //buildToolsVersion '34.0.0'
 
     defaultConfig {
         applicationId "com.n1kdo.lotwlook"
-        minSdkVersion 24
+        compileSdk 35
+        minSdkVersion 28
         targetSdkVersion 35
     }
     buildTypes {
@@ -24,6 +25,5 @@ android {
 }
 
 dependencies {
-    def core_version = "1.13.1"
-    implementation "androidx.core:core:$core_version"
+     implementation "androidx.preference:preference-ktx:1.2.1"
 }

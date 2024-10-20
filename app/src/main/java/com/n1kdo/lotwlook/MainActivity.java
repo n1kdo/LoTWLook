@@ -1,8 +1,7 @@
 package com.n1kdo.lotwlook;
 
-import android.annotation.SuppressLint;
 import android.Manifest;
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -10,7 +9,6 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -20,20 +18,21 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.preference.PreferenceManager;
 
 import com.n1kdo.adif.AdifRecord;
 import com.n1kdo.lotwlook.data.LoTWLookDAO;
@@ -42,7 +41,7 @@ import com.n1kdo.util.Utilities;
 import java.util.Comparator;
 import java.util.List;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     public static final int LOTW_ADIF_REQUEST_CODE = 0;
@@ -79,7 +78,7 @@ public class MainActivity extends Activity {
         String password = sharedPreferences.getString(PreferencesActivity.PASSWORD_KEY, "");
         lastQslSeen = sharedPreferences.getLong(PreferencesActivity.LAST_SEEN_QSL_KEY, 0L);
         lastQslDateTime = sharedPreferences.getLong(PreferencesActivity.LAST_QSL_DATE_KEY, 0L);
-        int updateIntervalHours = Integer.valueOf(sharedPreferences.getString(PreferencesActivity.UPDATE_INTERVAL_KEY_NAME,
+        int updateIntervalHours = Integer.parseInt(sharedPreferences.getString(PreferencesActivity.UPDATE_INTERVAL_KEY_NAME,
                 "0"));
 
         if (username.isEmpty() || password.isEmpty()) {
@@ -87,6 +86,9 @@ public class MainActivity extends Activity {
         }
 
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = findViewById(R.id.main_toolbar);
+        setSupportActionBar(myToolbar);
+
         Log.d(TAG, "reading QSL data from database...");
         new ReadDatabaseAsyncTask().execute();
 
@@ -166,7 +168,7 @@ public class MainActivity extends Activity {
     private void showTable(final SortColumn sortColumn, final boolean descending) {
         Log.d(TAG, "showTable()");
         Comparator<AdifRecord> comparator = AdifRecord.NATURAL_COMPARE;
-        String descendingIndicator = descending ? "\u25bc" : "\u25b2";
+        String descendingIndicator = descending ? "▼" : "▲";
 
         TableLayout tableLayout = findViewById(R.id.qslTableLayout);
 
@@ -175,57 +177,22 @@ public class MainActivity extends Activity {
 
         // set up sorts
         TextView tableHeader = findViewById(R.id.tableHeader);
-        tableHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTable(SortColumn.NATURAL, true);
-            }
-        });
+        tableHeader.setOnClickListener(v -> showTable(SortColumn.NATURAL, true));
 
         TextView myCallHeader = findViewById(R.id.mycallHeader);
-        myCallHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTable(SortColumn.MYCALL, sortColumn == SortColumn.MYCALL && !descending);
-            }
-        });
+        myCallHeader.setOnClickListener(v -> showTable(SortColumn.MYCALL, sortColumn == SortColumn.MYCALL && !descending));
 
         TextView callsignHeader = findViewById(R.id.callsignHeader);
-        callsignHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTable(SortColumn.CALLSIGN, sortColumn == SortColumn.CALLSIGN && !descending);
-            }
-        });
+        callsignHeader.setOnClickListener(v -> showTable(SortColumn.CALLSIGN, sortColumn == SortColumn.CALLSIGN && !descending));
 
         TextView qsoDateHeader = findViewById(R.id.qsoDateHeader);
-        qsoDateHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTable(SortColumn.QSO_DATE, sortColumn == SortColumn.QSO_DATE && !descending);
-            }
-        });
+        qsoDateHeader.setOnClickListener(v -> showTable(SortColumn.QSO_DATE, sortColumn == SortColumn.QSO_DATE && !descending));
         TextView bandHeader = findViewById(R.id.bandHeader);
-        bandHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTable(SortColumn.BAND, sortColumn == SortColumn.BAND && !descending);
-            }
-        });
+        bandHeader.setOnClickListener(v -> showTable(SortColumn.BAND, sortColumn == SortColumn.BAND && !descending));
         TextView modeHeader = findViewById(R.id.modeHeader);
-        modeHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTable(SortColumn.MODE, sortColumn == SortColumn.MODE && !descending);
-            }
-        });
+        modeHeader.setOnClickListener(v -> showTable(SortColumn.MODE, sortColumn == SortColumn.MODE && !descending));
         TextView countryHeader = findViewById(R.id.countryHeader);
-        countryHeader.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showTable(SortColumn.COUNTRY, sortColumn == SortColumn.COUNTRY && !descending);
-            }
-        });
+        countryHeader.setOnClickListener(v -> showTable(SortColumn.COUNTRY, sortColumn == SortColumn.COUNTRY && !descending));
 
         if (sortColumn == SortColumn.MYCALL) {
             myCallHeader.setText(getString(R.string.callsignColumnHeader, descendingIndicator));
@@ -295,26 +262,23 @@ public class MainActivity extends Activity {
             }
 
             // add the table fields
-            tableRow.addView(Util.textViewForTable(this, adifRecord.getLotwOwnCall(), displayMode, color));
+            tableRow.addView(LotwLookUtils.textViewForTable(this, adifRecord.getLotwOwnCall(), displayMode, color));
 
             // special processing to make the QSL's call into a clickable "link"
             SpannableString spannableString = new SpannableString(adifRecord.getCall());
             spannableString.setSpan(new UnderlineSpan(), 0, spannableString.length(), 0);
-            TextView linkView = Util.textViewForTable(this, spannableString, displayMode, Color.BLUE);
-            linkView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent detailsIntent = new Intent(getApplicationContext(), ShowQslDetailsActivity.class);
-                    detailsIntent.putExtra(ShowQslDetailsActivity.ADIF_RECORD, adifRecord);
-                    startActivity(detailsIntent);
-                }
+            TextView linkView = LotwLookUtils.textViewForTable(this, spannableString, displayMode, Color.BLUE);
+            linkView.setOnClickListener(v -> {
+                Intent detailsIntent = new Intent(getApplicationContext(), ShowQslDetailsActivity.class);
+                detailsIntent.putExtra(ShowQslDetailsActivity.ADIF_RECORD, adifRecord);
+                startActivity(detailsIntent);
             });
             tableRow.addView(linkView);
 
-            tableRow.addView(Util.textViewForTable(this, Utilities.formatDate(adifRecord.getQsoDateTime()), displayMode, color));
-            tableRow.addView(Util.textViewForTable(this, adifRecord.getBand(), displayMode, color));
-            tableRow.addView(Util.textViewForTable(this, adifRecord.getMode(), displayMode, color));
-            tableRow.addView(Util.textViewForTable(this, adifRecord.getCountry(), displayMode + 4, color));
+            tableRow.addView(LotwLookUtils.textViewForTable(this, Utilities.formatDate(adifRecord.getQsoDateTime()), displayMode, color));
+            tableRow.addView(LotwLookUtils.textViewForTable(this, adifRecord.getBand(), displayMode, color));
+            tableRow.addView(LotwLookUtils.textViewForTable(this, adifRecord.getMode(), displayMode, color));
+            tableRow.addView(LotwLookUtils.textViewForTable(this, adifRecord.getCountry(), displayMode + 4, color));
 
             tableLayout.addView(tableRow);
         }
@@ -384,7 +348,6 @@ public class MainActivity extends Activity {
         }
     }
 
-    @SuppressLint("DefaultLocale")
     @Override
     protected final void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult(" + requestCode + ", " + resultCode + ", Intent data)");
@@ -400,7 +363,7 @@ public class MainActivity extends Activity {
                     Log.w(TAG, "onActivityResult result is ERROR_CODE");
                     //Toast.makeText(this, R.string.cannot_connect_to_lotw, Toast.LENGTH_LONG).show();
                     String errorMessage = data.getStringExtra(LotwAdifIntentService.ERROR_MESSAGE);
-                    Util.alert(this, errorMessage);
+                    LotwLookUtils.alert(this, errorMessage);
                     break;
                 case LotwAdifIntentService.NO_CONNECTIVITY_CODE:
                     Log.w(TAG, "onActivityResult result is NO_CONNECTIVITY_CODE");
@@ -416,7 +379,7 @@ public class MainActivity extends Activity {
                     break;
                 case LotwAdifIntentService.LOGIN_FAILURE_CODE:
                     Log.w(TAG, "onActivityResult result is LOGIN_FAILURE_CODE");
-                    Util.alert(this, res.getString(R.string.loginFailed));
+                    LotwLookUtils.alert(this, res.getString(R.string.loginFailed));
                     break;
                 case LotwAdifIntentService.RESULT_CODE:
                     adifRecordsList = data.getParcelableArrayListExtra(LotwAdifIntentService.ADIF_RECORDS_LIST);
@@ -445,16 +408,10 @@ public class MainActivity extends Activity {
         AlertDialog.Builder adb = new AlertDialog.Builder(this);
         adb.setTitle(R.string.invalid_missing_credentials);
         adb.setMessage(R.string.you_need_to_set_credentials);
-        adb.setPositiveButton(R.string.set_credentials, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                startActivity(new Intent(getApplicationContext(), PreferencesActivity.class));
-            }
-        });
+        adb.setPositiveButton(R.string.set_credentials, (dialog, which) -> startActivity(new Intent(getApplicationContext(), PreferencesActivity.class)));
 
-        adb.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                onBackPressed(); // get out of the app.
-            }
+        adb.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
+            onBackPressed(); // get out of the app.
         });
         adb.setIcon(android.R.drawable.ic_dialog_alert);
         adb.show();

@@ -2,8 +2,10 @@ package com.n1kdo.lotwlook.data;
 
 import android.provider.BaseColumns;
 
-/*
+/* @noinspection SpellCheckingInspection */
+/**
 this interface just defines labels for columns and the sql table name.
+ * @noinspection SpellCheckingInspection
  */
 public interface AdifRecordEntry extends BaseColumns {
     String TABLE_NAME = "lotw_adif_records";

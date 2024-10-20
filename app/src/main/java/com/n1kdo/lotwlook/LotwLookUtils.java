@@ -2,7 +2,6 @@ package com.n1kdo.lotwlook;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -17,7 +16,6 @@ import android.view.Gravity;
 import android.widget.TextView;
 
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.TaskStackBuilder;
 
 import com.n1kdo.adif.AdifRecord;
 import com.n1kdo.lotwlook.data.LoTWLookDAO;
@@ -25,8 +23,8 @@ import com.n1kdo.lotwlook.data.LoTWLookDAO;
 import java.util.Date;
 import java.util.List;
 
-public class Util {
-    private static final String TAG = Util.class.getSimpleName();
+public class LotwLookUtils {
+    private static final String TAG = LotwLookUtils.class.getSimpleName();
     private static final String NOTIFICATION_CHANNEL_ID = "LOTWLOOK_NTF_CHN_ID";
 
     static boolean isOnline(Context context) {
@@ -93,7 +91,7 @@ public class Util {
 
         // Create the NotificationChannel, but only on API 26+ because
         // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
             String name = context.getResources().getString(R.string.app_name);
             int importance = NotificationManager.IMPORTANCE_LOW;
             NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);

@@ -5,8 +5,6 @@ package com.n1kdo.util;
  * collection of useful static methods
  */
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -27,34 +25,10 @@ public class Utilities {
     }
 
     public static boolean notEmpty(String s) {
-        return s != null && s.trim().length() != 0;
+        return s != null && !s.trim().isEmpty();
     }
 
     public static boolean isEmptyString(String s) {
         return (s == null || s.isEmpty() || s.trim().isEmpty());
-    }
-
-    public static String Zmd5(final String s) {
-        try {
-            // Create MD5 Hash
-            MessageDigest digest = MessageDigest.getInstance("MD5");
-            digest.update(s.getBytes());
-            byte[] messageDigest = digest.digest();
-
-            // Create Hex String
-            StringBuilder hexString = new StringBuilder();
-            for (byte aMessageDigest : messageDigest) {
-                StringBuilder h = new StringBuilder(32);
-                h.append(Integer.toHexString(0xFF & aMessageDigest));
-                while (h.length() < 2) {
-                    h.insert(0, '0');
-                }
-                hexString.append(h);
-            }
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return "";
     }
 }

@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * enumeration of ADIF modes.
- * see http://www.adif.org/308/ADIF_308.htm
+ * see <a href="http://www.adif.org/308/ADIF_308.htm">...</a>
  * @author n1kdo
  */
 public enum AdifMode
@@ -75,6 +75,7 @@ public enum AdifMode
         this.name = name;
     }
     
+    /** @noinspection unused*/
     public final String getName() {return name;}
     
     public static AdifMode getAdifModeByName(String name) { return nameToModeMap.get(name); }

@@ -1,7 +1,6 @@
 package com.n1kdo.lotwlook;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
@@ -13,10 +12,12 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableRow;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.n1kdo.adif.AdifBand;
 import com.n1kdo.adif.AdifCountry;
@@ -29,7 +30,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class SearchActivity extends Activity {
+public class SearchActivity extends AppCompatActivity {
     private static final String TAG = SearchActivity.class.getSimpleName();
     private static final int LOTW_ADIF_REQUEST_CODE = 0;
     private static final long DAY_IN_MILLISECONDS = 86400000L;
@@ -44,6 +45,9 @@ public class SearchActivity extends Activity {
     public final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        Toolbar search_toolbar = findViewById(R.id.search_toolbar);
+        setSupportActionBar(search_toolbar);
+        search_toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         CheckBox searchDateRangeCbx = findViewById(R.id.searchDateRangeCbx);
         TableRow tableRow1 = findViewById(R.id.tableRow1);
@@ -134,13 +138,10 @@ public class SearchActivity extends Activity {
     @SuppressWarnings({"deprecation", "unused"})
     public final void startDateButtonClicked(View view) {
         new DatePickerDialog(this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        startDate = new Date(year - 1900, month, day);
-                        Button startDateButton = findViewById(R.id.startDateButton);
-                        startDateButton.setText(Utilities.SHORT_DATE_FORMAT.format(startDate));
-                    }
+                (view1, year, month, day) -> {
+                    startDate = new Date(year - 1900, month, day);
+                    Button startDateButton = findViewById(R.id.startDateButton);
+                    startDateButton.setText(Utilities.SHORT_DATE_FORMAT.format(startDate));
                 },
                 startDate.getYear() + 1900, startDate.getMonth(), startDate.getDate()).show();
     }
@@ -148,13 +149,10 @@ public class SearchActivity extends Activity {
     @SuppressWarnings({"deprecation", "unused"})
     public final void endDateButtonClicked(View view) {
         new DatePickerDialog(this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int day) {
-                        endDate = new Date(year - 1900, month, day);
-                        Button endDateButton = findViewById(R.id.endDateButton);
-                        endDateButton.setText(Utilities.SHORT_DATE_FORMAT.format(endDate));
-                    }
+                (view1, year, month, day) -> {
+                    endDate = new Date(year - 1900, month, day);
+                    Button endDateButton = findViewById(R.id.endDateButton);
+                    endDateButton.setText(Utilities.SHORT_DATE_FORMAT.format(endDate));
                 },
                 endDate.getYear() + 1900, endDate.getMonth(), endDate.getDate()).show();
     }
@@ -178,7 +176,7 @@ public class SearchActivity extends Activity {
         lotwAdifServiceIntent.putExtra(LotwAdifIntentService.UPDATE_DATABASE, false);
 
         String theirCall = theirCallEditText.getText().toString();
-        if (theirCall.length() > 0) {
+        if (!theirCall.isEmpty()) {
             lotwAdifServiceIntent.putExtra(LotwAdifIntentService.CALLSIGN, theirCall);
             paramCount++;
         }
@@ -219,7 +217,7 @@ public class SearchActivity extends Activity {
         }
 
         if (paramCount < 1) {
-            Util.alert(this, getString(R.string.missingSearchCriteria));
+            LotwLookUtils.alert(this, getString(R.string.missingSearchCriteria));
             return;
         }
 
@@ -242,7 +240,7 @@ public class SearchActivity extends Activity {
                 case LotwAdifIntentService.ERROR_CODE:
                     Log.w(TAG, "onActivityResult result is ERROR_CODE");
                     String errorMessage = data.getStringExtra(LotwAdifIntentService.ERROR_MESSAGE);
-                    Util.alert(this, errorMessage);
+                    LotwLookUtils.alert(this, errorMessage);
                     break;
                 case LotwAdifIntentService.RESULT_CODE:
                     ArrayList<AdifRecord> adifRecordsList = data.getParcelableArrayListExtra(LotwAdifIntentService.ADIF_RECORDS_LIST);

@@ -5,8 +5,9 @@ import android.app.IntentService;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.preference.PreferenceManager;
 
 import com.n1kdo.adif.AdifRecord;
 import com.n1kdo.adif.AdifResult;
@@ -61,7 +62,7 @@ public class LotwAdifIntentService extends IntentService {
         }
 
         try {
-            if (!Util.isOnline(this)) {
+            if (!LotwLookUtils.isOnline(this)) {
                 reply.send(NO_CONNECTIVITY_CODE);
                 return;
             }
@@ -73,13 +74,13 @@ public class LotwAdifIntentService extends IntentService {
             String owncall = sharedPreferences.getString(PreferencesActivity.OWNCALL_KEY, "");
             String password = sharedPreferences.getString(PreferencesActivity.PASSWORD_KEY, "");
 
-            if (username.length() == 0 || password.length() == 0) {
+            if (username.isEmpty() || password.isEmpty()) {
                 // no credentials.
                 reply.send(NO_CREDENTIALS_CODE);
                 return;
             }
 
-            int maxDatabaseEntries = Integer.valueOf(sharedPreferences.getString(PreferencesActivity.MAX_DATABASE_ENTRIES_KEY, "100"));
+            int maxDatabaseEntries = Integer.parseInt(sharedPreferences.getString(PreferencesActivity.MAX_DATABASE_ENTRIES_KEY, "100"));
 
             String callsign = intent.getStringExtra(CALLSIGN);
             boolean detail = intent.getBooleanExtra(DETAIL, true);
@@ -101,7 +102,7 @@ public class LotwAdifIntentService extends IntentService {
                 Log.d(TAG, "got " + adifRecords.size() + " new qsl records...");
                 int newQsls = 0;
 
-                if (adifRecords.size() != 0) { // limit the size of the list to the maxDatabaseEntries count.
+                if (!adifRecords.isEmpty()) { // limit the size of the list to the maxDatabaseEntries count.
                     if (adifRecords.size() > maxDatabaseEntries) { // shorten the list.
                         Log.d(TAG, "shortening returned list.");
                         adifRecords = new ArrayList<>(adifRecords.subList(0, maxDatabaseEntries));
@@ -118,7 +119,7 @@ public class LotwAdifIntentService extends IntentService {
                     Log.d(TAG, "Last qsl date is " + lastQslDate);
 
                     if (updateDatabase) {
-                        newQsls = Util.updateDatabase(this, lastQslDate, adifRecords, maxDatabaseEntries);
+                        newQsls = LotwLookUtils.updateDatabase(this, lastQslDate, adifRecords, maxDatabaseEntries);
                     }
                 }
                 result.putExtra(NEW_QSL_COUNT, newQsls);
@@ -128,7 +129,7 @@ public class LotwAdifIntentService extends IntentService {
                 reply.send(this, RESULT_CODE, result);
             } catch (AdifResultException e) {
                 Log.e(TAG, "onHandleIntent got exception", e);
-                e.printStackTrace();
+                //e.printStackTrace();
                 switch (e.getExceptionType()) {
                     case AdifResultException.INVALID_CREDENTIALS_EXCEPTION:
                         reply.send(BAD_CREDENTIALS_CODE);

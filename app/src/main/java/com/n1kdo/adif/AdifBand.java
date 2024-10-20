@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * enumeration of ADIF bands
- * see http://www.adif.org/304/ADIF_304.htm
+ * see <a href="http://www.adif.org/304/ADIF_304.htm">...</a>
  *
  * @author n1kdo
  */
@@ -58,11 +58,13 @@ public enum AdifBand {
         this.name = name;
     }
 
+    /** @noinspection unused*/
     @SuppressLint("unused")
     private String getName() {
         return name;
     }
 
+    /** @noinspection unused*/
     @SuppressLint("unused")
     public static AdifBand getAdifBandByName(String name) {
         return nameToBandMap.get(name);

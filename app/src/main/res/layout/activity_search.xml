@@ -1,15 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginTop="8dp"
-    android:gravity="fill_vertical"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context=".SearchActivity" >
+    tools:context=".SearchActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="4dp"
+        android:theme="@style/appBarTheme"
+        android:visibility="visible"
+        app:navigationIcon="@drawable/ic_action_back"
+        app:title="Search" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="fill_vertical"
+        android:orientation="vertical"
+        >
 
     <TextView
         android:layout_width="match_parent"
@@ -20,18 +39,17 @@
         android:id="@+id/theirCallEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:hint="@string/theirCallHint"
         android:inputType="textCapCharacters"
-        android:paddingBottom="@dimen/searchBoxVerticalSpacing"
-        android:autofillHints="">
-    </EditText>
+        android:paddingBottom="@dimen/searchBoxVerticalSpacing" />
 
     <CheckBox
         android:id="@+id/searchDateRangeCbx"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/searchBoxVerticalSpacing"
         android:layout_marginTop="@dimen/searchBoxVerticalSpacing"
+        android:layout_marginBottom="@dimen/searchBoxVerticalSpacing"
         android:hint="@string/searchDateRangeHint"
         android:onClick="dateRangeCheckboxClick"
         android:paddingBottom="@dimen/searchBoxVerticalSpacing"
@@ -40,13 +58,13 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="*" >
+        android:stretchColumns="*">
 
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible" >
+            android:visibility="visible">
 
             <TextView
                 android:layout_width="match_parent"
@@ -65,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/searchBoxVerticalSpacing"
-            android:visibility="visible" >
+            android:visibility="visible">
 
             <Button
                 android:id="@+id/startDateButton"
@@ -86,7 +104,7 @@
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="match_parent"
@@ -102,7 +120,7 @@
         <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/searchBoxVerticalSpacing" >
+            android:paddingBottom="@dimen/searchBoxVerticalSpacing">
 
             <Spinner
                 android:id="@+id/modeSpinner"
@@ -119,7 +137,7 @@
 
         <TableRow
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="match_parent"
@@ -130,7 +148,7 @@
         <TableRow
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingBottom="@dimen/searchBoxVerticalSpacing" >
+            android:paddingBottom="@dimen/searchBoxVerticalSpacing">
 
             <Spinner
                 android:id="@+id/dxccSpinner"
@@ -147,4 +165,5 @@
         android:onClick="searchButtonClick"
         android:text="@string/searchButton" />
 
+</LinearLayout>
 </LinearLayout>

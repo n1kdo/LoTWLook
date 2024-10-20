@@ -54,7 +54,7 @@ public class AdifResult {
                             readState = LOTW_READ_STATE.HTML;
                         }
 
-                        if (line.length() == 0) {
+                        if (line.isEmpty()) {
                             readState = LOTW_READ_STATE.ADIF_HEADER;
                         }
                         break;

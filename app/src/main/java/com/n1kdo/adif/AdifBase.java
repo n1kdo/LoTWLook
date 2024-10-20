@@ -7,7 +7,7 @@ import java.util.TimeZone;
 
 /**
  * base class for ADIF records.
- * see http://www.adif.org/304/ADIF_304.htm
+ * see <a href="http://www.adif.org/304/ADIF_304.htm">...</a>
  * @author n1kdo
  */
 @SuppressLint("DefaultLocale")
@@ -62,7 +62,7 @@ abstract class AdifBase
 		catch (Exception e)
 		{
 			System.out.println(line);
-			e.printStackTrace();
+			//e.printStackTrace();
 			//noinspection ZeroLengthArrayAllocation
 			return new String[]{};
 		}
@@ -102,7 +102,8 @@ abstract class AdifBase
 		return date;
 	}
 	
-	static Date getDate14(String data)
+	/** @noinspection unused*/
+    static Date getDate14(String data)
 	{
 		Date date = null;
 		try

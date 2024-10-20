@@ -8,16 +8,18 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.preference.PreferenceManager;
 
 import java.util.List;
 
-public class PreferencesActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
+public class PreferencesActivity extends AppCompatActivity implements OnSharedPreferenceChangeListener {
     private static final String TAG = PreferencesActivity.class.getSimpleName();
 
-    public static final String PREFERENCES_KEY = "n1kdo.lotwlook.preferences";
+    public static final String PREFERENCES_KEY = "com.n1kdo.lotwlook.preferences";
 
     public static final String UPDATE_INTERVAL_KEY_NAME = "updateInterval";
     public static final String MAX_DATABASE_ENTRIES_KEY = "maxDatabaseEntries";
@@ -27,11 +29,20 @@ public class PreferencesActivity extends PreferenceActivity implements OnSharedP
     public static final String OWNCALL_KEY = "owncall";
     public static final String PASSWORD_KEY = "password";
 
-    @SuppressWarnings("deprecation")
     @Override
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.preferences);
+        setContentView(R.layout.activity_settings);
+
+        Toolbar preferences_toolbar = findViewById(R.id.preferences_toolbar);
+        setSupportActionBar(preferences_toolbar);
+        preferences_toolbar.setNavigationIcon(R.drawable.ic_action_back);
+        preferences_toolbar.setNavigationOnClickListener(v -> onBackPressed());
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.settings_layout, new PreferencesSettingsFragment())
+                .commit();
     }
 
     @Override
@@ -40,7 +51,7 @@ public class PreferencesActivity extends PreferenceActivity implements OnSharedP
         if (UPDATE_INTERVAL_KEY_NAME.equals(key)) {
             Context context = this.getApplication();
 
-            int updateIntervalHours = Integer.valueOf(sharedPreferences.getString("updateInterval", "0"));
+            int updateIntervalHours = Integer.parseInt(sharedPreferences.getString("updateInterval", "0"));
             Log.d(TAG, "update interval set to " + updateIntervalHours + " hours.");
 
             JobScheduler jobScheduler = (JobScheduler) context.getSystemService(JOB_SCHEDULER_SERVICE);
@@ -68,20 +79,6 @@ public class PreferencesActivity extends PreferenceActivity implements OnSharedP
             }
         } // if UPDATE_INTERVAL_KEY_NAME
     } // onSharedPreferenceChange
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public final void onResume() {
-        super.onResume();
-        getPreferenceManager().getSharedPreferences().registerOnSharedPreferenceChangeListener(this);
-    }
-
-    @SuppressWarnings("deprecation")
-    @Override
-    public final void onPause() {
-        getPreferenceManager().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
-        super.onPause();
-    }
 
     static void updateLastQslDate(Context context, long datetimevalue) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);

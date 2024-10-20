@@ -7,7 +7,7 @@ import java.util.Locale;
 
 /**
  * ADIF header record.  Not all fields are implemented.  This has the fields that are implemented by LOTW.  Maybe someday...
- * see http://www.adif.org/304/ADIF_304.htm
+ * see <a href="http://www.adif.org/304/ADIF_304.htm">...</a>
  *
  * @author n1kdo
  */
@@ -53,11 +53,13 @@ public class AdifHeader extends AdifBase {
         return lotw_lastqsl;
     }
 
+    /** @noinspection unused*/
     @SuppressLint("Unused")
     public final String getProgramid() {
         return programid;
     }
 
+    /** @noinspection unused*/
     @SuppressLint("Unused")
     public final int getLotw_numrec() {
         return lotw_numrec;

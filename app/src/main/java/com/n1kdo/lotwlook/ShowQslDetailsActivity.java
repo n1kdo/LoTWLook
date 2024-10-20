@@ -1,6 +1,5 @@
 package com.n1kdo.lotwlook;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -12,11 +11,15 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.n1kdo.adif.AdifCountry;
 import com.n1kdo.adif.AdifRecord;
 import com.n1kdo.util.Utilities;
 
-public class ShowQslDetailsActivity extends Activity {
+public class ShowQslDetailsActivity extends AppCompatActivity {
     private static final String TAG = ShowQslDetailsActivity.class.getSimpleName();
 
     public static final String ADIF_RECORD = "adifRecord";
@@ -58,6 +61,13 @@ public class ShowQslDetailsActivity extends Activity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate()");
         setContentView(R.layout.activity_show_qsl_details);
+
+        Toolbar preferences_toolbar = findViewById(R.id.show_qsl_toolbar);
+        setSupportActionBar(preferences_toolbar);
+        preferences_toolbar.setNavigationIcon(R.drawable.ic_action_back);
+        preferences_toolbar.setNavigationOnClickListener(v -> onBackPressed());
+
+
         Intent intent = getIntent();
         AdifRecord adifRecord = intent.getParcelableExtra(ADIF_RECORD);
         TableLayout tableLayout = findViewById(R.id.detailsTableLayout);
@@ -90,15 +100,11 @@ public class ShowQslDetailsActivity extends Activity {
     } // onCreate()
 
     @Override
-    public final boolean onOptionsItemSelected(MenuItem item) {
-        if (item != null) {
-            if (item.getItemId() == android.R.id.home) {
-                onBackPressed();
-                return true;
-            }
-            return (super.onOptionsItemSelected(item));
-        } else {
-            return false;
+    public final boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
+        return (super.onOptionsItemSelected(item));
     }
 }
