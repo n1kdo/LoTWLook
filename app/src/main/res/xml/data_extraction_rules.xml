@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-   Sample data extraction rules file; uncomment and customize as necessary.
+   Data extraction rules for Android 12+ (API 31+) backup/restore.
    See https://developer.android.com/about/versions/12/backup-restore#xml-changes
-   for details.
+
+   The default SharedPreferences file holds LoTW login credentials, so it must
+   be excluded from cloud backup even though the QSL database is kept.
 -->
 <data-extraction-rules>
     <cloud-backup disableIfNoEncryptionCapabilities="true">
         <include domain="sharedpref" path="."/>
+        <!-- exclude the default prefs file (username/password/owncall) -->
+        <exclude domain="sharedpref" path="com.n1kdo.lotwlook_preferences"/>
         <include domain="database" path="LoTWLook.db" />
     </cloud-backup>
 </data-extraction-rules>

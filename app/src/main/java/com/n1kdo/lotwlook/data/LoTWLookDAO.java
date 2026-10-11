@@ -111,19 +111,19 @@ public class LoTWLookDAO {
         int rowsDeleted;
         String[] selectionArgs = {String.valueOf(id)};
         rowsDeleted = database.delete(AdifRecordEntry.TABLE_NAME, SELECT_BEFORE_ID, selectionArgs);
-        Log.d(TAG, "deleted " + rowsDeleted + " AdifRecord data record with id < " + id);
+        Log.d(TAG, "deleted " + rowsDeleted + " AdifRecord data record with id <= " + id);
     }
 
     public final List<AdifRecord> getAllAdifRecords() {
         List<AdifRecord> adifRecordsList = new ArrayList<>();
-        Cursor cursor = database.query(AdifRecordEntry.TABLE_NAME, allColumns, null, null, null, null, AdifRecordEntry._ID + " DESC");
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            AdifRecord adifRecord = cursorToAdifRecord(cursor);
-            adifRecordsList.add(adifRecord);
-            cursor.moveToNext();
+        try (Cursor cursor = database.query(AdifRecordEntry.TABLE_NAME, allColumns, null, null, null, null, AdifRecordEntry._ID + " DESC")) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                AdifRecord adifRecord = cursorToAdifRecord(cursor);
+                adifRecordsList.add(adifRecord);
+                cursor.moveToNext();
+            }
         }
-        cursor.close();
         Log.d(TAG, "fetched " + adifRecordsList.size() + " adifRecords records.");
         return adifRecordsList;
     }
@@ -226,10 +226,13 @@ public class LoTWLookDAO {
         for (AdifRecord adifRecord : adifRecords) {
             // is this QSL already in the database?
             match = findMatch(adifRecord);
-            if (match != null) { // yes, the QSL is already in the database, update the received date.
-                match.setQslRDate(adifRecord.getQslRDate());
-                saveAdifRecord(match);
-                Log.d(TAG, adifRecord + " is already in the database, updated QslRDate.");
+            if (match != null) { // yes, the QSL is already in the database; refresh it in place.
+                // Save the fresh record under the existing row's id so every column gets
+                // LoTW's current values (grid square, state, credit, received date, ...),
+                // not just the received date. Keeping the same id avoids a false "new QSL".
+                adifRecord.setId(match.getId());
+                saveAdifRecord(adifRecord);
+                Log.d(TAG, adifRecord + " is already in the database, updated.");
             } else { // not already in the database, must be new.
                 Log.d(TAG, adifRecord + " added to the database.");
                 saveAdifRecord(adifRecord);

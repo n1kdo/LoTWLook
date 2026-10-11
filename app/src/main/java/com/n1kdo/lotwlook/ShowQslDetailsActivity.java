@@ -65,7 +65,7 @@ public class ShowQslDetailsActivity extends AppCompatActivity {
         Toolbar preferences_toolbar = findViewById(R.id.show_qsl_toolbar);
         setSupportActionBar(preferences_toolbar);
         preferences_toolbar.setNavigationIcon(R.drawable.ic_action_back);
-        preferences_toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        preferences_toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
 
         Intent intent = getIntent();
@@ -75,8 +75,11 @@ public class ShowQslDetailsActivity extends AppCompatActivity {
             addNonEmptyRow(tableLayout, getString(R.string.callsignTitle), adifRecord.getLotwOwnCall());
             addNonEmptyRow(tableLayout, getString(R.string.workedTitle), adifRecord.getCall());
             if (adifRecord.getDxcc() != 0) {
+                AdifCountry dxccCountry = AdifCountry.getAdifCountryByNumber(adifRecord.getDxcc());
+                // the country table is hardcoded; unknown DXCC numbers (e.g. new entities)
+                // return null, so fall back to showing the number itself.
                 addNonEmptyRow(tableLayout, getString(R.string.dxccTitle),
-                        AdifCountry.getAdifCountryByNumber(adifRecord.getDxcc()).getName());
+                        dxccCountry != null ? dxccCountry.getName() : Integer.toString(adifRecord.getDxcc()));
             }
             addNonZeroRow(tableLayout, getString(R.string.cqZoneTitle), adifRecord.getCqZone());
             addNonZeroRow(tableLayout, getString(R.string.ituZoneTitle), adifRecord.getItuZone());
@@ -102,7 +105,7 @@ public class ShowQslDetailsActivity extends AppCompatActivity {
     @Override
     public final boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            getOnBackPressedDispatcher().onBackPressed();
             return true;
         }
         return (super.onOptionsItemSelected(item));

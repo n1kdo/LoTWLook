@@ -1,10 +1,8 @@
 package com.n1kdo.lotwlook;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
@@ -14,8 +12,8 @@ import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.AsyncTask;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -23,7 +21,9 @@ import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -33,6 +33,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.preference.PreferenceManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.n1kdo.adif.AdifRecord;
 import com.n1kdo.lotwlook.data.LoTWLookDAO;
@@ -40,6 +41,8 @@ import com.n1kdo.util.Utilities;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -48,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
 
     public static final int LOTW_UPDATE_JOB_ID = 0x73;
 
-    private ProgressDialog progressDialog = null;
+    private ProgressBar updateProgressBar = null;
+    private boolean updatingFromLoTW = false; // guards against double-refresh while a query is in flight
+
+    private SwipeRefreshLayout swipeRefreshLayout = null;
 
     private long lastQslSeen; // is the record id from the saved preferences...
     private long highestQslIdShownOnScreen = 0L;
@@ -62,8 +68,10 @@ public class MainActivity extends AppCompatActivity {
     protected final void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "onCreate()");
 
+        // Request POST_NOTIFICATIONS on first launch (API 33+). shouldShowRequestPermissionRationale
+        // is false when the permission has never been asked for, and true after a plain denial.
         if (Build.VERSION.SDK_INT > 32) {
-            if (!shouldShowRequestPermissionRationale("112")) {
+            if (!shouldShowRequestPermissionRationale(Manifest.permission.POST_NOTIFICATIONS)) {
                 getNotificationPermission();
             }
         }
@@ -71,8 +79,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         Log.d(TAG, "reading shared preferences...");
+        // materialize XML defaults (e.g. updateInterval=4) on first run so MainActivity
+        // and the Settings screen agree on values.
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        getSharedPreferences(PreferencesActivity.PREFERENCES_KEY, MODE_PRIVATE);
 
         String username = sharedPreferences.getString(PreferencesActivity.USERNAME_KEY, "");
         String password = sharedPreferences.getString(PreferencesActivity.PASSWORD_KEY, "");
@@ -89,36 +99,41 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = findViewById(R.id.main_toolbar);
         setSupportActionBar(myToolbar);
 
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(this::updateFromLoTW);
+        updateProgressBar = findViewById(R.id.updateProgressBar);
+
         Log.d(TAG, "reading QSL data from database...");
-        new ReadDatabaseAsyncTask().execute();
+        readDatabaseFromDisk();
 
         Log.d(TAG, "validating update job is scheduled...");
-        if (updateIntervalHours != 0) { // make sure update job is configured.
-            JobScheduler jobScheduler = (JobScheduler) getApplicationContext().getSystemService(JOB_SCHEDULER_SERVICE);
-            if (jobScheduler != null) {
-                boolean foundUpdateJob = false;
-                List<JobInfo> scheduledJobs = jobScheduler.getAllPendingJobs();
-                for (JobInfo job : scheduledJobs) {
-                    if (job.getId() == LOTW_UPDATE_JOB_ID) {
-                        foundUpdateJob = true;
-                        break;
-                    }
-                }
-                if (!foundUpdateJob) { // configure update job
-                    Log.w(TAG, "Configuring LoTW update job.");
-                    ComponentName serviceComponent = new ComponentName(getApplicationContext(), LotwAdifJobService.class);
-                    JobInfo.Builder builder = new JobInfo.Builder(LOTW_UPDATE_JOB_ID, serviceComponent);
-                    long updateMillis = updateIntervalHours * 3600000L;
-                    builder.setPeriodic(updateMillis, 1800000L);  // set flex to 30 minutes
-                    builder.setPersisted(true);
-                    builder.setRequiresDeviceIdle(true);
-                    builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
-                    jobScheduler.schedule(builder.build());
-                } else {
-                    Log.w(TAG, "LoTW update job was found to be configured.");
+        JobScheduler jobScheduler = (JobScheduler) getApplicationContext().getSystemService(JOB_SCHEDULER_SERVICE);
+        if (jobScheduler != null) {
+            boolean foundUpdateJob = false;
+            List<JobInfo> scheduledJobs = jobScheduler.getAllPendingJobs();
+            for (JobInfo job : scheduledJobs) {
+                if (job.getId() == LOTW_UPDATE_JOB_ID) {
+                    foundUpdateJob = true;
+                    break;
                 }
             }
-        } // if updateIntervalHours > 0
+            if (updateIntervalHours != 0 && !foundUpdateJob) { // configure update job
+                Log.w(TAG, "Configuring LoTW update job.");
+                ComponentName serviceComponent = new ComponentName(getApplicationContext(), LotwAdifJobService.class);
+                JobInfo.Builder builder = new JobInfo.Builder(LOTW_UPDATE_JOB_ID, serviceComponent);
+                long updateMillis = updateIntervalHours * 3600000L;
+                builder.setPeriodic(updateMillis, 1800000L);  // set flex to 30 minutes
+                builder.setPersisted(true);
+                builder.setRequiresDeviceIdle(true);
+                builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+                jobScheduler.schedule(builder.build());
+            } else if (updateIntervalHours == 0 && foundUpdateJob) { // updates disabled, cancel stale job
+                Log.w(TAG, "Cancelling LoTW update job; updates are disabled.");
+                jobScheduler.cancel(LOTW_UPDATE_JOB_ID);
+            } else {
+                Log.w(TAG, "LoTW update job state is already correct.");
+            }
+        }
     } // onCreate()
 
     public void getNotificationPermission() {
@@ -135,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public final void onDestroy() {
+        dbExecutor.shutdown();
         super.onDestroy();
     }
 
@@ -144,25 +160,28 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    @SuppressLint("StaticFieldLeak")
-    @SuppressWarnings("NonStaticInnerClassInSecureContext")
-    private class ReadDatabaseAsyncTask extends AsyncTask<Void, Void, List<AdifRecord>> {
-        protected final List<AdifRecord> doInBackground(Void ... arg) {
-            Log.d(TAG, "reading from database in background");
-            List<AdifRecord> result;
-            LoTWLookDAO dao = new LoTWLookDAO(MainActivity.this);
-            dao.open();
-            result = dao.getAllAdifRecords();
-            dao.close();
-            Log.d(TAG, "done reading from database in background");
-            return result;
-        }
+    // Single-threaded executor replacing the deprecated AsyncTask: DB reads run off the
+    // main thread, and results are posted back to the UI thread.
+    private final ExecutorService dbExecutor = Executors.newSingleThreadExecutor();
 
-        protected final void onPostExecute(List<AdifRecord> result) {
-            Log.d(TAG, "read QSL data from database");
-            adifRecordsList = result;
-            showTable(SortColumn.NATURAL, true);
-        }
+    private void readDatabaseFromDisk() {
+        Log.d(TAG, "reading from database in background");
+        dbExecutor.execute(() -> {
+            List<AdifRecord> result;
+            LoTWLookDAO dao = new LoTWLookDAO(this);
+            dao.open();
+            try {
+                result = dao.getAllAdifRecords();
+            } finally {
+                dao.close();
+            }
+            Log.d(TAG, "done reading from database in background");
+            runOnUiThread(() -> {
+                Log.d(TAG, "read QSL data from database");
+                adifRecordsList = result;
+                showTable(SortColumn.NATURAL, true);
+            });
+        });
     }
 
     private void showTable(final SortColumn sortColumn, final boolean descending) {
@@ -311,11 +330,15 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isConnected() {
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connMgr != null) {
-            NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-            return (networkInfo != null && networkInfo.isConnected());
+        if (connMgr == null) {
+            return false;
         }
-        return false;
+        Network network = connMgr.getActiveNetwork();
+        if (network == null) {
+            return false;
+        }
+        NetworkCapabilities capabilities = connMgr.getNetworkCapabilities(network);
+        return (capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET));
     }
 
     private boolean checkIsOnline() {
@@ -327,13 +350,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateFromLoTW() {
+        // the modal ProgressDialog used to block re-entry; do it explicitly now.
+        if (updatingFromLoTW) {
+            return;
+        }
         if (checkIsOnline()) {
-            progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle(getString(R.string.accessingLoTW));
-            progressDialog.setMessage(getString(R.string.pleaseWait));
-            progressDialog.setCancelable(false);
-            progressDialog.setIndeterminate(true);
-            progressDialog.show();
+            updatingFromLoTW = true;
+            updateProgressBar.setVisibility(View.VISIBLE);
 
             if (lastQslDateTime == 0) { // really don't want to search from the beginning of time
                 lastQslDateTime = System.currentTimeMillis() - (30L * 86400000L); // 30 days.  
@@ -345,15 +368,21 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra(LotwAdifIntentService.QSL_SINCE_DATE, lastQslDateTime);
             intent.putExtra(LotwAdifIntentService.UPDATE_DATABASE, true);
             startService(intent);
+        } else {
+            // offline: the swipe-down spinner would spin forever otherwise
+            updateProgressBar.setVisibility(View.GONE);
+            if (swipeRefreshLayout != null) {
+                swipeRefreshLayout.setRefreshing(false);
+            }
         }
     }
 
     @Override
     protected final void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d(TAG, "onActivityResult(" + requestCode + ", " + resultCode + ", Intent data)");
-        if (progressDialog != null) {
-            progressDialog.dismiss();
-            progressDialog = null;
+        if (requestCode == LOTW_ADIF_REQUEST_CODE && updatingFromLoTW) {
+            updatingFromLoTW = false;
+            updateProgressBar.setVisibility(View.GONE);
         }
         Resources res = getResources();
 
@@ -388,7 +417,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "onActivityResult got back " + adifRecordsList.size() + " qsls");
 
                     if (updateDatabase) {
-                        new ReadDatabaseAsyncTask().execute();
+                        readDatabaseFromDisk();
                     } else {
                         showTable(SortColumn.NATURAL, true);
                     }
@@ -400,6 +429,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
             } // switch
+            if (swipeRefreshLayout != null) {
+                swipeRefreshLayout.setRefreshing(false);
+            }
         } // if requestCode == LOTW_ADIF_REQUEST_CODE
         super.onActivityResult(requestCode, resultCode, data);
     } // onActivityResult()
@@ -411,7 +443,7 @@ public class MainActivity extends AppCompatActivity {
         adb.setPositiveButton(R.string.set_credentials, (dialog, which) -> startActivity(new Intent(getApplicationContext(), PreferencesActivity.class)));
 
         adb.setNegativeButton(android.R.string.cancel, (dialog, which) -> {
-            onBackPressed(); // get out of the app.
+            getOnBackPressedDispatcher().onBackPressed(); // get out of the app.
         });
         adb.setIcon(android.R.drawable.ic_dialog_alert);
         adb.show();

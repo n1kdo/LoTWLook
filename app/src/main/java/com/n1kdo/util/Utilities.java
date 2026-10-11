@@ -13,15 +13,26 @@ import java.util.TimeZone;
 
 public class Utilities {
 
-    private static final DateFormat LONG_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-    public static final DateFormat SHORT_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-
-    static {
-        LONG_DATE_FORMAT.setTimeZone(TimeZone.getTimeZone("GMT"));
-    }
+    // SimpleDateFormat is NOT thread-safe, and these formatters are used from the main
+    // thread and background services. Give each thread its own instance.
+    private static final ThreadLocal<DateFormat> LONG_DATE_FORMAT = ThreadLocal.withInitial(() -> {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return formatter;
+    });
+    // All dates in this app are UTC; format in UTC, never device-local time.
+    private static final ThreadLocal<DateFormat> SHORT_DATE_FORMAT = ThreadLocal.withInitial(() -> {
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return formatter;
+    });
 
     public static String formatDate(Date date) {
-        return (date == null) ? "" : LONG_DATE_FORMAT.format(date);
+        return (date == null) ? "" : LONG_DATE_FORMAT.get().format(date);
+    }
+
+    public static String formatShortDate(Date date) {
+        return (date == null) ? "" : SHORT_DATE_FORMAT.get().format(date);
     }
 
     public static boolean notEmpty(String s) {

@@ -5,8 +5,9 @@ import android.app.job.JobService;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.preference.PreferenceManager;
 
 import com.n1kdo.adif.AdifRecord;
 import com.n1kdo.adif.AdifResult;
@@ -58,12 +59,13 @@ public class LotwAdifJobService extends JobService {
 
     @Override
     public final boolean onStopJob(JobParameters params) {
-        return true;
+        // This is a periodic job: the system re-fires it on schedule, so there's no need to
+        // ask for a reschedule when it's stopped. Return false.
+        return false;
     }
 
     private void checkLoTW() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        getSharedPreferences(PreferencesActivity.PREFERENCES_KEY, MODE_PRIVATE);
 
         String username = sharedPreferences.getString(PreferencesActivity.USERNAME_KEY, "");
         String owncall = sharedPreferences.getString(PreferencesActivity.OWNCALL_KEY, "");
@@ -86,7 +88,7 @@ public class LotwAdifJobService extends JobService {
             lastQslDateLong = System.currentTimeMillis() - (30L * 86400000L); // 30 days.
         }
 
-        Date lastQslDate = (lastQslDateLong == 0) ? null : new Date(lastQslDateLong);
+        Date lastQslDate = new Date(lastQslDateLong);
         AdifResult adifResult;
         try {
             adifResult = QueryLoTW.callLotw(username, password, owncall, null, true, lastQslDate, null, null,

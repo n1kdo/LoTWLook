@@ -1,19 +1,16 @@
 apply plugin: 'com.android.application'
 
 android {
-    //compileSdkVersion 35
-    //buildToolsVersion '34.0.0'
-
+    compileSdk 37
     defaultConfig {
         applicationId "com.n1kdo.lotwlook"
-        compileSdk 35
         minSdkVersion 28
-        targetSdkVersion 35
+        targetSdkVersion 37
     }
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled = true
+            shrinkResources = true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
         }
     }
@@ -21,9 +18,9 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'com.n1kdo.lotwlook'
+    namespace = 'com.n1kdo.lotwlook'
 }
-
 dependencies {
-     implementation "androidx.preference:preference-ktx:1.2.1"
+     implementation "androidx.preference:preference:1.2.1"
+     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.2.0"
 }

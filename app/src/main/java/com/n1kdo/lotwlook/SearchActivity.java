@@ -3,7 +3,6 @@ package com.n1kdo.lotwlook;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableRow;
 
@@ -26,9 +26,11 @@ import com.n1kdo.adif.AdifRecord;
 import com.n1kdo.util.Utilities;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class SearchActivity extends AppCompatActivity {
     private static final String TAG = SearchActivity.class.getSimpleName();
@@ -36,7 +38,8 @@ public class SearchActivity extends AppCompatActivity {
     private static final long DAY_IN_MILLISECONDS = 86400000L;
     private static final long ALMOST_A_DAY_IN_MILLISECONDS = DAY_IN_MILLISECONDS - 1000;
 
-    private ProgressDialog progressDialog = null;
+    private ProgressBar searchProgressBar = null;
+    private Button searchButton = null; // disabled while a query is in flight (the modal dialog used to block it)
 
     private Date startDate = null;
     private Date endDate = null;
@@ -47,7 +50,9 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         Toolbar search_toolbar = findViewById(R.id.search_toolbar);
         setSupportActionBar(search_toolbar);
-        search_toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        searchProgressBar = findViewById(R.id.searchProgressBar);
+        searchButton = findViewById(R.id.searchButton);
+        search_toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
         CheckBox searchDateRangeCbx = findViewById(R.id.searchDateRangeCbx);
         TableRow tableRow1 = findViewById(R.id.tableRow1);
@@ -84,7 +89,7 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public final boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            getOnBackPressedDispatcher().onBackPressed();
             return true;
         }
         return (super.onOptionsItemSelected(item));
@@ -103,10 +108,11 @@ public class SearchActivity extends AppCompatActivity {
             Button startDateButton = findViewById(R.id.startDateButton);
             Button endDateButton = findViewById(R.id.endDateButton);
 
-            Date currentDate = new Date();
-            int y = currentDate.getYear();
-            int m = currentDate.getMonth();
-            int d = currentDate.getDate();
+            // All dates in this app are UTC; interpret the current date in UTC.
+            Calendar now = utcCalendar(new Date());
+            int y = now.get(Calendar.YEAR);
+            int m = now.get(Calendar.MONTH);
+            int d = now.get(Calendar.DAY_OF_MONTH);
 
             if (startDate == null) {
                 int startYear;
@@ -118,14 +124,14 @@ public class SearchActivity extends AppCompatActivity {
                     startMonth = m - 1;
                     startYear = y;
                 }
-                startDate = new Date(startYear, startMonth, d);
+                startDate = utcDate(startYear, startMonth, d);
             }
             if (endDate == null) {
-                endDate = new Date(y, m, d);
+                endDate = utcDate(y, m, d);
             }
 
-            startDateButton.setText(Utilities.SHORT_DATE_FORMAT.format(startDate));
-            endDateButton.setText(Utilities.SHORT_DATE_FORMAT.format(endDate));
+            startDateButton.setText(Utilities.formatShortDate(startDate));
+            endDateButton.setText(Utilities.formatShortDate(endDate));
             visibility = View.VISIBLE;
         } else {
             visibility = View.GONE;
@@ -135,26 +141,42 @@ public class SearchActivity extends AppCompatActivity {
         tableRow2.setVisibility(visibility);
     }
 
-    @SuppressWarnings({"deprecation", "unused"})
+    @SuppressWarnings("unused")
     public final void startDateButtonClicked(View view) {
+        Calendar calendar = utcCalendar(startDate);
         new DatePickerDialog(this,
                 (view1, year, month, day) -> {
-                    startDate = new Date(year - 1900, month, day);
+                    startDate = utcDate(year, month, day);
                     Button startDateButton = findViewById(R.id.startDateButton);
-                    startDateButton.setText(Utilities.SHORT_DATE_FORMAT.format(startDate));
+                    startDateButton.setText(Utilities.formatShortDate(startDate));
                 },
-                startDate.getYear() + 1900, startDate.getMonth(), startDate.getDate()).show();
+                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
     }
 
-    @SuppressWarnings({"deprecation", "unused"})
+    @SuppressWarnings("unused")
     public final void endDateButtonClicked(View view) {
+        Calendar calendar = utcCalendar(endDate);
         new DatePickerDialog(this,
                 (view1, year, month, day) -> {
-                    endDate = new Date(year - 1900, month, day);
+                    endDate = utcDate(year, month, day);
                     Button endDateButton = findViewById(R.id.endDateButton);
-                    endDateButton.setText(Utilities.SHORT_DATE_FORMAT.format(endDate));
+                    endDateButton.setText(Utilities.formatShortDate(endDate));
                 },
-                endDate.getYear() + 1900, endDate.getMonth(), endDate.getDate()).show();
+                calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH)).show();
+    }
+
+    // The picker's year/month/day values are UTC calendar values, not device-local ones.
+    private static Date utcDate(int year, int month, int day) {
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        calendar.clear();
+        calendar.set(year, month, day);
+        return calendar.getTime();
+    }
+
+    private static Calendar utcCalendar(Date date) {
+        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+        calendar.setTime(date);
+        return calendar;
     }
 
     @SuppressLint("DefaultLocale")
@@ -188,9 +210,10 @@ public class SearchActivity extends AppCompatActivity {
             }
 
             if (endDate != null) {
-                // make end of day - 23:59:59
-                endDate = new Date(endDate.getTime() + ALMOST_A_DAY_IN_MILLISECONDS);
-                lotwAdifServiceIntent.putExtra(LotwAdifIntentService.QSO_END_DATE, endDate.getTime());
+                // make end of day - 23:59:59. Use a local variable: mutating the field
+                // would shift the stored end date forward by a day on every search.
+                Date adjustedEndDate = new Date(endDate.getTime() + ALMOST_A_DAY_IN_MILLISECONDS);
+                lotwAdifServiceIntent.putExtra(LotwAdifIntentService.QSO_END_DATE, adjustedEndDate.getTime());
                 paramCount++;
             }
         }
@@ -223,12 +246,8 @@ public class SearchActivity extends AppCompatActivity {
 
         lotwAdifServiceIntent.putExtra(LotwAdifIntentService.DETAIL, true);
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle(R.string.accessingLoTW);
-        progressDialog.setMessage(getString(R.string.pleaseWait));
-        progressDialog.setCancelable(false);
-        progressDialog.setIndeterminate(true);
-        progressDialog.show();
+        searchProgressBar.setVisibility(View.VISIBLE);
+        searchButton.setEnabled(false);
 
         startService(lotwAdifServiceIntent);
     } // searchButtonClick()
@@ -254,10 +273,8 @@ public class SearchActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
             }
-            if (progressDialog != null) {
-                progressDialog.dismiss();
-                progressDialog = null;
-            }
+            searchProgressBar.setVisibility(View.GONE);
+            searchButton.setEnabled(true);
         }
         super.onActivityResult(requestCode, resultCode, data);
     } // onActivityResult()

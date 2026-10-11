@@ -9,8 +9,8 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Build;
+import android.net.Network;
+import android.net.NetworkCapabilities;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.TextView;
@@ -32,8 +32,12 @@ public class LotwLookUtils {
         if (connMgr == null) {
             return false;
         }
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        return (networkInfo != null && networkInfo.isConnected());
+        Network network = connMgr.getActiveNetwork();
+        if (network == null) {
+            return false;
+        }
+        NetworkCapabilities capabilities = connMgr.getNetworkCapabilities(network);
+        return (capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET));
     }
 
     static void alert(Activity activity, CharSequence message) {
@@ -89,15 +93,12 @@ public class LotwLookUtils {
 
         NotificationManager notificationManager = context.getSystemService(NotificationManager.class);
 
-        // Create the NotificationChannel, but only on API 26+ because
-        // the NotificationChannel class is new and not in the support library
-        if (Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
-            String name = context.getResources().getString(R.string.app_name);
-            int importance = NotificationManager.IMPORTANCE_LOW;
-            NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);
-            channel.setDescription("LoTWLook new QSL");
-            notificationManager.createNotificationChannel(channel);
-        }
+        // minSdk is 28, so the NotificationChannel API (added in API 26) is always available.
+        String name = context.getResources().getString(R.string.app_name);
+        int importance = NotificationManager.IMPORTANCE_LOW;
+        NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, name, importance);
+        channel.setDescription("LoTWLook new QSL");
+        notificationManager.createNotificationChannel(channel);
         int notificationId = 0; // ID for this app.  there is only one.
         notificationManager.notify(notificationId, builder.build());
     } // createNotification()
@@ -111,15 +112,24 @@ public class LotwLookUtils {
 
         newQsls = newAdifRecords.size();
         if (newQsls != 0) {
-            AdifRecord newestAdifRecord = newAdifRecords.get(newQsls - 1);
-            long oldestRecordId = newestAdifRecord.getId() - maxDatabaseEntries;
+            // callers pass the records newest-first, so the last element is the OLDEST of the
+            // batch; that's the record we use to compute how far back to keep.
+            AdifRecord oldestNewRecord = newAdifRecords.get(newQsls - 1);
+            long oldestRecordId = oldestNewRecord.getId() - maxDatabaseEntries;
             if (oldestRecordId > 0) {
                 dao.deleteOldAdifRecords(oldestRecordId);
             }
         }
         dao.close();
 
-        PreferencesActivity.updateLastQslDate(context, lastQslDate.getTime());
+        // Deliberately only advance the stored "since" date when at least one NEW record was
+        // inserted. If every returned record was a duplicate, re-querying the same window next
+        // time is cheap and idempotent, whereas advancing past records we didn't keep could
+        // cause confirmations to be missed. (Callers already skip this method entirely when
+        // the returned list is empty.)
+        if (newQsls != 0) {
+            PreferencesActivity.updateLastQslDate(context, lastQslDate.getTime());
+        }
 
         return newQsls;
     } // updateDatabase()

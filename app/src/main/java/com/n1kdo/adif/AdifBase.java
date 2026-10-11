@@ -1,31 +1,37 @@
 package com.n1kdo.adif;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 import java.util.TimeZone;
 
 /**
  * base class for ADIF records.
- * see <a href="http://www.adif.org/304/ADIF_304.htm">...</a>
+ * see <a href="https://www.adif.org/317/ADIF_317.htm">...</a>
  * @author n1kdo
  */
 @SuppressLint("DefaultLocale")
 abstract class AdifBase
 {
-    @SuppressLint("SimpleDateFormat")
-	static final SimpleDateFormat DATE_FORMATTER_8 = new SimpleDateFormat("yyyyMMdd");
-    @SuppressLint("SimpleDateFormat")
-	private static final SimpleDateFormat DATE_FORMATTER_14 = new SimpleDateFormat("yyyyMMddhhmmss");
-    @SuppressLint("SimpleDateFormat")
-	static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private static final String TAG = "AdifBase";
 
-    static
-    {
-		DATE_FORMATTER_8.setTimeZone(TimeZone.getTimeZone("GMT"));
-		DATE_FORMATTER_14.setTimeZone(TimeZone.getTimeZone("GMT"));
-        DATE_FORMATTER.setTimeZone(TimeZone.getTimeZone("GMT"));
+    // SimpleDateFormat is NOT thread-safe, and these formatters are used from the main
+    // thread, background services, and async tasks. Give each thread its own instance.
+    private static SimpleDateFormat gmtFormatter(String pattern) {
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern, Locale.US);
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return formatter;
     }
+
+	static final ThreadLocal<SimpleDateFormat> DATE_FORMATTER_8 =
+            ThreadLocal.withInitial(() -> gmtFormatter("yyyyMMdd"));
+    private static final ThreadLocal<SimpleDateFormat> DATE_FORMATTER_14 =
+            ThreadLocal.withInitial(() -> gmtFormatter("yyyyMMddhhmmss"));
+	static final ThreadLocal<SimpleDateFormat> DATE_FORMATTER =
+            ThreadLocal.withInitial(() -> gmtFormatter("yyyy-MM-dd hh:mm:ss"));
     
 	static String safe(String s)
     {
@@ -61,7 +67,7 @@ abstract class AdifBase
 		}
 		catch (Exception e)
 		{
-			System.out.println(line);
+			Log.w(TAG, "could not parse line: " + line);
 			//e.printStackTrace();
 			//noinspection ZeroLengthArrayAllocation
 			return new String[]{};
@@ -92,11 +98,11 @@ abstract class AdifBase
 		Date date = null;
 		try
 		{
-			date = DATE_FORMATTER_8.parse(data);
+			date = DATE_FORMATTER_8.get().parse(data);
 		}
 		catch (Exception e)
 		{
-			System.err.println("could not parse date "+ data);
+			Log.w(TAG, "could not parse date " + data);
 			// empty catch -- will return null
 		}
 		return date;
@@ -108,11 +114,11 @@ abstract class AdifBase
 		Date date = null;
 		try
 		{
-			date = DATE_FORMATTER_14.parse(data);
+			date = DATE_FORMATTER_14.get().parse(data);
 		}
 		catch (Exception e)
 		{
-			System.err.println("could not parse date "+ data);
+			Log.w(TAG, "could not parse date " + data);
 			// empty catch -- will return null
 		}
 		return date;
@@ -123,11 +129,11 @@ abstract class AdifBase
 		Date date = null;
 		try
 		{
-			date = DATE_FORMATTER.parse(data);
+			date = DATE_FORMATTER.get().parse(data);
 		}
 		catch (Exception e)
 		{
-			System.err.println("could not parse date "+ data);
+			Log.w(TAG, "could not parse date " + data);
 			// empty catch -- will return null
 		}
 		return date;

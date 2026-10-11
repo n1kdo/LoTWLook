@@ -12,7 +12,7 @@ import java.util.TreeMap;
 
 /**
  * enumeration of ADIF countries.  Maybe this should be a database table.  But... maybe not.
- * see <a href="http://www.adif.org/305/ADIF_305.htm">...</a>
+ * see <a href="https://www.adif.org/317/ADIF_317.htm#DXCC_Entity_Code_Enumeration">...</a>
  *
  * @author n1kdo
  */
@@ -48,7 +48,7 @@ public enum AdifCountry {
     DXCC_28(28, "Canal Zone", true),
     DXCC_29(29, "Canary Is."),
     DXCC_30(30, "Celebe & Molucca Is.", true),
-    DXCC_31(31, "C. Kiribati (British Phoenx Is.)"),
+    DXCC_31(31, "C. Kiribati (British Phoenix Is.)"),
     DXCC_32(32, "Ceuta & Melilla"),
     DXCC_33(33, "Chagos Is."),
     DXCC_34(34, "Chatham Is."),
@@ -165,7 +165,7 @@ public enum AdifCountry {
     DXCC_150(150, "Australia"),
     DXCC_151(151, "Malyj Vysotskij I.", true),
     DXCC_152(152, "Macao"),
-    DXCC_153(153, "Macquarie I,"),
+    DXCC_153(153, "Macquarie I."),
     DXCC_154(154, "Yemen Arab Republic", true),
     DXCC_155(155, "Malaya", true),
     DXCC_157(157, "Nauru"),
@@ -218,7 +218,7 @@ public enum AdifCountry {
     DXCC_204(204, "Revillagigedo"),
     DXCC_205(205, "Ascension I."),
     DXCC_206(206, "Austria"),
-    DXCC_207(207, "Rodriguez I."),
+    DXCC_207(207, "Rodrigues I."),
     DXCC_208(208, "Ruanda-Urundi", true),
     DXCC_209(209, "Belgium"),
     DXCC_210(210, "Saar", true),
@@ -294,7 +294,7 @@ public enum AdifCountry {
     DXCC_280(280, "Turkmenistan"),
     DXCC_281(281, "Spain"),
     DXCC_282(282, "Tuvalu"),
-    DXCC_283(283, "UK Sovereighn Base Areas on Cyprus"),
+    DXCC_283(283, "UK Sovereign Base Areas on Cyprus"),
     DXCC_284(284, "Sweden"),
     DXCC_285(285, "Virgin Is."),
     DXCC_286(286, "Uganda"),
@@ -381,10 +381,10 @@ public enum AdifCountry {
     DXCC_456(456, "Senegal"),
     DXCC_458(458, "Sierra Leone"),
     DXCC_460(460, "Rotuma I."),
-    DXCC_462(462, "South Africa"),
+    DXCC_462(462, "Republic of South Africa"),
     DXCC_464(464, "Namibia"),
     DXCC_466(466, "Sudan"),
-    DXCC_468(468, "Swaziland"),
+    DXCC_468(468, "Kingdom of Eswatini"),
     DXCC_470(470, "Tanzania"),
     DXCC_474(474, "Tunisia"),
     DXCC_478(478, "Egypt"),
@@ -399,7 +399,7 @@ public enum AdifCountry {
     DXCC_497(497, "Croatia"),
     DXCC_499(499, "Slovenia"),
     DXCC_501(501, "Bosnia-Herzegovina"),
-    DXCC_502(502, "Macedonia"),
+    DXCC_502(502, "North Macedonia (Republic of)"),
     DXCC_503(503, "Czech Republic"),
     DXCC_504(504, "Slovak Republic"),
     DXCC_505(505, "Pratas I."),
@@ -415,7 +415,7 @@ public enum AdifCountry {
     DXCC_515(515, "Swains I."),
     DXCC_516(516, "Saint Barthelemy"),
     DXCC_517(517, "Curacao"),
-    DXCC_518(518, "St Maarten"),
+    DXCC_518(518, "Sint Maarten"),
     DXCC_519(519, "Saba & St. Eustatius"),
     DXCC_520(520, "Bonaire"),
     DXCC_521(521, "South Sudan (Republic of)"),

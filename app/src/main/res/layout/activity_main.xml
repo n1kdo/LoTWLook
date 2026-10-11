@@ -13,6 +13,19 @@
         android:theme="@style/appBarTheme"
         android:visibility="visible" />
 
+    <ProgressBar
+        android:id="@+id/updateProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
@@ -112,4 +125,5 @@
             </TableLayout>
         </HorizontalScrollView>
     </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </LinearLayout>

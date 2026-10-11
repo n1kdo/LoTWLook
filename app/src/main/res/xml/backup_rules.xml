@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+   Backup rules for API 28-30 (referenced from the manifest's fullBackupContent).
+   Mirrors data_extraction_rules.xml: keep the QSL database, exclude the default
+   SharedPreferences file which holds LoTW login credentials.
+
+   NOTE: unlike data-extraction-rules (API 31+), sharedpref paths in this format
+   are matched against the real file name, so the .xml extension is required.
+-->
+<full-backup-content>
+    <include domain="sharedpref" path="."/>
+    <!-- exclude the default prefs file (username/password/owncall) -->
+    <exclude domain="sharedpref" path="com.n1kdo.lotwlook_preferences.xml"/>
+    <include domain="database" path="LoTWLook.db" />
+</full-backup-content>

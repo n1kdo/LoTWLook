@@ -68,7 +68,6 @@ public class LotwAdifIntentService extends IntentService {
             }
 
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-            getSharedPreferences(PreferencesActivity.PREFERENCES_KEY, MODE_PRIVATE);
 
             String username = sharedPreferences.getString(PreferencesActivity.USERNAME_KEY, "");
             String owncall = sharedPreferences.getString(PreferencesActivity.OWNCALL_KEY, "");
@@ -105,8 +104,11 @@ public class LotwAdifIntentService extends IntentService {
                 if (!adifRecords.isEmpty()) { // limit the size of the list to the maxDatabaseEntries count.
                     if (adifRecords.size() > maxDatabaseEntries) { // shorten the list.
                         Log.d(TAG, "shortening returned list.");
-                        adifRecords = new ArrayList<>(adifRecords.subList(0, maxDatabaseEntries));
-                        result.putExtra(TRUNCATED_MESSAGE, "results truncated to " + maxDatabaseEntries);
+                        // LoTW returns records oldest-first, so keep the LAST N: the stored
+                        // "since" date advances to the newest confirmation below, and dropping
+                        // the oldest records would make them permanently lost.
+                        adifRecords = new ArrayList<>(adifRecords.subList(adifRecords.size() - maxDatabaseEntries, adifRecords.size()));
+                        result.putExtra(TRUNCATED_MESSAGE, "results truncated to the newest " + maxDatabaseEntries + "; oldest records not shown");
                     }
 
                     Collections.reverse(adifRecords);

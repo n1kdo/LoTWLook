@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:versionCode="84"
-    android:versionName="20250831"
+    android:versionCode="86"
+    android:versionName="20251011"
     package="com.n1kdo.lotwlook" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Required to create persisted JobScheduler jobs (setPersisted(true)); without it the
+         OS rejects schedule() with IllegalArgumentException. This app has no boot receiver;
+         the permission's only role here is enabling job persistence across reboots. -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <application
         android:allowBackup="true"
-        android:fullBackupContent="true"
+        android:fullBackupContent="@xml/backup_rules"
         android:allowClearUserData="true"
         android:hardwareAccelerated="false"
         android:icon="@drawable/ic_launcher"

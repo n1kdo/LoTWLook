@@ -17,6 +17,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
@@ -25,9 +26,24 @@ public class QueryLoTW {
     private static final String TAG = QueryLoTW.class.getSimpleName();
 
     private static final String LOTW_URL = "https://lotw.arrl.org/lotwuser/lotwreport.adi";
-    private static final DateFormat dateFormatForSince = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US);
-    private static final DateFormat dateFormatDate = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-    private static final DateFormat dateFormatTime = new SimpleDateFormat("HH:mm:ss", Locale.US);
+    private static final int CONNECT_TIMEOUT_MILLIS = 15000;
+    private static final int READ_TIMEOUT_MILLIS = 60000;
+    // LoTW interprets all query dates/times as UTC, and the Date values here come from
+    // UTC parsing of the ADIF response. Format in UTC; never in device-local time.
+    // SimpleDateFormat is NOT thread-safe, and callLotw() can run concurrently on the
+    // IntentService worker thread and the JobService query thread; each gets its own.
+    private static final ThreadLocal<DateFormat> SINCE_FORMATTER =
+            ThreadLocal.withInitial(() -> utcFormatter("yyyy-MM-dd HH:mm:ss"));
+    private static final ThreadLocal<DateFormat> DATE_FORMATTER =
+            ThreadLocal.withInitial(() -> utcFormatter("yyyy-MM-dd"));
+    private static final ThreadLocal<DateFormat> TIME_FORMATTER =
+            ThreadLocal.withInitial(() -> utcFormatter("HH:mm:ss"));
+
+    private static SimpleDateFormat utcFormatter(String pattern) {
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern, Locale.US);
+        formatter.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return formatter;
+    }
 
     public static AdifResult callLotw(String username,
                                       String password,
@@ -43,7 +59,7 @@ public class QueryLoTW {
         AdifResult adifResult;
         String since;
         if (sinceDate != null) {
-            since = dateFormatForSince.format(sinceDate);
+            since = SINCE_FORMATTER.get().format(sinceDate);
         } else {
             since = "2020-01-01";
         }
@@ -74,15 +90,15 @@ public class QueryLoTW {
             addParameter(urlSB, "qso_dxcc", Integer.toString(dxcc));
 
         if (qsoStartDate != null) {
-            String dateString = dateFormatDate.format(qsoStartDate);
-            String timeString = dateFormatTime.format(qsoStartDate);
+            String dateString = DATE_FORMATTER.get().format(qsoStartDate);
+            String timeString = TIME_FORMATTER.get().format(qsoStartDate);
             addParameter(urlSB, "qso_startdate", dateString);
             addParameter(urlSB, "qso_starttime", timeString);
         }
 
         if (qsoEndDate != null) {
-            String dateString = dateFormatDate.format(qsoEndDate);
-            String timeString = dateFormatTime.format(qsoEndDate);
+            String dateString = DATE_FORMATTER.get().format(qsoEndDate);
+            String timeString = TIME_FORMATTER.get().format(qsoEndDate);
             addParameter(urlSB, "qso_enddate", dateString);
             addParameter(urlSB, "qso_endtime", timeString);
         }
@@ -99,13 +115,18 @@ public class QueryLoTW {
         addParameter(urlSB, "password", password);
 
         BufferedReader in = null;
+        HttpsURLConnection urlConnection = null;
 
         try {
             URL url = new URL(urlSB.toString());
             SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
             sslContext.init(null, null, null);
 
-            HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
+            urlConnection = (HttpsURLConnection) url.openConnection();
+            // avoid hanging forever on a half-dead network; the caller shows a
+            // non-cancelable progress dialog while this is running.
+            urlConnection.setConnectTimeout(CONNECT_TIMEOUT_MILLIS);
+            urlConnection.setReadTimeout(READ_TIMEOUT_MILLIS);
             urlConnection.addRequestProperty("User-Agent", "N1KDOs LoTWLook");
             urlConnection.setSSLSocketFactory(sslContext.getSocketFactory());
             int status = urlConnection.getResponseCode();
@@ -124,6 +145,9 @@ public class QueryLoTW {
                 } catch (Exception ignored) {
                 }
             } // if in != null
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            } // if urlConnection != null
         } // finally
         return adifResult;
     }

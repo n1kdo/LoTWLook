@@ -6,7 +6,7 @@ import java.util.Set;
 
 /**
  * enumeration of ADIF modes.
- * see <a href="http://www.adif.org/308/ADIF_308.htm">...</a>
+ * see <a href="https://www.adif.org/317/ADIF_317.htm">...</a>
  * @author n1kdo
  */
 public enum AdifMode

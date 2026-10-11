@@ -5,12 +5,17 @@ import android.annotation.SuppressLint;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class AdifResult {
     private final static String ADIF_EOH = "<eoh>";
     private final static String ADIF_EOR = "<eor>";
-    private final static String USERNAME_PASSWORD_INCORRECT = "<I>Username/password incorrect</I>";
-    private final static String LOGIN_FORM = "<FORM ACTION=\"/lotwuser/lotwreport.adi\" METHOD=\"post\">";
+    // LoTW has no reasonable error response; on authentication problems it serves its
+    // HTML login page. These fragments never appear in a valid ADIF response, so they
+    // are checked on every line, case-insensitively. Keep them loose (fragments rather
+    // than exact tags) so cosmetic markup changes don't silently break detection.
+    private final static String USERNAME_PASSWORD_INCORRECT = "username/password incorrect";
+    private final static String LOGIN_FORM_ACTION = "action=\"/lotwuser/lotwreport.adi\"";
 
     enum LOTW_READ_STATE {
         HEADER, ADIF_HEADER, ADIF_RECORDS, HTML
@@ -46,15 +51,26 @@ public class AdifResult {
 
         try {
             while ((line = in.readLine()) != null) {
-                //System.out.println(line);
                 line = line.trim();
+                String lowerLine = line.toLowerCase(Locale.US);
+
+                // Detect the HTML login page on every line, in every state: a valid
+                // ADIF response never contains these fragments.
+                if (lowerLine.contains(USERNAME_PASSWORD_INCORRECT)) {
+                    throw new AdifResultException(AdifResultException.INVALID_CREDENTIALS_EXCEPTION);
+                }
+                if (lowerLine.contains(LOGIN_FORM_ACTION)) {
+                    foundLoginForm = true;
+                }
+
                 switch (readState) {
                     case HEADER:
-                        if (line.toUpperCase().startsWith("<HTML")) {
+                        // Enter HTML state on any line that looks like the start of an
+                        // HTML/XML document, not just "<HTML".
+                        if (lowerLine.startsWith("<html") || lowerLine.startsWith("<!doctype")
+                                || lowerLine.startsWith("<?xml")) {
                             readState = LOTW_READ_STATE.HTML;
-                        }
-
-                        if (line.isEmpty()) {
+                        } else if (line.isEmpty()) {
                             readState = LOTW_READ_STATE.ADIF_HEADER;
                         }
                         break;
@@ -74,17 +90,18 @@ public class AdifResult {
                         }
                         break;
                     case HTML:
-                        if (line.contains(USERNAME_PASSWORD_INCORRECT)) {
-                            throw new AdifResultException(AdifResultException.INVALID_CREDENTIALS_EXCEPTION);
-                        }
-                        if (line.contains(LOGIN_FORM)) {
-                            foundLoginForm = true;
-                        }
+                        // nothing to do; the login-page checks above run for every line.
+                        break;
                 } // switch
             } // while
         } // try
         catch (IOException e) {
             throw new AdifResultException(AdifResultException.IO_EXCEPTION, e);
+        }
+        // If the stream ended in the middle of a record (no trailing <eor>), keep it rather
+        // than silently dropping the last QSL. A record without a CALL is not usable.
+        if (readState == LOTW_READ_STATE.ADIF_RECORDS && !adifRecord.getCall().isEmpty()) {
+            adifRecords.add(adifRecord);
         }
         if (foundLoginForm) {
             throw new AdifResultException(AdifResultException.LOGIN_FAILED_EXCEPTION);

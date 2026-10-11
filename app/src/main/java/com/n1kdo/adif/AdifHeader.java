@@ -1,17 +1,20 @@
 package com.n1kdo.adif;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 
 import java.util.Date;
 import java.util.Locale;
 
 /**
  * ADIF header record.  Not all fields are implemented.  This has the fields that are implemented by LOTW.  Maybe someday...
- * see <a href="http://www.adif.org/304/ADIF_304.htm">...</a>
+ * see <a href="https://www.adif.org/317/ADIF_317.htm">...</a>
  *
  * @author n1kdo
  */
 public class AdifHeader extends AdifBase {
+    private static final String TAG = "AdifHeader";
+
     private enum AdifHeaderKeys {
         PROGRAMID, APP_LOTW_LASTQSL, APP_LOTW_NUMREC
     }
@@ -25,14 +28,13 @@ public class AdifHeader extends AdifBase {
 
     @SuppressLint("DefaultLocale")
     public final void parseLine(String line) {
-        //System.out.println(line);
         String[] data = parseAdifLine(line);
         if (data.length == 2) {
             AdifHeaderKeys ahk;
             try {
                 ahk = AdifHeaderKeys.valueOf(data[0].toUpperCase(Locale.US));
             } catch (IllegalArgumentException e) {
-                System.out.println("missing case " + data[0]);
+                Log.w(TAG, "missing case " + data[0]);
                 return;
             }
             switch (ahk) {

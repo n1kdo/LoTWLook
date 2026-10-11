@@ -1,9 +1,4 @@
 <resources>
-    <!-- Application theme. -->
-    <!-- <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar"> -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
     <!-- theme for app bar ToolBar to make the text white -->
     <style name="appBarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">#fff</item>

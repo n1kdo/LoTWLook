@@ -8,7 +8,7 @@ import java.util.Set;
 
 /**
  * enumeration of ADIF bands
- * see <a href="http://www.adif.org/304/ADIF_304.htm">...</a>
+ * see <a href="https://www.adif.org/317/ADIF_317.htm">...</a>
  *
  * @author n1kdo
  */
@@ -76,14 +76,20 @@ public enum AdifBand {
 
     public static float wavelength(String bandname) {
         float wavelength = 0.0f;
-        if (bandname.toLowerCase().endsWith("cm")) {
-            String num = bandname.substring(0, bandname.length() - 2);
-            wavelength = Integer.parseInt(num) / 100.0f;
-        } else {
-            if (bandname.toLowerCase().endsWith("m")) {
+        if (bandname == null || bandname.isEmpty()) {
+            return wavelength;
+        }
+        String lower = bandname.toLowerCase();
+        try {
+            if (lower.endsWith("cm")) {
+                String num = bandname.substring(0, bandname.length() - 2);
+                wavelength = Float.parseFloat(num) / 100.0f;
+            } else if (lower.endsWith("m")) {
                 String num = bandname.substring(0, bandname.length() - 1);
-                wavelength = Integer.parseInt(num);
+                wavelength = Float.parseFloat(num);
             }
+        } catch (NumberFormatException e) {
+            // unrecognized band name; leave wavelength at 0.0
         }
         return wavelength;
     } // wavelength()

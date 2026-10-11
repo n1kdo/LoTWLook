@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="accessingLoTW">Accessing LoTW&#8230;</string>
     <string name="action_refresh">Refresh</string>
     <string name="action_search">Search</string>
     <string name="all">All</string>
@@ -33,8 +32,6 @@
     <string name="modeTitle">Mode</string>
     <string name="network_unavailable">Network Unavailable</string>
     <string name="no_new_qsls">No New QSLs</string>
-    <string name="pleaseWait">Please Wait&#8230;</string>
-    <string name="preferencesHeading">Settings</string>
     <string name="qslDateTitle">QSL Date</string>
     <string name="qsl_table_header">LoTW QSLs</string>
     <string name="qsoDateColumnHeader">QSO Date%s</string>

@@ -19,8 +19,6 @@ import java.util.List;
 public class PreferencesActivity extends AppCompatActivity implements OnSharedPreferenceChangeListener {
     private static final String TAG = PreferencesActivity.class.getSimpleName();
 
-    public static final String PREFERENCES_KEY = "com.n1kdo.lotwlook.preferences";
-
     public static final String UPDATE_INTERVAL_KEY_NAME = "updateInterval";
     public static final String MAX_DATABASE_ENTRIES_KEY = "maxDatabaseEntries";
     public static final String LAST_SEEN_QSL_KEY = "lastSeenQslRecordId";
@@ -37,12 +35,22 @@ public class PreferencesActivity extends AppCompatActivity implements OnSharedPr
         Toolbar preferences_toolbar = findViewById(R.id.preferences_toolbar);
         setSupportActionBar(preferences_toolbar);
         preferences_toolbar.setNavigationIcon(R.drawable.ic_action_back);
-        preferences_toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        preferences_toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.settings_layout, new PreferencesSettingsFragment())
                 .commit();
+
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public final void onDestroy() {
+        super.onDestroy();
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -82,7 +90,6 @@ public class PreferencesActivity extends AppCompatActivity implements OnSharedPr
 
     static void updateLastQslDate(Context context, long datetimevalue) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        context.getSharedPreferences(PreferencesActivity.PREFERENCES_KEY, Context.MODE_PRIVATE);
         Editor editor = sharedPreferences.edit();
         editor.putLong(PreferencesActivity.LAST_QSL_DATE_KEY, datetimevalue);
         editor.apply();
@@ -90,7 +97,6 @@ public class PreferencesActivity extends AppCompatActivity implements OnSharedPr
 
     public static void updateLastQslSeen(Context context, long newvalue) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        context.getSharedPreferences(PreferencesActivity.PREFERENCES_KEY, Context.MODE_PRIVATE);
         Editor editor = sharedPreferences.edit();
         editor.putLong(PreferencesActivity.LAST_SEEN_QSL_KEY, newvalue);
         editor.apply();

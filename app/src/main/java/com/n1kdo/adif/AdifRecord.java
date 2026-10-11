@@ -2,6 +2,7 @@ package com.n1kdo.adif;
 
 import android.annotation.SuppressLint;
 import android.os.Parcel;
+import android.util.Log;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
@@ -17,12 +18,14 @@ import java.util.Locale;
 /**
  * ADIF QSO record. Not all fields are implemented. This has the fields that are
  * implemented by LOTW. Maybe someday... see
- * <a href="http://www.adif.org/305/ADIF_305.htm">...</a>
+ * <a href="https://www.adif.org/317/ADIF_317.htm">...</a>
  *
  * @author n1kdo
  * @noinspection SpellCheckingInspection
  */
 public class AdifRecord extends AdifBase implements Parcelable {
+    private static final String TAG = "AdifRecord";
+
     private static final String CREDIT_GRANTED_DELIMITER = ",";
 
     private enum AdifRecordKeys {
@@ -204,9 +207,14 @@ public class AdifRecord extends AdifBase implements Parcelable {
     private static long getMillisecondsFromTimeOn(String s) {
         long l = 0;
         if (s != null && s.length() == 6) {
-            l = Integer.parseInt(s.substring(0, 2)) * 3600000L;
-            l += Integer.parseInt(s.substring(2 ,4)) * 60000L;
-            l += Integer.parseInt(s.substring(4, 6)) * 1000L;
+            try {
+                l = Integer.parseInt(s.substring(0, 2)) * 3600000L;
+                l += Integer.parseInt(s.substring(2 ,4)) * 60000L;
+                l += Integer.parseInt(s.substring(4, 6)) * 1000L;
+            } catch (NumberFormatException e) {
+                // malformed TIME_ON value; treat as no time offset.
+                l = 0;
+            }
         }
         return l;
     }
@@ -238,7 +246,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
             try {
                 ark = AdifRecordKeys.valueOf(data[0].toUpperCase(Locale.US));
             } catch (IllegalArgumentException e) {
-                System.out.println("AdifRecord: missing case " + data[0] + " with data " + data[1]);
+                Log.w(TAG, "missing case " + data[0] + " with data " + data[1]);
                 return;
             }
             switch (ark) {
@@ -358,7 +366,9 @@ public class AdifRecord extends AdifBase implements Parcelable {
     }
 
     public final void setCreditGrantedFromString(String credit_granted_string) {
-        this.credit_granted = credit_granted_string.split(CREDIT_GRANTED_DELIMITER);
+        // a NULL column in the database arrives here as null; don't NPE.
+        this.credit_granted = (credit_granted_string == null || credit_granted_string.isEmpty())
+                ? new String[0] : credit_granted_string.split(CREDIT_GRANTED_DELIMITER);
     }
 
     public final void setDxcc(int dxcc) {
@@ -386,7 +396,9 @@ public class AdifRecord extends AdifBase implements Parcelable {
     }
 
     public final void setLotwCreditGrantedFromString(String lotw_credit_granted_string) {
-        this.lotw_credit_granted = lotw_credit_granted_string.split(CREDIT_GRANTED_DELIMITER);
+        // a NULL column in the database arrives here as null; don't NPE.
+        this.lotw_credit_granted = (lotw_credit_granted_string == null || lotw_credit_granted_string.isEmpty())
+                ? new String[0] : lotw_credit_granted_string.split(CREDIT_GRANTED_DELIMITER);
     }
 
     public final void setLotwDxccEntityStatus(String lotw_dxcc_entity_status) {
@@ -482,7 +494,7 @@ public class AdifRecord extends AdifBase implements Parcelable {
     @NonNull
     public final String toString() {
         return station_callsign + " " + call + " " +
-                (getQsoDateTime() != null ? DATE_FORMATTER.format(getQsoDateTime()) : "") +
+                (getQsoDateTime() != null ? DATE_FORMATTER.get().format(getQsoDateTime()) : "") +
                 " " + freq;
     }
 
@@ -568,17 +580,31 @@ public class AdifRecord extends AdifBase implements Parcelable {
 
     public static final Comparator<AdifRecord> NATURAL_COMPARE = Comparator.comparingLong(adifRecord -> adifRecord._id);
 
-    public static final Comparator<AdifRecord> MYCALL_COMPARE = Comparator.comparing(adifRecord -> adifRecord.lotw_owncall);
+    public static final Comparator<AdifRecord> MYCALL_COMPARE =
+            Comparator.comparing(adifRecord -> adifRecord.lotw_owncall, Comparator.nullsFirst(Comparator.naturalOrder()));
 
-    public static final Comparator<AdifRecord> BAND_COMPARE = (first, second) -> Float.compare(AdifBand.wavelength(first.band), AdifBand.wavelength(second.band));
+    public static final Comparator<AdifRecord> BAND_COMPARE = (first, second) -> Float.compare(AdifBand.wavelength(first.getBand()), AdifBand.wavelength(second.getBand()));
 
-    public static final Comparator<AdifRecord> CALLSIGN_COMPARE = Comparator.comparing(adifRecord -> adifRecord.call);
+    public static final Comparator<AdifRecord> CALLSIGN_COMPARE =
+            Comparator.comparing(adifRecord -> adifRecord.call, Comparator.nullsFirst(Comparator.naturalOrder()));
 
-    public static final Comparator<AdifRecord> COUNTRY_COMPARE = Comparator.comparing(adifRecord -> adifRecord.country);
+    public static final Comparator<AdifRecord> COUNTRY_COMPARE =
+            Comparator.comparing(adifRecord -> adifRecord.country, Comparator.nullsFirst(Comparator.naturalOrder()));
 
-    public static final Comparator<AdifRecord> MODE_COMPARE = Comparator.comparing(adifRecord -> adifRecord.mode);
+    public static final Comparator<AdifRecord> MODE_COMPARE =
+            Comparator.comparing(adifRecord -> adifRecord.mode, Comparator.nullsFirst(Comparator.naturalOrder()));
 
     public static final Comparator<AdifRecord> QSO_DATE_COMPARE = (first, second) -> {
+        // records without a date sort first (last when displayed descending).
+        if (first.qso_date == null && second.qso_date == null) {
+            return 0;
+        }
+        if (first.qso_date == null) {
+            return -1;
+        }
+        if (second.qso_date == null) {
+            return 1;
+        }
         int comparison = first.qso_date.compareTo(second.qso_date);
         if (comparison == 0 && first.timeon != null && second.timeon != null) {
             comparison = first.timeon.compareTo(second.timeon);

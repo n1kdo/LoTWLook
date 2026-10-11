@@ -38,7 +38,7 @@ public class SearchResultsActivity extends AppCompatActivity {
         setSupportActionBar(search_toolbar);
         search_toolbar.setTitle(R.string.searchResults);
         search_toolbar.setNavigationIcon(R.drawable.ic_action_back);
-        search_toolbar.setNavigationOnClickListener(v -> onBackPressed());
+        search_toolbar.setNavigationOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
         Intent intent = getIntent();
         this.adifRecordsList = intent.getParcelableArrayListExtra(LotwAdifIntentService.ADIF_RECORDS_LIST);
@@ -52,7 +52,7 @@ public class SearchResultsActivity extends AppCompatActivity {
     @Override
     public final boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            onBackPressed();
+            getOnBackPressedDispatcher().onBackPressed();
             return true;
         }
         return (super.onOptionsItemSelected(item));
